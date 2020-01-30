@@ -1,0 +1,21 @@
+---
+ms.author: dastanfo
+author: david-stanford
+ms.date: {{ getdate() }}
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
+ms.uid: {{ choice.id }}
+ms.assessment_question: {{ choice.title }}
+---
+{% if choice.heading != None %}
+## {{ choice.heading }}
+{% else %}
+## {{ choice.title }}
+{% endif %}
+
+{% if choice.output|length %}
+{{ choice.output }}
+{% else %}
+{{ choice.answer_tooltip }}
+{% endif %}

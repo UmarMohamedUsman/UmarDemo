@@ -1,0 +1,3124 @@
+{
+  "id": "72711cc9-1916-4be6-8e69-fd8af3d1fb45",
+  "title": "Azure Architecture Review",
+  "category": [
+    {
+      "id": "dede8cbe-a6c1-4d66-bc3d-a8e30febfce0",
+      "name": "Management",
+      "questions": [
+        {
+          "id": "c647af68-9fd7-4979-9a2c-8a8977dee1a9",
+          "title": "Monitoring",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "57e64711-602a-4e24-a9f2-a709546dc2ad",
+              "title": "Do you get proactively notified of critical conditions and take corrective action?",
+              "answer_tooltip": "Risk of critical conditions going unnoticed.",
+              "output": "Use Azure alerts to get proactive notifications. Employ action groups to notify recipients to respond to alerts.",
+              "priority": "medium"
+            },
+            {
+              "id": "af0952a6-9274-4a1b-85c8-a320d0004b31",
+              "title": "How do you combine different kinds of data into a single pane?",
+              "answer_tooltip": "Inability to combine metrics, activity, usage, and logs for unified monitoring.",
+              "output": "Use Azure dashboards to combine data into a single pane and share it with multiple stakeholders.",
+              "priority": "medium"
+            },
+            {
+              "id": "91270f52-f115-4be2-91d2-5060718bebf3",
+              "title": "How do you do additional visualizations and make them available to others within and outside of your organization?",
+              "answer_tooltip": "Inability to look at monitoring from multiple perspectives and dissecting logs.",
+              "output": "Export Log Analytics data to Power BI to create additional visualizations.",
+              "priority": "medium"
+            },
+            {
+              "id": "e8e68784-4079-41a7-bb46-05093e1110d6",
+              "title": "How do you monitor the collection of metrics, activity logs, and diagnostic logs?",
+              "answer_tooltip": "Inability to track when new resources are created/modified, or to monitor performance statistics with trending and detailed analysis.",
+              "output": "Use Azure Monitor for collection of metrics, activity logs, and diagnostic logs.",
+              "priority": "medium"
+            },
+            {
+              "id": "d65f0adb-6e1d-4a1b-8b4f-217ca4b5baa5",
+              "title": "How do you monitor resource configuration and usage telemetry? Do you generate best-practice recommendations from usage?",
+              "answer_tooltip": "Inability to improve performance, security, and availability.",
+              "output": "Utilize Azure Advisor for monitoring resource configuration and usage telemetry, and to get personalized recommendations based on best practices.",
+              "priority": "medium"
+            },
+            {
+              "id": "dcfb9e43-4f69-44d2-934f-2a2e25631bf7",
+              "title": "How do you identify issues with underlying services that affect your application?",
+              "answer_tooltip": "Inability to proactively take steps to know about application unavailability and notify application users about it.",
+              "output": "Use Azure Service Health to identify issues with services affecting application and plan for scheduled maintenance.",
+              "priority": "medium"
+            },
+            {
+              "id": "1185a325-6db3-49c4-ac03-6b7a4327689c",
+              "title": "How do you monitor configuration changes, service health incidents, and other similar events?",
+              "answer_tooltip": "Risk of configuration changes and health incidents going unnoticed.",
+              "output": "Utilize Activity Log for detecting configuration changes, health incidents, better utilization, and autoscale operations.",
+              "priority": "medium"
+            },
+            {
+              "id": "211d93bb-f94b-44f7-aaa7-1f771e2fa49b",
+              "title": "How do you monitor availability, performance, and usage of applications?",
+              "answer_tooltip": "Inability to achieve deep insights, quickly identify and diagnose errors, and make informed choices on application maintenance and improvements.",
+              "output": "Use Azure Application Insights to monitor availability, performance, and usage of application.",
+              "priority": "medium"
+            },
+            {
+              "id": "3066ece0-2f3e-49f7-aa9b-c7984517e514",
+              "title": "Do you analyze logs using query language?",
+              "answer_tooltip": "Inability to form a complete picture of the operating environment.",
+              "output": "Use Log Analytics to collect data from a variety of resources into a single repository and analyze it using a powerful query language.",
+              "priority": "medium"
+            },
+            {
+              "id": "4305f21b-cac5-4871-9fca-e36fe6ecfc60",
+              "title": "How do you monitor third-party services (containers, SQL)?",
+              "answer_tooltip": "Inability to monitor third- party services and their impact on application unavailability.",
+              "output": "Employ Management solutions for monitoring third-party solutions, such as Container Monitoring and Azure SQL Analytics.",
+              "priority": "medium"
+            },
+            {
+              "id": "1d38bf9f-5339-455c-97e9-187c75ade4cb",
+              "title": "How do you monitor and diagnose different network scenarios?",
+              "answer_tooltip": "Inability to detect reachability, latency, and network topology changes between the VM and the endpoint.",
+              "output": "Use Network Watcher for scenario-based monitoring.",
+              "priority": "medium"
+            },
+            {
+              "id": "b7f291b3-7737-476f-8d29-b0700c945864",
+              "title": "How do you monitor security, performance, and operations-related insights based on DNS servers?",
+              "answer_tooltip": "Inability to detect clients that try to resolve malicious domain names, stale resource records, request load on DNS servers, and dynamic DNS registration failures.",
+              "output": "Utilize DNS Analytics for gathering security, performance and operations-related insights of DNS servers.",
+              "priority": "medium"
+            },
+            {
+              "id": "1bfb03a6-f0a0-4697-9871-b8f0e24d6c66",
+              "title": "How do you test the reachability of applications and detect performance bottlenecks across on- premises, carrier networks, and cloud/private datacenters?",
+              "answer_tooltip": "Inability to correlate application delivery with network performance, detect precise location of degradation along the path between the user and the application, and test application reachability from multiple user locations across the globe.",
+              "output": "Employ Service Endpoint Monitoring for testing reachability of applications and detect performance bottlenecks across on- premises, carrier networks and cloud/private data centers.",
+              "priority": "medium"
+            },
+            {
+              "id": "ee67881e-eddc-4b9c-9ee9-c1a78856ffbc",
+              "title": "Do you gather insight by analyzing virtual machines with their different processes and dependencies on other computers and external processes?",
+              "answer_tooltip": "Inability to visualize interconnected systems delivering critical services mapping servers, processes, and ports.",
+              "output": "Use Service Map to gain insight by analyzing virtual machines with their different processes and dependencies on other computers and external processes.",
+              "priority": "medium"
+            },
+            {
+              "id": "596d10ec-1072-4fb4-8323-edb894c47389",
+              "title": "How do you monitor connectivity across public clouds, datacenters, and on-premises environments?",
+              "answer_tooltip": "Inability to detect traffic blackholing, routing errors, and issues that conventional network monitoring methods can’t detect.",
+              "output": "Adopt Network Performance Monitor (NPM) for monitoring across public clouds, datacenters, and on- premises.",
+              "priority": "medium"
+            },
+            {
+              "id": "c828326f-893e-44cc-a6cf-3956df0e48e9",
+              "title": "How do you monitor ExpressRoute circuits?",
+              "answer_tooltip": "Inability to detect loss and latency across various VNets, monitor all paths (including redundant paths), troubleshoot transient and point - in -time network issues, determine a specific cause degrading performance, track throughput per virtual network, and see ExpressRoute system state from a previous point in time.",
+              "output": "Use ExpressRoute Monitor for monitoring connectivity and performance of ExpressRoute circuits.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": "DOINGTHINGS"
+        },
+        {
+          "id": "09649da7-be08-48de-b42d-c5094245ec47",
+          "title": "Configuration",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "af5f817c-70fb-4863-b276-a4ecbff43c91",
+              "title": "SetMe",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "399aaa93-e1c7-4343-9edc-431dd5c50b08",
+              "title": "How do you automate frequent, time-consuming, and error-prone management tasks?",
+              "answer_tooltip": "Inability to reduce errors, boost efficiency, and lower operational costs.",
+              "output": "Use automation runbooks with hybrid runbook worker to unify management by orchestrating across on- premises environments. Use webhooks to provide a way to fulfill requests and ensure continuous delivery and operations by triggering automation from ITSM, DevOps, and monitoring systems.",
+              "priority": "medium"
+            },
+            {
+              "id": "3506328d-9962-4be3-84cd-c922ee8ce14f",
+              "title": "How do you monitor and automatically update machine configuration?",
+              "answer_tooltip": "Inability to automatically receive configurations, conform to the desired state, and report back on compliance.",
+              "output": "Use Azure Automation State Configuration to provide configuration management required for enterprise environments.",
+              "priority": "medium"
+            },
+            {
+              "id": "6e42dac1-d185-4e59-81ba-6ae9992260d6",
+              "title": "How do you schedule deployments to orchestrate the installation of updates within a defined maintenance window? How do you get visibility into update compliance?",
+              "answer_tooltip": "Inability to quickly assess the status of available updates on all agent computers and manage the process of installing required updates for servers.",
+              "output": "Employ Update Management to manage VM updates in Azure, on- premises, or in other cloud providers.",
+              "priority": "medium"
+            },
+            {
+              "id": "e487a984-4476-47e8-b80a-dbc37de69b65",
+              "title": "How do you monitor resource configuration and usage telemetry? Do you generate best-practice recommendations from usage?",
+              "answer_tooltip": "Inability to get personalized recommendations to help manage the Azure environment.",
+              "output": "Use Azure Advisor to follow best practices to optimize Azure deployments and analyze your resource configuration and usage telemetry.",
+              "priority": "medium"
+            },
+            {
+              "id": "cb4280e5-d43d-40b0-8d5c-c6d230ae078e",
+              "title": "How do you identify opportunities to reduce overall cost?",
+              "answer_tooltip": "Inability to identifying idle and underutilized resources.",
+              "output": "Adopt Advisor cost recommendations to optimize and reduce overall Azure spend.",
+              "priority": "medium"
+            },
+            {
+              "id": "352ff91f-3e8d-42b8-8348-16bb0ae22112",
+              "title": "How do you generate recommendations with proposed actions inline?",
+              "answer_tooltip": "Inability to improve speed and responsiveness of applications.",
+              "output": "Review Advisor performance recommendations and Advisor high-availability recommendations for proposed actions inline.",
+              "priority": "medium"
+            },
+            {
+              "id": "5218f599-4cdb-45e7-889f-558736a8c186",
+              "title": "How do you deploy, manage, and monitor a solution as a group rather than handling its components individually?",
+              "answer_tooltip": "Inability to apply common lifecycle to interdependent application parts that can be deployed or deleted in a single action.",
+              "output": "Use Azure Resource Manager to define the dependencies between resources so they're deployed in the correct order.",
+              "priority": "medium"
+            },
+            {
+              "id": "1de11051-cb0c-4b7e-87f2-0b6217d09056",
+              "title": "How do you repeatedly deploy solutions throughout the development lifecycle?",
+              "answer_tooltip": "Lack of confidence that resources are deployed in a consistent state.",
+              "output": "Utilize Azure Resource Manager deployment modes to provision all resources specified in the template.",
+              "priority": "medium"
+            },
+            {
+              "id": "0ed5fb97-1a50-4944-8cc4-a8ca29e268b4",
+              "title": "Do you manage infrastructure through declarative templates rather than scripts?",
+              "answer_tooltip": "Inability to make deployments consistent and repeatable across environments.",
+              "output": "Use Azure Resource Manager templates to ensure that investments for one location are reusable in another.",
+              "priority": "medium"
+            },
+            {
+              "id": "698651fa-cf83-4a3f-8cf3-42a698c1352f",
+              "title": "How do you define dependencies between resources so they're deployed in the correct order?",
+              "answer_tooltip": "Inability to evaluate dependencies between resources and deploy them in their dependent order.",
+              "output": "Use Azure Resource Manager templates to define dependencies for resources that are deployed in the same template.",
+              "priority": "medium"
+            },
+            {
+              "id": "e6b48676-4ddd-4277-b652-c25f95421ccf",
+              "title": "How do you apply access control to all services?",
+              "answer_tooltip": "Inability to provide fine- grained access management of resources.",
+              "output": "Use Azure Resource Manager RBAC to manage access to Azure resources, what users can do with those resources, and to what areas they have access.",
+              "priority": "medium"
+            },
+            {
+              "id": "6c8eb06d-1e07-4d6f-9a5d-06ebdf8fa3a3",
+              "title": "How do you apply tags to resources to logically organize all the resources in your subscription?",
+              "answer_tooltip": "Inability to associate resources with the appropriate department, customer, and environment.",
+              "output": "Utilize resource tags to logically organize Azure resources by categories.",
+              "priority": "medium"
+            },
+            {
+              "id": "909f61b0-e7e2-4d86-ba6c-e6c08f5b6ef0",
+              "title": "Do you clarify your organization's billing by viewing costs for a group of resources?",
+              "answer_tooltip": "Inability to organize resources for billing or management.",
+              "output": "Use resource tags for the purposes of chargebacks.",
+              "priority": "medium"
+            },
+            {
+              "id": "f17757ae-4028-4e9f-9aff-1309146419b5",
+              "title": "How do you implement recurring application actions?",
+              "answer_tooltip": "Inability to create, maintain, and invoke scheduled work for apps.",
+              "output": "Employ Azure Scheduler to declaratively describe actions to run in the cloud, on-premises, or with another provider.",
+              "priority": "medium"
+            },
+            {
+              "id": "32cf65cc-fb8a-4864-9918-bac29aeefee3",
+              "title": "How do manage daily pruning of logs, performing backups, and other maintenance tasks?",
+              "answer_tooltip": "Inability to set multiple one- time and recurring schedules.",
+              "output": "Adopt Azure Scheduler jobs for a wide variety of business scenarios.",
+              "priority": "medium"
+            },
+            {
+              "id": "fab6c8bc-92c4-40a2-bcd5-0d17c316ec02",
+              "title": "Do you have browser-based command-line experience for management tasks?",
+              "answer_tooltip": "Inability to manage Azure resources without the overhead of installing, versioning, and maintaining a machine.",
+              "output": "Use Azure Cloud Shell for an interactive, browser- accessible shell for managing Azure resources.",
+              "priority": "medium"
+            },
+            {
+              "id": "a92745c7-4ba8-4715-a982-fd8d4ca1fde9",
+              "title": "How do you plan to switch between Bash and PowerShell?",
+              "answer_tooltip": "Inability to integrate with open-source tooling, such as Terraform, Ansible, and Chef InSpec.",
+              "output": "Use Azure Cloud Shell tools for deep integration with open-source tooling.",
+              "priority": "medium"
+            },
+            {
+              "id": "5365902b-1e6f-4c76-bb9a-f903056493b5",
+              "title": "How do you securely authenticate for instant access to resources?",
+              "answer_tooltip": "Inability to provide secure and automatic authentication account access.",
+              "output": "Use Cloud Shell to secure automatic authentication for the Azure CLI 2.0 and Azure PowerShell.",
+              "priority": "medium"
+            },
+            {
+              "id": "ca354b82-1239-4781-a132-caaa9c09a5e2",
+              "title": "How do you stay connected to your resources regardless of time or location?",
+              "answer_tooltip": "Inability to keep track of Azure resources when on the go.",
+              "output": "Download the Azure mobile app and stay connected to Azure resources—anytime, anywhere.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Configuration"
+        },
+        {
+          "id": "7a96bedc-4d47-434f-a2a2-1792768465d5",
+          "title": "Governance",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "3bf4a68f-748b-44b3-aa5f-909f72fcacf4",
+              "title": "How do you monitor usage and spending?",
+              "answer_tooltip": "Inability to provide a view to people with different responsibilities (financial controller, executives, project owners) in your organization.",
+              "output": "Use Cost Management metrics with dashboards to view key cost metrics and business-trend highlights to help make important business decisions.",
+              "priority": "medium"
+            },
+            {
+              "id": "6bb5b92c-7bcb-4053-957d-1ed820584c41",
+              "title": "How do manage costs and improve efficiency?",
+              "answer_tooltip": "Risk of usage exceeding agreement thresholds, resulting in unexpected cost overages.",
+              "output": "Utilize Cost Management budgeting to set up budgets and budget-based alerts to improve cloud governance and accountability.",
+              "priority": "medium"
+            },
+            {
+              "id": "7883aa8b-78ed-456d-95e9-002fb3dbeb9b",
+              "title": "How do you build custom policies to enable security and management (restrict deployment choices for organization to specific datacenters or enable the creation of specific resource types only) at scale?",
+              "answer_tooltip": "Risk of resources not staying compliant with corporate standards and service-level agreements (SLAs).",
+              "output": "Use Custom Azure Policy to enforce different rules and effects over resources to ensure that resources stay compliant with corporate standards and SLAs.",
+              "priority": "medium"
+            },
+            {
+              "id": "5cbbb692-0532-4270-8de1-44c88f687089",
+              "title": "How do you apply policy over resources at scale (from a single subscription to a management group with control across your entire organization)?",
+              "answer_tooltip": "Inability to provide RBAC assignments over multiple subscriptions.",
+              "output": "Employ Azure Policy scoping to apply governance conditions to multiple subscriptions (management groups) all at once.",
+              "priority": "medium"
+            },
+            {
+              "id": "216cf4cd-f00f-428a-97b1-5d91bb7222c8",
+              "title": "How do audit policy compliance against best practices?",
+              "answer_tooltip": "Risk of resources getting created in wrong location, enforcing common and consistent tag usage, or auditing existing resources for appropriate configurations and setting.",
+              "output": "Use Azure Policy compliance monitoring to understand the compliance state of environment.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "30dfdc5c-c8d1-4f62-9ee4-d0a817ac0124",
+          "title": "Protection",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "03a0d8d9-2888-4a67-9f8f-54e2cf08cffc",
+              "title": "Do you have pay-as-you-go backup service reducing unnecessary costs?",
+              "answer_tooltip": "Inability to pick and choose the data you want to protect.",
+              "output": "Use Azure Backup to pay only for the storage you consume.",
+              "priority": "medium"
+            },
+            {
+              "id": "0b9fb7cf-0f98-47f0-957e-683ebfac6d19",
+              "title": "How do you automatically detect virtual machines for backup?",
+              "answer_tooltip": "Inability to detect virtual machines to back up.",
+              "output": "Adopt Azure Backup VMWare integration to back up VMware server to Azure.",
+              "priority": "medium"
+            },
+            {
+              "id": "026bd930-2038-46d0-a0f5-7910908593ce",
+              "title": "How do you access control backup operations so only authorized users can perform them?",
+              "answer_tooltip": "Inability to segregate duties within your team and grant only the amount of access users need to perform backups.",
+              "output": "Use RBAC to manage Azure Backup recovery points.",
+              "priority": "medium"
+            },
+            {
+              "id": "37a0acd7-b4ac-4b11-927f-56f3520829a2",
+              "title": "Do you get notifications if any suspicious activity in backup is detected?",
+              "answer_tooltip": "Risk of insecure backups and recovery if production and backup servers are compromised.",
+              "output": "Utilize Azure Backup security capabilities to prevent, alert, and recover suspicious activities.",
+              "priority": "medium"
+            },
+            {
+              "id": "2691951e-ddfe-4aec-9ac0-f55fc38a6aed",
+              "title": "How do you ensure applications are available during outages with automatic recovery?",
+              "answer_tooltip": "Inability to orchestrate replication, perform disaster recovery testing, and run failovers and failback.",
+              "output": "Use Azure Site Recovery to deploy application-aware replication to the cloud or to a secondary site.",
+              "priority": "medium"
+            },
+            {
+              "id": "844a3a91-0152-4bef-91c6-b1ed0ee47729",
+              "title": "Do you minimize recovery issues by sequencing the order of multi-tier applications running on multiple virtual machines?",
+              "answer_tooltip": "Possibility of manual backup and file recovery, which is cumbersome, error-prone, and not scalable.",
+              "output": "Employ Azure Site Recovery Replication of multi-tier web applications to prevent loss of productivity.",
+              "priority": "medium"
+            },
+            {
+              "id": "a2fc5697-c61a-476c-b810-a08c9e1e1240",
+              "title": "Do you ensure compliance by testing your disaster recovery plan without impacting production workloads or end users?",
+              "answer_tooltip": "Inability to test failover without impacting ongoing replication or production environment.",
+              "output": "Use Azure Site Recovery test failover to validate replication and disaster recovery strategy.",
+              "priority": "medium"
+            },
+            {
+              "id": "80719d23-0666-4fa0-aa41-55855f1d75ad",
+              "title": "How do you reduce costs by conducting business during outages?",
+              "answer_tooltip": "Inability to automate tasks that require manual intervention and convert from multi-step recovery to a single-click recovery action.",
+              "output": "Use Azure Automation integration with Azure Site Recovery to make recovery consistently accurate, repeatable, and automated.",
+              "priority": "medium"
+            },
+            {
+              "id": "343f0385-3151-42cb-9b39-d453d7401738",
+              "title": "How do you minimize downtime (RPO, RTO) with dependable recovery (SLA)?",
+              "answer_tooltip": "Inability to define a systematic recovery process by creating small independent units that can fail over.",
+              "output": "Use Azure Site Recovery Plan to model an app around its dependencies and automate recovery tasks to reduce RTO.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        }
+      ]
+    },
+    {
+      "id": "63821ae5-4124-4a4e-9a1a-872cc17fa8da",
+      "name": "Resiliency",
+      "questions": [
+        {
+          "id": "199f4a63-51c4-447e-bffe-5ca72999b7e6",
+          "title": "Which business metrics have you defined for your application?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "43dbf753-9ef5-41b0-8321-e28baae6de2f",
+              "title": "Mean Time to Recovery (MTTR)",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low",
+              "heading": "Mean Time to Recovery (MTTR)"
+            },
+            {
+              "id": "7830153d-5353-40ea-8689-f576d12a0eab",
+              "title": "Recovery Point Objective (RPO)",
+              "answer_tooltip": "How much data are you willing to lose in the event of a failure.",
+              "output": "A definition of the point in time when data will be able to be restored from.",
+              "priority": "medium",
+              "heading": "Recovery Point Objective (RPO)"
+            },
+            {
+              "id": "a453c16c-13c8-4aa0-9f27-e26b77747138",
+              "title": "Service Level Agreements (SLA)",
+              "answer_tooltip": "An agreement on how much downtime is acceptible for a given service.  Should be defined for both internal and external",
+              "output": "",
+              "priority": "low",
+              "heading": "Service Level Agreements (SLA)"
+            },
+            {
+              "id": "8a54cb1d-bb47-4b7c-8ecf-a1fe7caead46",
+              "title": "Recovery Time Objectives (RTO)",
+              "answer_tooltip": "A definition of the amount of time it takes to recover from a failure.",
+              "output": "",
+              "priority": "medium",
+              "heading": "Recovery Time Objectives (RTO)"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Business Metrics"
+        },
+        {
+          "id": "16b80f68-d855-4c45-b162-6477bf13fe9a",
+          "title": "How are you managing your data?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "f7d4b058-15d1-42f5-9ee2-362b3b68ee0d",
+              "title": "Databases are replicated geographically when appropriate",
+              "answer_tooltip": "Application becomes unavailable in case of outage or unavailability of primary database.",
+              "output": "Utilize auto-failover and active geo-replication for SQL Database. Use Azure Managed Database Services for turnkey global distribution.",
+              "priority": "medium",
+              "heading": "Distribute data geographically"
+            },
+            {
+              "id": "69748949-e0f4-46bf-8b99-b49bbc2ebf07",
+              "title": "Data consistency and concurrency are documented",
+              "answer_tooltip": "Transactions are queued, affecting application availability when load starts to increase.",
+              "output": "Practice appropriate consistency and isolation level while making database connection.",
+              "priority": "medium",
+              "heading": "Data consistancy and concurrancy"
+            },
+            {
+              "id": "d9805b44-8d42-4009-8db5-227a5e249d1a",
+              "title": "Storage and database services utilize replication",
+              "answer_tooltip": "Inability to serve user requests when storage and/or database service fails.",
+              "output": "Use Azure Storage replication and SQL Database active geo-replication to ensure that the application's data requirements are satisfied. Employ Azure Managed Database Services for turnkey global distribution.",
+              "priority": "medium",
+              "heading": "Database and storage replication"
+            },
+            {
+              "id": "7d4dd0b4-6552-47e3-96c5-9b98aef3b50c",
+              "title": "Using seperate user accounts for production and backup databases",
+              "answer_tooltip": "A single user can maliciously delete _all_ data (original and backup) resulting in compromised backup.",
+              "output": "Keep user permissions separate between production and backup data.",
+              "priority": "medium",
+              "heading": "Backup credential isolation"
+            },
+            {
+              "id": "5b251e1d-3352-4f3f-8ac6-edbadb0c1471",
+              "title": "Failover and fallback processes are orchestrated and tested",
+              "answer_tooltip": "Inability to verify that an operator following the processes can successfully fail over and fail back the data source.",
+              "output": "Use auto-failover and active geo-replication for SQL Database. Employ Azure Managed Database Services for built-in resiliency.",
+              "priority": "medium",
+              "heading": "Automated failover and failback"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Data Management"
+        },
+        {
+          "id": "ccd41e5e-b572-4d0e-a487-1f5fd9c440a7",
+          "title": "How are you managing errors & failures?",
+          "explanation": "Ensuring your application can recover from errors is critical when working in a distributed system",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "3128430d-7c25-49da-97eb-643d29f1149c",
+              "title": "Retries for transient errors are impelmented and logged",
+              "answer_tooltip": "Possibility of an issue or failure remaining hidden by an application's retry logic.",
+              "output": "Review retry service-specific guidance.",
+              "priority": "medium",
+              "heading": "Transient failure handling"
+            },
+            {
+              "id": "5c44424c-38f4-45a8-8d38-57cb34869f29",
+              "title": "Request timeouts are configured",
+              "answer_tooltip": "Very short timeouts can cause excessive retry operations for services and resources that have considerable latency. Very long timeouts can cause blocking if a large number of requests are queued, waiting for a service or resource to respond.",
+              "output": "Set SQL Connection timeout to 30s. Use guidance on troubleshoot, diagnose, and prevent SQL connection errors and transient errors for SQL Database.",
+              "priority": "medium",
+              "heading": "Request timeouts"
+            },
+            {
+              "id": "2d348cc5-c6e0-4f9d-a29a-827f57527e5f",
+              "title": "Implemented the \"Circuit Breaker\" pattern to prevent cascading failures",
+              "answer_tooltip": "Failure in one part of the system can lead to cascading failures, resulting in many operations becoming blocked while holding onto critical system resources, such as memory, database connections.",
+              "output": "Use the Circuit Breaker pattern.",
+              "priority": "medium",
+              "heading": "Cascading Failures"
+            },
+            {
+              "id": "309f1127-3a9e-4876-b5dd-91bade63f789",
+              "title": "Application components are split with seperate health probes",
+              "answer_tooltip": "Inability to detect and avoid sending requests to failed instances minimizes availability.",
+              "output": "Utilize Application Gateway health monitoring. Use Azure Traffic Manager health probing.",
+              "priority": "medium",
+              "heading": "Application Health Probes"
+            },
+            {
+              "id": "c9dbb912-a194-4b28-9f04-1ebb17eb711c",
+              "title": "Command and Query Responsibility Segregation (CQRS) is implemented on data stores",
+              "answer_tooltip": "Command (INSERT/UPDATE) and Query (SELECT) operations target the same resource (database) affecting availability.",
+              "output": "Use the CQRS pattern in Azure.",
+              "priority": "medium",
+              "heading": "Command and Query Responsibility Segregation (CQRS)"
+            }
+          ],
+          "display_logic": [],
+          "heading": "App Design - Error Handling"
+        },
+        {
+          "id": "0b34cfb4-fe80-4179-a339-885eec73a5d3",
+          "title": "How are you handling DR (Backup & Restore) for this workload?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "7e063160-cb53-46c1-b111-380f77a7c848",
+              "title": "Backup & restore operations are automatically scheduled and tested",
+              "answer_tooltip": "Unscheduled and untested backup/restore operations are a risk to continued availability if they do not meet the recovery point objective (RPO).",
+              "output": "Employ Azure to Azure Site Recovery.",
+              "priority": "medium",
+              "heading": "Testing backups"
+            },
+            {
+              "id": "b7793fe8-b2c3-4d79-94a6-85b1f5248f4f",
+              "title": "Implementing and validating data backups",
+              "answer_tooltip": "Regularly verify that your backup data is what you expect by running a script to validate data integrity, schema, and queries. There's no point having a backup if it's not useful to restore your data sources. Log and report any inconsistencies so the backup service can be repaired.",
+              "output": "",
+              "priority": "medium",
+              "heading": "Validating backups"
+            },
+            {
+              "id": "19ddf9ff-e487-40ad-8446-ad14e3be1f91",
+              "title": "We conduct outage retrospectives",
+              "answer_tooltip": "No amount of safeguards or preparation can prevent every possible incident, and sometimes simple human error can have significant consequences to a development project. You can't avoid it, but you can learn from it and take steps to minimize the chances of a similar incident in the future. The question is how software organizations can best go about learning from mistakes with agile postmortems.",
+              "output": "",
+              "priority": "medium",
+              "heading": "Outage retrospectives"
+            },
+            {
+              "id": "4cce6ac5-3939-48e4-8ff1-fd9fbaa08252",
+              "title": "Regional failure plans are documented",
+              "answer_tooltip": "When you run production workloads on cloud, you might use a globally distributed system so that if something goes wrong in one region, the application continues to provide service even if it's less widely available. In essence, that application invokes its DR plan.",
+              "output": "",
+              "priority": "low",
+              "heading": "Planning for regional failures"
+            },
+            {
+              "id": "780d5d6c-f8d9-48d6-bc8b-ed75e60fbc06",
+              "title": "Backups are stored securely",
+              "answer_tooltip": "Backups are about protecting data, applications, and systems that are important to the organization. In operations environments, it’s easy to provide backups: pick the workload that needs hyper-availability and back it up. Operations environments are relatively static – in that, the systems and applications used remain relatively consistent, with only the data changing daily.",
+              "output": "",
+              "priority": "low",
+              "heading": "Backup Storage"
+            },
+            {
+              "id": "0713135c-52c2-4ee3-94ba-63224f54b3d9",
+              "title": "Have application configuration and installations archivied",
+              "answer_tooltip": "",
+              "output": "It’s important to remember, that a DR plan is more than just an ordered restoration from backup and validation process. Applications may require post-restoration configuration due to site changes, or reinstallation may be necessary with restored data imported after.",
+              "priority": "low",
+              "heading": "Application archives"
+            },
+            {
+              "id": "75fe27cc-08ce-44ab-bd0b-3843c2eeb0c9",
+              "title": "Data retention policies are defined",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low",
+              "heading": "Data retention"
+            },
+            {
+              "id": "4c3d21fa-90ec-4124-995d-08b8877a1cee",
+              "title": "Our backups are automated. ",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low",
+              "heading": "Automating Backups"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Backup and Recovery"
+        },
+        {
+          "id": "4552394a-b987-4e98-a520-62db1a711f0e",
+          "title": "How have you ensured that your application is resilient to failures?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "52f1a917-f368-439a-98f9-0262a25de762",
+              "title": "Retry and Circuit Breaker patterns are used",
+              "answer_tooltip": "Inability to serve user requests when remote service communication fails.",
+              "output": "Use the Retry pattern and Circuit Breaker pattern. Use resiliency strategies and asynchronous programming with async and await.",
+              "priority": "medium",
+              "heading": "Handling transient failures"
+            },
+            {
+              "id": "32696b2a-af6d-4c34-8301-aa4a420ecda1",
+              "title": "Third-party services have documented SLAs and support information",
+              "answer_tooltip": "Inability to serve user requests when third-party service goes down.",
+              "output": "Implement the Health Endpoint Monitoring pattern.",
+              "priority": "medium",
+              "heading": "Managing 3rd party services"
+            },
+            {
+              "id": "5a3257b3-1668-4edf-949c-717de2efc1bb",
+              "title": "Third-party services are monitored",
+              "answer_tooltip": "Inability to gauge the effect of third-party services on the application.",
+              "output": "Review monitoring and diagnostics guidance. Utilize Analytics in Application Insights to predict reliability issues and monitor third-party SLAs.",
+              "priority": "medium",
+              "heading": "Monitoring third-party services"
+            },
+            {
+              "id": "b58e95eb-a88b-469c-9842-9adf4f2b56ed",
+              "title": "Health probes/checks are implemented for load balancers (LB) and application gateways (AGW)",
+              "answer_tooltip": "Inability to prevent user requests going to faulty instance of service.",
+              "output": "Use the Health Endpoint Monitoring pattern to implement health probes/checks for load balancers (LB) and application gateways (AGW)",
+              "priority": "medium",
+              "heading": "Load balancer health probes"
+            },
+            {
+              "id": "5d3517be-f6f3-4c0c-8f0d-bc534d0c509a",
+              "title": "Storage is replicated locally utilizing RAID or equivialnt technologies to protect against disk failure",
+              "answer_tooltip": "Inability to serve user requests when an instance of a service goes down.",
+              "output": "Deploy the application in multiple Azure paired regions. Deploy multiple instances of the web app.",
+              "priority": "medium",
+              "heading": "Protecting from disk failures"
+            },
+            {
+              "id": "cb5b6fb3-ef56-490c-b8a9-42d66b71f1b9",
+              "title": "Load balancing is implemented",
+              "answer_tooltip": "Inability to distribute an application's requests to healthy service instances by removing unhealthy instances from rotation.",
+              "output": "Adopt Load Balancer to distribute the load on the application. Use Azure Traffic Manager.",
+              "priority": "medium",
+              "heading": "Load balancing for resiliency"
+            },
+            {
+              "id": "ebd007eb-55b7-4189-af5a-388cf30e318f",
+              "title": "Throttling is implemented",
+              "answer_tooltip": "Load continues to hit the application running with stretched resources, affecting even further loss of available resources.",
+              "output": "Use the Throttling pattern.",
+              "priority": "medium",
+              "heading": "Application throttling"
+            },
+            {
+              "id": "ea92ec48-0524-41e1-ae33-f0b7fd901059",
+              "title": "Message brokers are utilized",
+              "answer_tooltip": "Transactions may get lost during congestion/load while waiting to get processed.",
+              "output": "Use Service Bus Queues between the front end and back end.",
+              "priority": "medium",
+              "heading": "Message brokers"
+            },
+            {
+              "id": "46c01ec1-43ae-424b-9ef7-f328cea862fa",
+              "title": "Each application component has an SLA defined",
+              "answer_tooltip": "Not decomposing services based on their SLAs makes it difficult to manage these services for their availability.",
+              "output": "Consider adopting a microservices architecture.",
+              "priority": "medium",
+              "heading": "Defining service SLA's"
+            },
+            {
+              "id": "38d1d690-c16a-4343-8147-f24a5b3df0d5",
+              "title": "Multiple instances of the app & database are running",
+              "answer_tooltip": "Individual virtual machines (VMs) become single points of congestion. Database becomes a single point of failure.",
+              "output": "Deploy the application in multiple Azure paired regions. Use auto-failover and active geo-replication for SQL Database. Use Azure Managed Database Services for turnkey global distribution. Deploy multiple instances of the web app.",
+              "priority": "medium",
+              "heading": "Single points of failure (SPOF)"
+            },
+            {
+              "id": "6cbc14af-ed03-4ad4-929e-1b4905c2cdbc",
+              "title": "Performed a failure mode analysis of the application.",
+              "answer_tooltip": "",
+              "output": "The goal of a failure mode analysis is to identify the types of failures that your application might experience, capture the potential effects, and identify recovery strategies.",
+              "priority": "low",
+              "heading": "Failure mode analysis"
+            },
+            {
+              "id": "8ad5e66c-bdc0-40ef-93cb-bcb5787fff8c",
+              "title": "Availability Sets are used for each application tier",
+              "answer_tooltip": "An availability set helps keep your virtual machines available during downtime, such as during maintenance.",
+              "output": "Placing two or more similarly configured virtual machines in an availability set creates the redundancy needed to maintain availability of the applications or services that your virtual machine runs.",
+              "priority": "medium",
+              "heading": "Availability Sets"
+            },
+            {
+              "id": "4fc5dd89-3067-49ed-a65a-42d4f9182964",
+              "title": "VMs are replicated",
+              "answer_tooltip": "",
+              "output": "Azure Site Recovery orchestrates and manages disaster recovery for Azure VMs, and on-premises VMs and physical servers.",
+              "priority": "medium",
+              "heading": "VM Replication"
+            },
+            {
+              "id": "61c17190-428b-47ca-b09f-68daca74faf2",
+              "title": "Deployed the application across multiple regions",
+              "answer_tooltip": "A multi-region deployment can use an active-active pattern or an active-passive pattern",
+              "output": "If your application is deployed to a single region, in the rare event the entire region becomes unavailable, your application will also be unavailable. This may be unacceptable under the terms of your application's SLA. If so, consider deploying your application and its services across multiple regions. A multi-region deployment can use an active-active pattern (distributing requests across multiple active instances) or an active-passive pattern (keeping a \"warm\" instance in reserve, in case the primary instance fails)",
+              "priority": "medium",
+              "heading": "Operating in multiple regions"
+            }
+          ],
+          "display_logic": [],
+          "heading": "App Design"
+        },
+        {
+          "id": "8526c2c0-74b7-4669-908e-cf452c6d64cd",
+          "title": "How are you ensuring failures are resolved quickly?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "8e97698d-b6ed-45d0-bf98-89f5cd7e6fb1",
+              "title": "The process to contact Azure support is documented and understood",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium",
+              "heading": "Azure support"
+            },
+            {
+              "id": "c910bad6-cd8f-42ce-8076-edca3f197bd6",
+              "title": "Azure subscription/service limits are documented and known",
+              "answer_tooltip": "Possibility of poor customer experience when hit with subscription limits.",
+              "output": "Review Azure subscription limits.",
+              "priority": "medium",
+              "heading": "Azure subscription and service limits"
+            },
+            {
+              "id": "91777c9f-832f-4380-8167-8d952eadef81",
+              "title": "Multiple people are trained for monitoring",
+              "answer_tooltip": "Possibility of a single person being unavailable, resulting in a single point of failure.",
+              "output": "Train multiple people on Azure Monitor. Send alerts and notifications to multiple recipients.",
+              "priority": "medium",
+              "heading": "Monitor Training"
+            },
+            {
+              "id": "1f5ab437-af5d-45b0-8954-ad5843769e00",
+              "title": "Operators are assigned for system alerts",
+              "answer_tooltip": "Possibility of unidentified issues becoming critical.",
+              "output": "Use action groups to ensure people receive alerts.",
+              "priority": "medium",
+              "heading": "Alert ownership"
+            },
+            {
+              "id": "0c294da9-897f-4e40-9eb9-e683ebf3b548",
+              "title": "Alerting and monitoring are implemented",
+              "answer_tooltip": "Inability to detect failures in an application and alert an operator to fix them.",
+              "output": "Review monitoring and diagnostics guidance. Review monitoring Azure applications and resources guidance.",
+              "priority": "medium",
+              "heading": "Alerting and monitoring"
+            },
+            {
+              "id": "b06b8e73-1ed8-491f-ab1d-32b7e429f958",
+              "title": "Monitoring tools are used to collect and view historical statistics",
+              "answer_tooltip": "Inability to provide sufficient data to enable operations staff to determine the cause, mitigate the situation, and ensure availability.",
+              "output": "Use Azure Monitor to monitor services/infrastructure. Build a customized Azure dashboard. Review monitoring Azure applications and resources guidance.",
+              "priority": "medium",
+              "heading": "Historical statistics"
+            },
+            {
+              "id": "f8d28ca2-bf0a-43a5-bd1b-e801bb6537ff",
+              "title": "Health probes are implemented to validate application functionality",
+              "answer_tooltip": "Inability to validate response, measure latency, and extract information on availability.",
+              "output": "Use Application Gateway health monitoring. Utilize Azure Traffic Manager health probing.",
+              "priority": "medium",
+              "heading": "Creating good health probes"
+            },
+            {
+              "id": "59fb1292-709c-469a-a57c-68760210f30c",
+              "title": "Errors and failures are captured and reported",
+              "answer_tooltip": "Inability to provide sufficient data to enable operations staff to determine the cause, mitigate the situation, and ensure availability.",
+              "output": "Use Azure Log Analytics for a detailed reporting on errors and failures. Employ Service Map and Application Map for coherent error/failure reporting.",
+              "priority": "medium",
+              "heading": "Error logging"
+            },
+            {
+              "id": "df688b67-0f2e-4d32-9f07-2748a48829cd",
+              "title": "Telemetric information is captured",
+              "answer_tooltip": "Possibility of not having sufficient information for issues while they are actively serving users.",
+              "output": "Use Azure Application Insights to log and monitor application events and exceptions.",
+              "priority": "medium",
+              "heading": "Telemetry Data"
+            },
+            {
+              "id": "4aeb4f36-445d-43cb-9e7c-57bc716c0712",
+              "title": "Log information is collected and correlated across all tiers",
+              "answer_tooltip": "Inability of tracking user requests across multiple tiers/Azure services.",
+              "output": "Use Service Map and Application Map for logs across multiple components.",
+              "priority": "medium",
+              "heading": "Correlating events across services"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Monitoring"
+        },
+        {
+          "id": "578b72ba-eb77-440b-856b-e6fc30f91c25",
+          "title": "What Resiliency trade-offs are you making?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "6039de59-8907-4beb-a4a2-652a90d19d25",
+              "title": "Balanced alterting frequency with operations fatigue",
+              "answer_tooltip": "Don't alert so much that people start to ignore them.",
+              "output": "",
+              "priority": "medium",
+              "heading": "Balanced alterting frequency with operations fatigue"
+            },
+            {
+              "id": "ae2bd1f4-8fe9-46ba-9e23-18c01d5b2e40",
+              "title": "Balanced automation of failure handling with the ability to respond to transient failures",
+              "answer_tooltip": "Don't restart services when they might recover quickly on their own",
+              "output": "",
+              "priority": "medium",
+              "heading": "When to take action automatically"
+            },
+            {
+              "id": "ce137ac6-4b7f-4934-9ba0-bc6a9b7fd8c7",
+              "title": "Chosen a recovery point that aligns with our cost requirements",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium",
+              "heading": "Balancing cost & RPO"
+            },
+            {
+              "id": "9669fd68-3eeb-4d28-8af7-0516039e422e",
+              "title": "Chosen a recovery time that aligns with our cost goals",
+              "answer_tooltip": "Active-active is expensive and may not be what you need",
+              "output": "",
+              "priority": "medium",
+              "heading": "Balancing cost and RTO"
+            }
+          ],
+          "display_logic": null,
+          "heading": "Tradeoffs"
+        },
+        {
+          "choices": [
+            {
+              "answer_tooltip": "",
+              "output": "Inject errors into applications to ensure they handle them gracefully",
+              "priority": "medium",
+              "title": "Error Injection",
+              "id": "1e7674b5-00c7-4ff8-9c43-269cc7c29680",
+              "heading": "Error Injection"
+            },
+            {
+              "answer_tooltip": "",
+              "output": "Test applications under strain to ensure they stay available",
+              "priority": "medium",
+              "title": "Perform Load Testing",
+              "id": "0b1b8335-a3a2-405c-91dc-526abd02d841",
+              "heading": "Load Testing"
+            }
+          ],
+          "title": "How do you test your applications to ensure they're fault tolerant?",
+          "type": "checkbox",
+          "id": "e8fe553a-50ef-4a6f-a3b6-273bc3fe340a",
+          "heading": "Testing",
+          "explanation": "You should test your applications regularly to ensure they're able to sustain failures."
+        }
+      ]
+    },
+    {
+      "id": "2b379377-a3c5-4d2e-a6a3-e538c1d49417",
+      "name": "Security",
+      "questions": [
+        {
+          "id": "ef164bd9-1d72-4157-a17c-9cae225cb008",
+          "title": "Security",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "49471bbd-036e-4da0-a867-956db479d475",
+              "title": "Are you aware of GDPR and taking appropriate actions?",
+              "answer_tooltip": "",
+              "output": "The General Data Protection Regulation 2016/679 is a regulation in EU law on data protection and privacy for all individuals within the European Union and the European Economic Area. It also addresses the export of personal data outside the EU and EEA areas. Learn More: [https://www.microsoft.com/en-us/trustcenter/privacy/gdpr/gdpr-overview#section1](https://www.microsoft.com/en-us/trustcenter/privacy/gdpr/gdpr-overview#section1)",
+              "priority": "high"
+            },
+            {
+              "id": "4f599c71-d81e-465d-acf1-5a4571adb00f",
+              "title": "Are you managing any data sovereignty requirements within your application?",
+              "answer_tooltip": "",
+              "output": "Data Sovereignty is the idea that data are subject to the laws and governance structures within the nation it is collected. Learn More: [https://docs.microsoft.com/en-us/azure/security/azure-physical-security](https://docs.microsoft.com/en-us/azure/security/azure-physical-security)",
+              "priority": "high"
+            },
+            {
+              "id": "156bc4b7-4894-442a-8970-73f5204c8fbe",
+              "title": "Ensure that no single user account has access to both production and backup data.",
+              "answer_tooltip": "Your data backups are compromised if one single user account has permission to write to both production and backup sources. A malicious user could purposely delete all your data, while a regular user could accidentally delete it. Design your application to limit the permissions of each user account so that only the users that require write access have write access and it's only to either production or backup, but not both.",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "97e708d5-6f3f-4619-8865-15ac8ee4f1ca",
+              "title": "Is web application firewall (WAF) and distributed denial-of- service (DDoS) protection enabled?",
+              "answer_tooltip": "Inability to distinguish true user requests from malicious user requests.",
+              "output": "Use WAF in front of a web app. Review Azure DDoS Protection guidance. Utilize Azure Key Vault to manage secrets, such as _connectionstring._",
+              "priority": "medium"
+            },
+            {
+              "id": "78794f7c-24e3-4c48-8908-ad4f1196c3be",
+              "title": "Is role-based access control (RBAC) implemented?",
+              "answer_tooltip": "Possibility of someone purposely or accidentally deleting resources making application unavailable.",
+              "output": "Use RBAC with Azure AD for Azure subscription. Utilize Azure Security Center for threat detection and protection.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "9c1647d4-631f-4228-89ef-5e3677366479",
+          "title": "How are you modeling threats that can impact this workload?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "1dcf71a3-4295-4798-b62f-69901f62b53e",
+              "title": "Considering the impact of adversaries.",
+              "answer_tooltip": "Protecting identity, data, physical resources, and other assets is crucial.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "53aad114-efe6-4227-9593-ddadf2fe6353",
+              "title": "Modelling internal and external threats",
+              "answer_tooltip": "Attacker can gain access to the system and change the authentication data, read user profile data, and gain access to user database.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "8c0981c1-12f7-4510-9919-ef66934e0fb3",
+              "title": "Performing penetration testing.",
+              "answer_tooltip": "Pen testing provides a way determine if the system is resilient to security attacks. This also identifies the expose vulnerabilities and the extend of attack.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "6ff0e5d8-3e33-4b9e-a0e5-c73ec6c157a2",
+              "title": "Performing vulnerability scanning.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "18548220-8fbe-4718-95fc-2e53ed7bc044",
+              "title": "Cataloged potential entry points for bad actors.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "9b6c4255-e11d-4fa7-8eef-4d830d71c3be",
+              "title": "option_title",
+              "answer_tooltip": "An attack surface is the total number of points or vectors through which an attacker can try to enter an environment or network. In terms of cybersecurity, this means how a bad actor could gain access to your network to either send, extract, or encrypt data through the holes they find in a network. Every network interaction point allows for a potential network attack surface. In other words, an attack on a surface occurs when bad actors can find holes in a network which then allows them to cause disruption. This disruption can come in the forms of data breaches, ransomware, and more.",
+              "output": "",
+              "priority": "high"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "6498d580-1331-4a39-b8d6-8501030544fb",
+          "title": "How are you handling Authorization for your workload?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "23a28968-d424-4725-9c5e-b5eac199ff77",
+              "title": "Are you using common authorization patterns?",
+              "answer_tooltip": "Authorization is a security mechanism used to determine user/client privileges or access levels related to system resources, including computer programs, files, services, data and application features. Authorization is normally preceded by authentication for user identity verification.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "1a378be0-e8c1-4a48-82e2-1fbe3aeae830",
+              "title": "Are you using role or resource based authorization?",
+              "answer_tooltip": "Role-based: If you want to authorize based on users. A user can either be an administrator, creator, or reader. If you want to authorize an action based on a particular resource, consider resource based. For example, the app can check whether a user is the owner for of a resource.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "e7116738-f39e-4b88-8a75-920d873fa8b9",
+              "title": "Are you auditing the authorizations that occur?",
+              "answer_tooltip": "Conducting internal security audits help companies keep their compliance programs up to date and aimed in the right direction.  An effective security risk assessment can prevent breaches, reduce the impact of realized breaches, and keep your company's name from appearing in the spotlight for all the wrong reasons.",
+              "output": "",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "3fc19b15-3d29-4093-b468-50342943df38",
+          "title": "How are you ensuring that monitoring is traceable?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "213385a9-5e92-40d6-a22d-5f2a52bf5b91",
+              "title": "You are able to understand who has access to what data.",
+              "answer_tooltip": "Data security is essential for every business. Businesses rely on data storage and transactions to perform certain operations. Usage of data has increased business profitability and efficiency. At the same time, it also has potential security risks that could devastate a company.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "7799f586-5b7e-44fc-b6ce-3af4f463fbf4",
+              "title": "You audit your access log.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "a79fb2e4-9716-4f43-b500-68a77c424de3",
+              "title": "You are actively monitoring your logs for suspicious activity.",
+              "answer_tooltip": "Being on top of logs means a quicker response time to security events and better security program effectiveness. Not only will log analysis and daily monitoring demonstrate your willingness to comply with PCI DSS and HIPAA requirements, it will also help you defend against insider and outsider threats.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "c91de915-1a8e-4c72-8965-6034c4f83fde",
+              "title": "You are correlating calls across systems (end-to-end tracing).",
+              "answer_tooltip": "You must think about security for all resources that take part in the workload. Azure Security Center provides integrated security monitoring and policy management across your Azure subscriptions. The events collected from the agents and from Azure are correlated in the security analytics engine to provide you tailored recommendations (hardening tasks), that you should follow to make sure your workloads are secure, and threat detection alerts. You should investigate such alerts as soon as possible to make sure malicious attacks aren't taking place on your workloads.",
+              "output": "",
+              "priority": "high"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "611d0c4c-7f6c-4809-9b3c-8860845f581b",
+          "title": "How are you managing identity for this workload?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "a63133bf-cdd4-40d3-9c67-9d8d0f779fdc",
+              "title": "You are considering identity as a central component of your security strategy.",
+              "answer_tooltip": "Many consider identity to be the primary perimeter for security. This is a shift from the traditional focus on network security. Network perimeters keep getting more porous, and that perimeter defense can’t be as effective as it was before the explosion of BYOD devices and cloud applications. Azure Active Directory (Azure AD) is the Azure solution for identity and access management. Azure AD is a multitenant, cloud-based directory and identity management service from Microsoft. It combines core directory services, application access management, and identity protection into a single solution.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "46eb11b7-ca1d-4830-9215-351c9afd89c3",
+              "title": "You have a strategy around identity in place that you are adhering to.",
+              "answer_tooltip": "Manage accounts from one single location, regardless of where an account is created. Enable single sign-on. Otherwise, it becomes an administrative problem not only for IT but also for users who have to remember multiple passwords. Turn on conditional access because focusing on who can access a resource is not sufficient anymore. Enable password management and use appropriate security policies to prevent abuse.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "414f69b1-c8d2-47a1-8f26-cb910489a3ae",
+              "title": "You have a system in place to manage identity.",
+              "answer_tooltip": "Don't take this decision lightly, for the following reasons:                 It's the first decision for an organization that wants to move to the cloud.                 The authentication method is a critical component of an organization’s presence in the cloud. It controls access to all cloud data and resources.                 It's the foundation of all the other advanced security and user experience features in Azure AD.                 The authentication method is difficult to change after it's implemented.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "11a8035d-b815-4cfb-8773-879d0ff7b6a4",
+              "title": "You have a credential rotation policy implemented.",
+              "answer_tooltip": "Limiting the lifespan of a credential reduces the risk from and effectiveness of password-based attacks and exploits, by condensing the window of time during which a stolen credential is valid.",
+              "output": "",
+              "priority": "high"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "a22ce718-c792-4652-b93f-f626fd2b0d22",
+          "title": "How is encryption being used in this workload?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "aaacc43d-2632-4cce-b069-42967ffebef7",
+              "title": "Data for the workload is encrypted where it needs to be.",
+              "answer_tooltip": "Encryption is important because it allows you to securely protect data that you don't want anyone else to have access to.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "f7d465bc-2f9f-42b6-841e-1f878624f8c5",
+              "title": "You have a key management strategy in place.",
+              "answer_tooltip": "Protecting your keys is essential to protecting your data in the cloud.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "ec80a330-65fd-456b-9c46-a5cf9a5e3b24",
+              "title": "Data at Rest is encrypted according to your encryption policy.",
+              "answer_tooltip": ": Encryption at rest provides data protection for stored data (at rest). Attacks against data at-rest include attempts to obtain physical access to the hardware on which the data is stored, and then compromise the contained data. In such an attack, a server’s hard drive may have been mishandled during maintenance allowing an attacker to remove the hard drive. Later the attacker would put the hard drive into a computer under their control to attempt to access the data.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "683d3d26-885e-4a64-91d9-ce022bd231a5",
+              "title": "Data in transit is encrypted according to your encryption policy.",
+              "answer_tooltip": "If data moving over a network is not encrypted, there’s a chance that it can be captured and stolen by unauthorized users. When you're dealing with database services, make sure that data is encrypted between the database client and server. Also make sure that data is encrypted between database servers that communicate with each other and with middle-tier applications.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "64087312-93be-4244-ae23-cbefa4362035",
+              "title": "You are using appropriate encryption algorithms to meet your requirements.",
+              "answer_tooltip": "Organizations have to think about what type of threats they want to protect against, and that will determine the type of technology used.",
+              "output": "",
+              "priority": "high"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "2fa33145-22c4-4859-8c77-a64cdbe194a1",
+          "title": "How are you handling compliance/governance requirements?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "ef175087-7937-451d-8c26-c9cfe144608d",
+              "title": "You know the compliance and governance standards you need to adhere to.",
+              "answer_tooltip": "Good governance is at the heart of any successful business. It is essential for a company or organization to achieve its objectives and drive improvement, as well as maintain legal and ethical standing in the eyes of shareholders, regulators and the wider community.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "56482660-d3b0-41ca-9acc-78566762e0c7",
+              "title": "You are enforcing your policies.",
+              "answer_tooltip": "Policies and procedures are an essential part of any organization. Together, policies and procedures provide a roadmap for day-to-day operations. They ensure compliance with laws and regulations, give guidance for decision-making, and streamline internal processes.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "b491a20c-7346-43e9-8cf2-2d8c4de7ca54",
+              "title": "You are complying with data residency requirements.",
+              "answer_tooltip": "Data residency is a particular issue that businesses face as they move more and more information into the cloud. The cloud provides flexibility for data storage, file sharing and the use of different SaaS applications, but it presents challenges when it comes to establishing and maintaining data control. It is having clear control over their data that businesses need to be able to prove in order to meet internal and customer requirements, standards and legal obligations, such as the General Data Protection Regulation (GDPR).",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "7b810ee6-f1f3-4760-a57b-c4602fbc5448",
+              "title": "You are adhering to appropriate standards.",
+              "answer_tooltip": "Standards provide people and organizations with a basis for mutual understanding, and are used as tools to facilitate communication, measurement, commerce and manufacturing.",
+              "output": "",
+              "priority": "high"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "7dff198f-d279-4add-a010-d9799ea4b966",
+          "title": "What have you considered in terms of data classification?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "f657b0eb-8afa-464c-97fc-ea84225e6ffe",
+              "title": "You have a data classification strategy",
+              "answer_tooltip": "The process of data classification allows organizations to categorize their stored data by sensitivity and business impact in order to determine the risks associated with the data.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "14a2349b-76ac-4cd7-b44a-e6d21f2118a2",
+              "title": "You have a method to ensure appropriate access after classification.",
+              "answer_tooltip": "After the process is completed, organizations can manage their data in ways that reflect its value to them instead of treating all data the same way.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "092160ad-d05a-4a23-93f7-e37795f29bfb",
+              "title": "You’ve identified what happens if there is a breach.",
+              "answer_tooltip": "You'll need to pin down exactly what kind of information was lost in the data breach. ",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "56494d62-160d-4286-97bd-e525348e267b",
+              "title": "You know where all of your data is.",
+              "answer_tooltip": "Where customer data actually ends up has long been a concern. Doubts as to the answer are something often cited by opponents of the trend towards cloud services.",
+              "output": "",
+              "priority": "high"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "c53e7da7-ece3-46fe-aa8e-569db6b7499f",
+          "title": "Network boundary security",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "b15366e9-7373-416b-9b90-2b09bfbbeeaf",
+              "title": "How do you implement DDoS protection?",
+              "answer_tooltip": "Potential of smaller-scale attack that doesn't trip the platform-level protection.",
+              "output": "Use Azure DDoS Protection to prevent volumetric attacks, protocol attacks, and resource (application)-layer attacks.",
+              "priority": "medium"
+            },
+            {
+              "id": "56caed24-2ae9-4b78-afbb-3cc21e5ddb70",
+              "title": "How do you configure public IPs for which traffic is passed in, and how and where it's translated?",
+              "answer_tooltip": "Inability to provision VMs with private IP addresses for protection.",
+              "output": "Use Azure Firewall for built-in high availability and unrestricted cloud scalability. Utilize Azure IP address to determine which traffic is passed in, and how and where it's translated on to the virtual network.",
+              "priority": "medium"
+            },
+            {
+              "id": "7521391f-f1b1-4cf2-9209-6222f7cb7044",
+              "title": "How do you isolate network traffic?",
+              "answer_tooltip": "Inability to ensure VMs and communication between them remains private within a network boundary.",
+              "output": "Use Azure Virtual Network to allow VMs to securely communicate with each other, the Internet, and on- premises networks.",
+              "priority": "medium"
+            },
+            {
+              "id": "73ab6038-4aeb-4489-bfb4-e2fef8e9214c",
+              "title": "How do you configure traffic flow between multiple application tiers?",
+              "answer_tooltip": "Inability to define different access policies based on the workload types, and to control traffic flows between them.",
+              "output": "Employ Azure Virtual Network Subnet to designate separate address spaces for different elements or “tiers” within the workload, define different access policies, and control traffic flows between the tiers.",
+              "priority": "medium"
+            },
+            {
+              "id": "b21419d6-cd69-49f4-95eb-6ab5533af867",
+              "title": "How do you route network traffic through security appliances for security boundary policy enforcement, auditing, and inspection?",
+              "answer_tooltip": "Inability to define communication paths between different tiers within a network boundary.",
+              "output": "Use Azure Virtual Network User Defined Routes (UDR) to control next hop for traffic between Azure, on-premises, and Internet resources through virtual appliance, virtual network gateway, virtual network, or Internet.",
+              "priority": "medium"
+            },
+            {
+              "id": "3ab4c11f-9ae5-4e4b-b9b7-f16d580a57e8",
+              "title": "Do you use firewalls, load balancers, and intrusion detection systems (IDS)/intrusion prevention systems (IPS)?",
+              "answer_tooltip": "Possibility of not being able to select comprehensive solutions for secure network boundaries.",
+              "output": "Use Network Appliances from Azure Marketplace to deploy a variety of preconfigured network virtual appliances. Utilize Application Gateway WAF to detect and protect against common web attacks.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "b9b98af9-701e-423f-a14c-349b2bebf421",
+          "title": "Network security",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "2fe485c3-4a7a-455d-a63a-932f6d5fe594",
+              "title": "How do you segment the larger address space into subnets?",
+              "answer_tooltip": "Inability to allow or deny inbound network traffic to, or outbound network traffic from, within larger network space.",
+              "output": "Use network security groups (NSGs) to allow or deny traffic to and from single IP address, to and from multiple IP addresses, or even to and from entire subnets.",
+              "priority": "medium"
+            },
+            {
+              "id": "a90a7e3f-8b1c-4596-b825-a668edf6d68a",
+              "title": "How do you control routing behavior between VM connectivity?",
+              "answer_tooltip": "Inability to customize the routing configuration.",
+              "output": "Employ Azure Virtual Network User Defined Routes (UDR) to customize the routing configuration for deployments.",
+              "priority": "medium"
+            },
+            {
+              "id": "480b077a-fe6f-43ce-94f7-4b433dc2d91c",
+              "title": "How do you implement forced tunneling?",
+              "answer_tooltip": "Potential of outbound connections from any VM increasing attack surface area leveraged by attackers.",
+              "output": "Utilize forced tunneling to ensure that connections to the Internet go through corporate network security devices.",
+              "priority": "medium"
+            },
+            {
+              "id": "c969868a-669e-441c-9147-f316bf3c171c",
+              "title": "How do you implement enhanced levels of security (firewall, IPS/IDS, antivirus, vulnerability management, botnet protection) on top of network-level controls?",
+              "answer_tooltip": "Inability to enable security for other OSI model layers other than network and transport layer.",
+              "output": "Use Azure Marketplace to provision devices for higher levels of network security than with network-level access controls.",
+              "priority": "medium"
+            },
+            {
+              "id": "2b27011f-6739-4e97-b8e5-f61db03f83d8",
+              "title": "How do you establish cross- premises connectivity?",
+              "answer_tooltip": "Potential of access to company’s information assets on-premises.",
+              "output": "Use Azure site-to-site VPN or ExpressRoute to set up cross- premises connectivity to on- premises networks.",
+              "priority": "medium"
+            },
+            {
+              "id": "5d17834c-63e2-4bc6-ac78-8279aa09b109",
+              "title": "How do you implement global load balancing?",
+              "answer_tooltip": "Inability to make services available even when datacenters might become unavailable.",
+              "output": "Utilize Azure Traffic Manager to load balance connections to services based on the location of the user and/or other criteria.",
+              "priority": "medium"
+            },
+            {
+              "id": "7c06e8fa-c3a2-4239-9337-ff0c2c15dcc5",
+              "title": "How do you disable RDP/SSH access to virtual machines?",
+              "answer_tooltip": "Potential for attackers to use brute force techniques to gain access and launch other attacks.",
+              "output": "Disable RDP/SSH access to Azure Virtual Machines and use VPN/ExpressRoute to access these virtual machines for remote management.",
+              "priority": "medium"
+            },
+            {
+              "id": "e89d8c7f-3e77-486b-8665-0147d82c2241",
+              "title": "How do you prevent, detect, and respond to threats?",
+              "answer_tooltip": "Inability to have a single pane of visibility to prevent, detect, and respond to threats.",
+              "output": "Employ Azure Security Center for increased visibility into, and control over, the security of Azure resources, integrated security monitoring, and policy management across Azure subscriptions.",
+              "priority": "medium"
+            },
+            {
+              "id": "e57fdec9-fbe4-40ed-bda4-78b2047c8c40",
+              "title": "How do you monitor and diagnose conditions of the network?",
+              "answer_tooltip": "Inability to understand, diagnose, and gain insights to the network in Azure.",
+              "output": "Use Network Watcher to understand, diagnose, and gain insights to the network in Azure.",
+              "priority": "medium"
+            },
+            {
+              "id": "4f2b59ba-8aea-4705-92f3-466547326c9a",
+              "title": "How do you gain access to real- time performance information at the packet level?",
+              "answer_tooltip": "Inability to investigate an issue in detail for better diagnoses.",
+              "output": "Utilize packet capture to set alerts and gain access to real- time performance information at the packet level.",
+              "priority": "medium"
+            },
+            {
+              "id": "a8b0b4af-e0a0-46d3-bf32-51bca5d4d148",
+              "title": "How do you gather data for compliance, auditing, and monitoring the network security profile?",
+              "answer_tooltip": "Inability to build a deeper understanding of the network traffic pattern.",
+              "output": "Use network security group flow logs to gather data for compliance, auditing, and monitoring of your network security profile.",
+              "priority": "medium"
+            },
+            {
+              "id": "7f8bbdb1-9719-417d-8aba-33591a4cf88f",
+              "title": "How do you diagnose VPN connectivity issues?",
+              "answer_tooltip": "Inability to identify the issue and use the detailed logs for further investigation.",
+              "output": "Use Network Watcher troubleshooter to diagnose most common VPN gateway and connections issues.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "d5742de4-35b6-40d8-a065-49909111bcff",
+          "title": "Database security",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "fb292fed-a52d-4b9b-bed4-3b129560b8b5",
+              "title": "How do you restrict database access? Do you use a firewall?",
+              "answer_tooltip": "Inability to grant access to databases based on the originating IP address of each request.",
+              "output": "Use firewall rules to restrict database access. Utilize Virtual Network service endpoints to secure databases to only your virtual networks.",
+              "priority": "medium"
+            },
+            {
+              "id": "6d52994f-8d92-40dd-8b73-27e71d6e50f5",
+              "title": "How do you enable database authentication?",
+              "answer_tooltip": "Inability to prove a user’s identity.",
+              "output": "Use database authentication. Employ Azure Managed Database Services for built-in security, automatic monitoring, threat detection, automatic tuning, and turnkey global distribution.",
+              "priority": "medium"
+            },
+            {
+              "id": "a5e0f182-339e-4808-bddd-c9a352296a6d",
+              "title": "Do you use encryption for data protection?",
+              "answer_tooltip": "Potential threat of malicious activity.",
+              "output": "Protect data using encryption. Use Storage Encryption, Disk Encryption, and SQL Encryption to encrypt data in Azure.",
+              "priority": "medium"
+            },
+            {
+              "id": "266c848e-fecf-4c93-a779-a9e66cca960b",
+              "title": "How do you protect data in transit?",
+              "answer_tooltip": "Susceptibility for man-in- the-middle attacks, eavesdropping, and session hijacking.",
+              "output": "Use Azure site-to-site VPN or ExpressRoute or application- level SSL/TLS for protection.",
+              "priority": "medium"
+            },
+            {
+              "id": "6305dd62-aaad-44e3-a94b-fd7eff6c7c13",
+              "title": "How do you perform database auditing?",
+              "answer_tooltip": "Inability to maintain regulatory compliance, understand database activity, and gain insight into discrepancies and anomalies.",
+              "output": "Enable database auditing. Use Azure Managed Database Services for built-in security, automatic monitoring, threat detection, automatic tuning, and turnkey global distribution.",
+              "priority": "medium"
+            },
+            {
+              "id": "a6e49fab-71c4-4a10-a417-584b0a266a73",
+              "title": "How do you monitor database threat detection?",
+              "answer_tooltip": "Inability to identify suspicious database activities, potential vulnerabilities, and SQL injection attacks, as well as anomalous database access patterns.",
+              "output": "Enable database threat detection.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "ff66624d-3df2-41d2-87de-e957e16018d6",
+          "title": "Data storage security",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "89087008-a77f-4c5e-aec7-326ed6fbbbaf",
+              "title": "Do you use Azure Multi-Factor Authentication (MFA) for verifying a user’s identity?",
+              "answer_tooltip": "Risk of credential theft attack, which may lead to data compromise.",
+              "output": "Use Azure AD MFA to secure data and application access without added hassles for customers. Enforce MFA.",
+              "priority": "medium"
+            },
+            {
+              "id": "e8416d91-91f9-4af3-8f46-d3abb5e6f008",
+              "title": "Do you use RBAC to assign permissions to users, groups, and applications at a certain scope?",
+              "answer_tooltip": "Risk of giving more privileges than necessary to users, leading to data compromise by having some users having access to data that they shouldn’t have in the first place.",
+              "output": "Use role-based access control (RBAC).",
+              "priority": "medium"
+            },
+            {
+              "id": "2ed394e1-673d-4193-a6de-0e3b3a66821e",
+              "title": "Do you encrypt Windows and Linux virtual machine (VM) disks?",
+              "answer_tooltip": "Risk of data integrity issues, such as malicious or rogue users stealing data and compromised accounts gaining unauthorized access to data.",
+              "output": "Use Azure Disk Encryption to protect and safeguard data to meet organizational security and compliance commitments. Encrypt Azure Virtual Machines.",
+              "priority": "medium"
+            },
+            {
+              "id": "75b56cad-2bf1-4f2a-8760-75c273abd1a0",
+              "title": "How do you implement key management for data protection?",
+              "answer_tooltip": "Risk of attackers gaining access to the secret keys to decrypt the data and potentially have access to confidential information.",
+              "output": "Use Azure Key Vault to safeguard cryptographic keys and other secrets used by cloud apps and services. Use Hardware Security Modules.",
+              "priority": "medium"
+            },
+            {
+              "id": "5c8e83bd-0c16-4b24-b1d9-3f6f7679d3b7",
+              "title": "How do you secure workstations for endpoint protection?",
+              "answer_tooltip": "Risk of attacker compromising workstation and leveraging a user’s credentials to gain access to organizational data.",
+              "output": "Use Azure Information Protection to secure email, documents, and sensitive data shared outside the company. Manage with Secure Workstations.",
+              "priority": "medium"
+            },
+            {
+              "id": "a6460699-d9bf-4fc8-9a22-8d7750b2adac",
+              "title": "How do you enforce file-level data encryption?",
+              "answer_tooltip": "Risk of data leakage and lack of business insights monitor for abuse and prevent malicious access to files.",
+              "output": "Use Azure Managed Disks for persistent and secure disk storage for Azure virtual machines. Enforce file-level data encryption.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "d44c091b-9af2-4cb4-8822-228ab6650fa1",
+          "title": "Identity management and access control security",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "818dbeee-ec73-4fdf-8fc8-04857bc21d69",
+              "title": "Do you use a centralized identity management system?",
+              "answer_tooltip": "Risk of increased administrative overhead in managing accounts, increasing the likelihood of mistakes and security breaches.",
+              "output": "Centralize identity management.",
+              "priority": "medium"
+            },
+            {
+              "id": "d9401ac7-c3d2-4ce7-9460-add682973b7e",
+              "title": "How have you enabled Single Sign-On (SSO)?",
+              "answer_tooltip": "Exposure to scenarios where users have multiple passwords, increasing the likelihood of users reusing passwords or using weak passwords.",
+              "output": "Enable Single Sign-On (SSO).",
+              "priority": "medium"
+            },
+            {
+              "id": "607f7d1f-dab3-4b77-8349-84fab5aa9ed5",
+              "title": "Do you use self-service password reset and password management?",
+              "answer_tooltip": "Susceptibility to a higher call volume to the service desk due to password issues.",
+              "output": "Deploy password management.",
+              "priority": "medium"
+            },
+            {
+              "id": "4ec2cb5e-4107-4760-b4e6-e01e18bdae2b",
+              "title": "Do you enforce multi-factor authentication (MFA) for users?",
+              "answer_tooltip": "Risk of not complying with industry standards, such as PCI DSS version 3.2 and credential theft type of attack, such as Pass-the- Hash (PtH).",
+              "output": "Enforce MFA for users.",
+              "priority": "medium"
+            },
+            {
+              "id": "3d3d219e-7b62-4e3d-8f74-466d3d5a1ddb",
+              "title": "Have you implemented role- based access control (RBAC)?",
+              "answer_tooltip": "Risk of giving more privileges than necessary to users, leading to data compromise by having some users having access to data that they shouldn’t have in the first place.",
+              "output": "Use RBAC.",
+              "priority": "medium"
+            },
+            {
+              "id": "abadfbd4-8ceb-4f28-9310-1a276c29f6c4",
+              "title": "How do you control how resources are created? Do you use governance?",
+              "answer_tooltip": "Susceptibility to users that may abuse the service by creating more resources than they need.",
+              "output": "Control resource creation using Resource Manager.",
+              "priority": "medium"
+            },
+            {
+              "id": "39de6d14-7ba7-4af3-ad14-338d5952d2ce",
+              "title": "How do you enforce identity control to access software-as-a- service (SaaS) apps? How do you guide developers on securely integrating apps with the identity management system?",
+              "answer_tooltip": "Risk of a credential-theft type of attack, such as weak authentication and session management described in Open Web Application Security Project (OWASP) Top 10.",
+              "output": "Guide developers to leverage identity capabilities for SaaS apps.",
+              "priority": "medium"
+            },
+            {
+              "id": "181c93fd-deda-4b07-9581-0058e25808e3",
+              "title": "How do you actively monitor for suspicious activities?",
+              "answer_tooltip": "Risk of compromised user credentials and suspicious activities occurring using these credentials.",
+              "output": "Actively monitor for suspicious activities.",
+              "priority": "medium"
+            },
+            {
+              "id": "254fab86-79c6-4998-acd9-c777d8c89924",
+              "title": "How do you manage, monitor, and control access of admin account holders?",
+              "answer_tooltip": "Risk of compromised admin accounts negating the value of all the other measures taken to ensure the confidentiality and integrity of data.",
+              "output": "Limit and constrain administrative access.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "27571ef7-d18b-44f2-b0bc-c3fc77831e83",
+          "title": "Operational security",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "6d27d4aa-f3f8-4d7c-9d5b-d2ea0c305871",
+              "title": "How do you harden systems?",
+              "answer_tooltip": "Exposure of service endpoints that are not required for installed applications.",
+              "output": "Use Security Compliance Manager to import the current configuration by using either group policies based on Active Directory or configuration of a “golden master” reference machine by using the LocalGPO tool. You can then import the local group policy into Security Compliance Manager.",
+              "priority": "medium"
+            },
+            {
+              "id": "a3d57f72-7410-4ebe-b171-fc3f11cbf619",
+              "title": "How do you manage antimalware?",
+              "answer_tooltip": "Risk of malware infecting machines.",
+              "output": "Install and manage antimalware.",
+              "priority": "medium"
+            },
+            {
+              "id": "64ab8dc9-81ee-4eef-a19c-f46a87cc6e55",
+              "title": "How do you deploy and test a backup solution?",
+              "answer_tooltip": "Exposure to data loss. • Use Azure Backup to address backup requirements.",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "3aace566-f1f5-47f7-b88f-14e171eafccf",
+              "title": "How do you actively monitor all resources?",
+              "answer_tooltip": "Inability to visualize, query, route, archive, and take action on the metrics and logs coming from resources.",
+              "output": "Utilize Azure Monitor to get the granular, up-to-date monitoring data all in one place. Use monitoring services.",
+              "priority": "medium"
+            },
+            {
+              "id": "597a139d-cde5-4885-bf2c-e8d2d1301113",
+              "title": "How do you manage and protect your infrastructure?",
+              "answer_tooltip": "Exposure to gathering data from multiple security and management systems.",
+              "output": "Utilize Azure Monitor to get the granular, up-to-date monitoring data all in one place. Review monitor, manage, and protect cloud infrastructure guidance.",
+              "priority": "medium"
+            },
+            {
+              "id": "7440063f-d762-4c52-b28b-7051cb36f490",
+              "title": "How do you collect and process data about resources (security event log, Windows firewall log, antimalware assessment)?",
+              "answer_tooltip": "Inability to prevent, detect, and respond to threats.",
+              "output": "Use Operations Management Suite (OMS) Security and Audit Solution to collect and processes data about resources.",
+              "priority": "medium"
+            },
+            {
+              "id": "07ca0801-fbb5-423f-91eb-94ac40942f8a",
+              "title": "How do you trace requests, analyze usage trends, and diagnose issues?",
+              "answer_tooltip": "Inability to trace requests, analyze usage trends, and diagnose issues with your storage account.",
+              "output": "Use Azure Security Center for security management and advanced threat protection across hybrid cloud workloads. Review trace requests, analyze usage trends, and diagnose issues guidance.",
+              "priority": "medium"
+            },
+            {
+              "id": "ef07a3f8-93cb-4880-89b4-51083194ce3d",
+              "title": "Have you defined security policies according to your company’s security needs, and tailored it to the type of applications or sensitivity of the data?",
+              "answer_tooltip": "Inability to correlate information from multiple sources to identify threats.",
+              "output": "Use Azure Security Center for security management and advanced threat protection across hybrid cloud workloads. Review Prevent, detect, and respond to threats guidance.",
+              "priority": "medium"
+            },
+            {
+              "id": "3984be51-150d-4407-9243-935afc9d47fa",
+              "title": "How do you implement secure deployment using proven DevOps tools?",
+              "answer_tooltip": "Potential of unproductive and inefficient enterprises and teams.",
+              "output": "Use Secure DevOps Kit for Azure to build and deploy applications on Azure with security integrated at every step.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        }
+      ]
+    },
+    {
+      "id": "a10c1cdc-92f7-43b7-aae5-53bcaa402887",
+      "name": "Cost",
+      "questions": [
+        {
+          "id": "c8d69da5-4ca4-4b38-b4d2-cd13d2d5e75e",
+          "title": "What actions are you taking to optimize cloud costs?",
+          "explanation": "Describes how to best take advantage of the benefits of the cloud to minimize your cost.",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "answer_tooltip": "",
+              "output": "Understand Azure support plans. Refer to Azure Support FAQs.",
+              "priority": "medium",
+              "title": "Support",
+              "id": "d23fb40d-6edd-4b3b-a857-1a00348f90e0",
+              "heading": "Support"
+            },
+            {
+              "answer_tooltip": "",
+              "output": "Adopt Advisor cost recommendations to optimize and reduce overall Azure spend.",
+              "priority": "medium",
+              "title": "How do you identify opportunities to reduce overall cost?",
+              "id": "f613e1b7-3966-4d3f-9d03-8a5879cfaaec",
+              "heading": "How do you identify opportunities to reduce overall cost?"
+            },
+            {
+              "id": "6e5acb21-c3f7-4b10-97ad-45d2634baf4d",
+              "title": "Define metric-based requirements.",
+              "answer_tooltip": "",
+              "output": "Detailed metrics about your application translate to better cost estimates while planning.",
+              "priority": "medium",
+              "heading": "Metric based requirements"
+            },
+            {
+              "id": "d36d1484-4d5f-4c66-9ffb-21dadf4387bf",
+              "title": "Use cost management tools.",
+              "answer_tooltip": "",
+              "output": "How do you get visibility into the costs you're already accruing?",
+              "priority": "medium",
+              "heading": "Cost management tools"
+            },
+            {
+              "id": "d8e0cd5d-6409-4cfd-a7ff-e49bc2acf96c",
+              "title": "Rely on a cloud operating model.",
+              "answer_tooltip": "",
+              "output": "A cloud operating model summarizes the organizations goals for cloud adoption. Having a cloud operating model clarifies areas of focus that are readily translate to subjects of cost optimization.",
+              "priority": "high",
+              "heading": "Cloud operating model"
+            },
+            {
+              "id": "27fcd721-ffea-40e2-a219-c44eb61ccb63",
+              "title": "Tagging",
+              "answer_tooltip": "",
+              "output": "Tags allow for a logical grouping of cloud resources that work together to achieve a business goal. Tags facilitate fine-grain instrumentation, tracking and forecast of cloud spending.",
+              "priority": "low",
+              "heading": "Tagging"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Optimizing"
+        },
+        {
+          "id": "25db8d5c-b067-4642-9ce0-6ec233179dbd",
+          "title": "How do you ensure that cloud resources are appropriately provisioned?",
+          "explanation": "Describes how to best take advantage of the benefits of the cloud to minimize your cost.",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "bd86ce31-53c4-467a-9f6c-d9e3876a09c2",
+              "title": "Perform capacity planning iteratively.",
+              "answer_tooltip": "",
+              "output": "One of the largest benefits of cloud computing is its rapid adaptability to changes in capacity. Having a good understanding of capacity requirements allows organizations to allocate resources with minimal overhead and grow/shrink on demand.",
+              "priority": "high",
+              "heading": "Iterative capacity planning"
+            },
+            {
+              "id": "e4bea6ce-0d7b-4f0f-b8b7-21875543ce54",
+              "title": "Configure auto-scaling policies (both in and out).",
+              "answer_tooltip": "",
+              "output": "For certain application, capacity requirements may swing over time. Auto-scaling policies allow for less error-prone operations and cost savings through robust automation.",
+              "priority": "medium",
+              "heading": "Auto-scaling policies"
+            },
+            {
+              "id": "52d9d2fb-823e-485e-8186-d31bfde58bd4",
+              "title": "Select right resource offering size (VM, disk, database).",
+              "answer_tooltip": "",
+              "output": "Certain infrastructure resources are delivered to customers as fix-sized building blocks. Ensuring that these building blocks are adequately sized is important to meet capacity demand as well as to eliminate waste.",
+              "priority": "high",
+              "heading": "Right-sizing your resources"
+            },
+            {
+              "id": "e927b1b7-431f-4aac-9ac6-0d9a7693093d",
+              "title": "Choose appropriate service that matches requirements.",
+              "answer_tooltip": "",
+              "output": "The number of cloud services in Azure continues to grow and services have similar overlapping features, capabilities and functionality. It is important for customers to select the service that match requirements at the most favorable cost profile.",
+              "priority": "medium",
+              "heading": "Choosing services that match business requirements"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Provisioning"
+        },
+        {
+          "id": "0d983b47-0da8-4200-b6b6-12f97ce49b0f",
+          "title": "What saving considerations does your cost model incorporate?",
+          "explanation": "Describes strategies to model your cloud costs",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "869aca36-5055-43fe-8a04-18070c46900f",
+              "title": "Resources as utility.",
+              "answer_tooltip": "",
+              "output": "The cloud is all about change. Your resources in the cloud are virtual, and unless built for durability, are to be considered ephemeral. Your provider may reboot or replace your resources for troubleshooting or updates. Mapping resources as 1 to 1 drop in replacement for on-prem resources is not recommended.",
+              "priority": "high",
+              "heading": "Treat resources as a utility"
+            },
+            {
+              "id": "f72fc7d3-60f3-4b2e-8a25-99444e6da05f",
+              "title": "Reserved Capacity",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium",
+              "heading": "Leverage reserved capacity"
+            },
+            {
+              "id": "1125f616-9f4e-4f88-b07f-4d91cfce30a7",
+              "title": "Low priority VMs.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium",
+              "heading": "Low-priority VMs"
+            },
+            {
+              "id": "d8036b2f-c4e5-4ba3-ab5a-c32409be14d0",
+              "title": "Platform as a Service.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high",
+              "heading": "Platform as a Service"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Modelling"
+        },
+        {
+          "id": "77e0c51d-5ab9-4fdb-8648-13c230aca0cf",
+          "title": "How do you manage the storage footprint of your digital assets?",
+          "explanation": "Describes some of the decisions you may need to make when optimizaing your data footprint for cost.",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "answer_tooltip": "",
+              "output": "Data Transfer costs, most notably, network egress from Azure are areas typically not factored in to multi-cloud and hybrid architecture decisions. Not understanding the true cost of network transfer is a key area often overlooked.",
+              "priority": "medium",
+              "title": "Optimize data transfer",
+              "id": "b76caf2e-81b2-4a8a-88bc-8215420dca0c",
+              "heading": "Optimize data transfer"
+            },
+            {
+              "id": "83214f4c-2386-4758-adba-ba9ad15ba0ec",
+              "title": "Define and enforce data retention and archival requirements.",
+              "answer_tooltip": "",
+              "output": "In typical systems, not all data needs to be available for online processing. Data no longer needed can be removed, freeing up underlying storage.",
+              "priority": "medium",
+              "heading": "Data retention and archival"
+            },
+            {
+              "id": "c04d8335-05b6-494e-8689-5b68ef743069",
+              "title": "Use tiered storage.",
+              "answer_tooltip": "",
+              "output": "In typical systems, not all data needs to be available for online processing. For the data that needs to be retained long-term, finding the right tradeoffs on durability and latency against costs allows for cost changes.",
+              "priority": "high",
+              "heading": "Tiered storage"
+            },
+            {
+              "id": "38958b65-504d-4d6f-bdeb-8b37c4cb4ed7",
+              "title": "Selection of appropriate storage service.",
+              "answer_tooltip": "",
+              "output": "Some types of storage are better suited to different workloads.",
+              "priority": "high",
+              "heading": "Appropriate storage services"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Data management"
+        },
+        {
+          "choices": [
+            {
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium",
+              "title": "Monitoring your cloud costs",
+              "id": "f60a846f-90af-4d4c-9873-39da78d6f678",
+              "heading": "Monitoring your cloud costs"
+            },
+            {
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium",
+              "title": "Review bill",
+              "id": "4cc848d2-a203-4d78-a54a-c46b2a673ec9",
+              "heading": "Review bill"
+            },
+            {
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium",
+              "title": "Setup alarms",
+              "id": "c0331fd0-5e4b-4b41-86dd-8d8c4701361c",
+              "heading": "Setup alarms"
+            },
+            {
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium",
+              "title": "Define budgets",
+              "id": "32a9a478-00b1-4754-ab44-d0587668f350",
+              "heading": "Define budgets"
+            },
+            {
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium",
+              "title": "Review Azure Advisor",
+              "id": "2ec0a4a8-676a-44a3-81b6-99e0141efc87",
+              "heading": "Review Azure Advisor"
+            }
+          ],
+          "title": "How are you monitoring your costs?",
+          "type": "checkbox",
+          "id": "79869b1f-b91c-4c75-a961-785da7a687a8",
+          "heading": "monitoring",
+          "explanation": "Describes strategies that you can leverage to monitor your cloud costs, and act on them appropriately."
+        },
+        {
+          "choices": [],
+          "title": "setMe",
+          "type": "checkbox",
+          "id": "e7408753-d4f2-4ef3-8a45-72bc07670ec1",
+          "heading": "tradeoffs",
+          "explanation": "Describes some of the trade-offs you may decide to make when optimizing a workload for cost."
+        }
+      ]
+    },
+    {
+      "id": "ed597c56-5599-4e14-a148-9575b6dc0102",
+      "name": "Scalability",
+      "questions": [
+        {
+          "id": "6a7775ac-4ae5-49ef-9ae8-ceafd7516376",
+          "title": "How are you designing your applications to scale?",
+          "explanation": "Application design is critical to handling scale as load increases",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "f4fea556-8c81-4e49-9715-39a7f8fcfca8",
+              "title": "Chose the right data store to match usage",
+              "answer_tooltip": "Possibility of data use getting throttled.",
+              "output": "Review SQL Database choices and performance guidance. Use Azure Managed Database Services for built-in automatic tuning.",
+              "priority": "medium",
+              "heading": "Choosing the right database"
+            },
+            {
+              "id": "2284ac26-7be3-458a-bb96-d8c4695f5a02",
+              "title": "Using dynamic service discovery for micro-services applications",
+              "answer_tooltip": "In a dynamic environment, clients of a service will need to know about the available resources to call.",
+              "output": "Clients of a service use either Client-side discovery or Server-side discovery to determine the location of a service instance to which to send requests.\n\nLearn More: [https://microservices.io/patterns/service-registry.html](https://microservices.io/patterns/service-registry.html)",
+              "priority": "medium",
+              "heading": "Dynamic service discovery for micro-services applications"
+            },
+            {
+              "id": "fe142e43-c782-467a-af9a-b84262f65ef3",
+              "title": "Utilize connection pooling",
+              "answer_tooltip": "Inability to limit connection resources.",
+              "output": "Use SQL Database connection pooling.",
+              "priority": "medium",
+              "heading": "Connection pooling"
+            },
+            {
+              "id": "35e74034-cf86-4c27-9cfe-8b3c20ce9bbf",
+              "title": "Compress data when appropriate",
+              "answer_tooltip": "Reduce load on the network by compressing data in flight",
+              "output": "Use GZip compression in web.config. Utilize bundling and minification.",
+              "priority": "medium",
+              "heading": "Data Compression"
+            },
+            {
+              "id": "8e3058be-8434-46f9-b6db-de41c8e69d75",
+              "title": "Use locking to ensure consistancy",
+              "answer_tooltip": "Possibility of poor performance from services with high latency.",
+              "output": "Ensure appropriate consistency and isolation level while making database connection.",
+              "priority": "medium",
+              "heading": "Data Locking"
+            },
+            {
+              "id": "59218e34-f303-4b96-80b0-f2432dba7317",
+              "title": "Use async calls and waits to prevent locks",
+              "answer_tooltip": "Possibility of locking the thread while accessing resources with higher latency, limited I/O, or network bandwidth.",
+              "output": "Use the Asynchronous Programming pattern available in your programming language.",
+              "priority": "medium",
+              "heading": "Asynchronous Programming"
+            },
+            {
+              "id": "1a6f861d-df86-4b8b-86bd-7846f639346d",
+              "title": "Utilize Microservices",
+              "answer_tooltip": "Inability to distribute application components to maximize the use of each compute unit.",
+              "output": "Consider adopting a microservices architecture.",
+              "priority": "medium",
+              "heading": "Microservices"
+            },
+            {
+              "id": "f5b436a2-aad6-43b7-9d6e-563713263d7d",
+              "title": "Using queues",
+              "answer_tooltip": "Inability to route requests and balance application load.",
+              "output": "Employ the Load Levelling pattern using Azure queues/questions.",
+              "priority": "medium",
+              "heading": "Queuing and batching requests"
+            },
+            {
+              "id": "48e520f4-3ae0-4185-8e61-0b194cab0f9e",
+              "title": "Avoid sticky sessions and client affinity",
+              "answer_tooltip": "Possibility of overhead in storing, retrieving, and maintaining state information.",
+              "output": "Avoid using Application Request Routing (ARR) Affinity in the App Service Environment (ASE).",
+              "priority": "medium",
+              "heading": "Session affinity"
+            },
+            {
+              "id": "dfe40589-8d10-40c4-85cd-e15ab0ce3b19",
+              "title": "Automatically scale when load increses",
+              "answer_tooltip": "Possibility of delay in additional resources/capacity increase.",
+              "output": "Use Autoscaling guidance. Implement autoscale for services.",
+              "priority": "medium",
+              "heading": "Autoscaling"
+            },
+            {
+              "id": "1fadc07b-c206-4e16-bf2c-67aa3c5bec6a",
+              "title": "Utilize background jobs",
+              "answer_tooltip": "Possibility of application becoming unresponsive and not taking requests.",
+              "output": "Review background jobs guidance. Use Azure Logic Apps to create and schedule regularly running tasks.",
+              "priority": "medium",
+              "heading": "Background jobs"
+            }
+          ],
+          "display_logic": [],
+          "heading": "App Design"
+        },
+        {
+          "id": "b698bef8-a070-4190-8e31-848b135e2ac0",
+          "title": "How are you thinking about Performance?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "91563675-7699-46b8-a60d-311e92aede83",
+              "title": "Have well defined performance goals (eg: throughput and latency)",
+              "answer_tooltip": "Understand what sort of needs your application and users need when using your system.",
+              "output": "Defining performance goals allows you to build architecture that aligns to your business needs.  Learn More: [https://docs.microsoft.com/en-us/azure/architecture/antipatterns/](https://docs.microsoft.com/en-us/azure/architecture/antipatterns/)",
+              "priority": "medium",
+              "heading": "Defining performance goals"
+            },
+            {
+              "id": "17dbf926-0d77-459e-a44c-76895adcb2d4",
+              "title": "Using horizontal scaling when possible",
+              "answer_tooltip": "Also called scaling out and in, means adding or removing instances of a resource. The application continues running without interruption as new resources are provisioned. When the provisioning process is complete, the solution is deployed on these additional resources. If demand drops, the additional resources can be shut down cleanly and deallocated.",
+              "output": "Horizontal scaling allows you to dynamically add and remove resources based on demand.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling)",
+              "priority": "medium",
+              "heading": "Horizontal Scaling"
+            },
+            {
+              "id": "1eab2007-a8bd-440d-87eb-09a42e320ad5",
+              "title": "Have policies to scale in (down) when your load decreases?",
+              "answer_tooltip": "In addition to adding resources when additional load arises, you will need to remove resources when that load goes away for cost and performance reasons.",
+              "output": "Scaling in removes unused resources when they become idle.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling)",
+              "priority": "medium",
+              "heading": "Scaling down when load decreases"
+            },
+            {
+              "id": "aebd1ae8-4d79-4ed5-a625-9c8dc270b18f",
+              "title": "Understand your performance bottlenecks? (components or goals)",
+              "answer_tooltip": "Know all of the components used in your system and when they might fail or become a bottleneck when additional load is placed on them.",
+              "output": "Understanding your performance bottlenecks is critical for designing systems that will have variable throughput over time.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/antipatterns/](https://docs.microsoft.com/en-us/azure/architecture/antipatterns/)",
+              "priority": "medium",
+              "heading": "Performance Bottlenecks"
+            },
+            {
+              "id": "fa7fe27a-fb7a-47bf-84ec-ae009ed95a54",
+              "title": "Gracefully handle throttling",
+              "answer_tooltip": "Your application needs to gracefully degrade it's experience if being throttled by a dependent service",
+              "output": "Learn More: [https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling)",
+              "priority": "medium",
+              "heading": "Throttling"
+            },
+            {
+              "id": "1bc6e483-efd2-41c8-8415-ad02c95caa97",
+              "title": "Use idempotent operations",
+              "answer_tooltip": "When possible, design operations to be idempotent. That way, they can be handled using at-least-once semantics.",
+              "output": "If a worker crashes in the middle of an operation, another worker simply picks up the work item.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out](https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out)",
+              "priority": "medium",
+              "heading": "Idempotency"
+            },
+            {
+              "id": "e769b84e-1c9a-4e51-9ff1-3546acda036d",
+              "title": "Gracefully handle failures",
+              "answer_tooltip": "Design an application to be self healing when failures occur. This requires a three-pronged approach: Detect failures. Respond to failures gracefully. Log and monitor failures, to give operational insight.",
+              "output": "In a distributed system, failures happen. Hardware can fail. The network can have transient failures.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/self-healing](https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/self-healing)",
+              "priority": "high",
+              "heading": "Failure handling"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Performance"
+        },
+        {
+          "id": "7352bd39-678a-4a2b-89df-3972c24ae9df",
+          "title": "How are you handling user load?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "821e7b7e-2432-4136-a708-dc0544187150",
+              "title": "Have you done testing at expected peak load?",
+              "answer_tooltip": "You should load test your application.",
+              "output": "You should load test your application at the expected peak load to ensure there are no challenges around performance or stability when operating at full capacity. Learn More: [https://docs.microsoft.com/en-us/azure/devops/test/load-test/app-service-web-app-performance-test?view=azure-devops](https://docs.microsoft.com/en-us/azure/devops/test/load-test/app-service-web-app-performance-test?view=azure-devops)",
+              "priority": "high"
+            },
+            {
+              "id": "57718622-cd7d-416a-8731-a0a542e8e4ab",
+              "title": "Know the limits of Azure resources as it relates to your workload",
+              "answer_tooltip": "Different azure services have soft and hard limits associated with them.",
+              "output": "Different azure services have soft and hard limits associated with them. Understand the limits for the services you consume so that you are not blocked if you need to exceed them. \n\nLearn More: [https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)",
+              "priority": "medium",
+              "heading": "Azure service limits"
+            },
+            {
+              "id": "b4e28c41-ba4d-4e60-9de8-07c7c25049c3",
+              "title": "Understand the user load the system can handle",
+              "answer_tooltip": "You must know the capabilities of your system to be able to meet demand.",
+              "output": "Load test your application to understand how it performs at various scales.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling)",
+              "priority": "medium",
+              "heading": "Understanding application behavior under load"
+            },
+            {
+              "id": "09d9771d-5f07-4004-b9e0-a9dc04d98efa",
+              "title": "Know base & peak loads",
+              "answer_tooltip": "Knowing the typical and maximum loads on your system help you understand when something is operating outside of it's designed limits.",
+              "output": "Knowing the typical and maximum loads on your system help you understand when something is operating outside of it's designed limits.  Monitor traffic to your application to understand user behavior. Learn More: [https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling)",
+              "priority": "medium",
+              "heading": "Measuring typical loads"
+            },
+            {
+              "id": "28613f56-5cd0-4318-b1b2-28bfd2a2643c",
+              "title": "Know how long it takes scaling to respond to events",
+              "answer_tooltip": "Knowing how long it takes to scale allows you to understand how quickly you can adapt to changes in demand.",
+              "output": "Knowing how long it takes to scale allows you to understand how quickly you can adapt to changes in demand. Scale quick enough to meet user demand, but not so quick that you end up with many unused resources. Learn More: [https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling)",
+              "priority": "low",
+              "heading": "Responding quickly to additional load"
+            },
+            {
+              "id": "df8b22d8-3b9b-49a5-bd43-bc18d4baa2ac",
+              "title": "Leverage appropriate caching",
+              "answer_tooltip": "Caching can improve performance and helps to maintain consistency between data held in the cache and data in the underlying data store.",
+              "output": "Applications should implement a strategy that helps to ensure that the data in the cache is as up-to-date as possible but can also detect and handle situations that arise when the data in the cache has become stale.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/patterns/cache-aside](https://docs.microsoft.com/en-us/azure/architecture/patterns/cache-aside)",
+              "priority": "high",
+              "heading": "Caching"
+            },
+            {
+              "id": "89270a39-dc22-496e-bf13-0fa221e6dae7",
+              "title": "Database storage is sharded when appropriate",
+              "answer_tooltip": "Sharding can improve scalability when storing and accessing large volumes of data.",
+              "output": "Divide a data store into a set of horizontal partitions or shards.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding](https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding)",
+              "priority": "medium",
+              "heading": "Database sharding"
+            },
+            {
+              "id": "373984b8-a555-4958-a7a8-378ef6f7e53b",
+              "title": "Do you know the availability of your SKU's?",
+              "answer_tooltip": "Certain Azure SKU's are only available in certain regions.",
+              "output": "Certain Azure SKU's are only available in certain regions. Understand which SKUs are available in the regions you operate in so you can plan accordingly. Learn More: [https://azure.microsoft.com/en-us/global-infrastructure/services/](https://azure.microsoft.com/en-us/global-infrastructure/services/)",
+              "priority": "low"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Load Testing"
+        },
+        {
+          "id": "a504e528-b5e6-45b0-9d56-ae722e123666",
+          "title": "How are you ensuring you have sufficient Capacity?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "617f326b-536a-424d-8f64-789782d5fe7a",
+              "title": "Using a Content Delivery Networks (CDN) if applicable",
+              "answer_tooltip": "Content Delivery Networks (CDN) let you reduce load times, save bandwidth, and improve responsiveness.",
+              "output": "With CDNs, you can cache static objects loaded from Azure Blob storage, a web application, or any publicly accessible web server, by using the closest point of presence (POP) server. CDNs can also accelerate dynamic content, which cannot be cached, by leveraging various network and routing optimizations.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/cdn/](https://docs.microsoft.com/en-us/azure/cdn/)",
+              "priority": "medium",
+              "heading": "Content Delivery Networks (CDN)"
+            },
+            {
+              "id": "a38b7b87-7964-48e0-9ae3-a0ff9c6a2c7d",
+              "title": "Aware of any events that will cause spikes in user load",
+              "answer_tooltip": "Knowing if there will be sudden spikes in traffic (Superbowl, Black Friday, or Marketing pushes) can allow you to prepare your infrastructure ahead of time.",
+              "output": "Work with your business and marketing teams to prepare for large scale events",
+              "priority": "high",
+              "heading": "Large scale event management"
+            },
+            {
+              "id": "fe7458fa-7e8f-4fe5-a992-9f0c740e1430",
+              "title": "Optimized resource choices (vm, database sizing, etc) to match the needs of your application",
+              "answer_tooltip": "Identify the needs of your application and choose the resources that best fit those needs.",
+              "output": "Right sizing your infrastructure to meet the needs of your applications can save you considerably as opposed to a 'one size fits all' solution often employed with on-premises hardware. Identify the needs of your application and choose the resources that best fit those needs. Learn More: [https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes)",
+              "priority": "high",
+              "heading": "Choosing the right resources"
+            },
+            {
+              "id": "0f4d6be8-a93d-4a8a-bf92-d801c26f427b",
+              "title": "Configured scaling policies using the appropriate metrics",
+              "answer_tooltip": "Scaling on the correct metrics is critical to responding quickly to changes in demands and adding resources at the appropriate time.",
+              "output": "Autoscaling rules that use a detection mechanism based on a measured trigger attribute (such as CPU usage or queue length) use an aggregated value over time, rather than instantaneous values, to trigger an autoscaling action. By default, the aggregate is an average of the values. This prevents the system from reacting too quickly, or causing rapid oscillation.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling)",
+              "priority": "high",
+              "heading": "Choosing metrics for scaling policies"
+            },
+            {
+              "id": "309d9359-996b-4959-9783-330c9899b770",
+              "title": "Automatically schedule autoscaling to add resources based on time of day trends",
+              "answer_tooltip": "Preemptively scaling based on historical data can ensure your application is performant.",
+              "output": "Preemptively scaling based on historical data can ensure your application is performant before your metrics indicate additional resources are required. Consider whether you can predict the load on the application well enough to use scheduled autoscaling, adding and removing instances to meet anticipated peaks in demand.\n\nLearn More: [https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling)",
+              "priority": "medium",
+              "heading": "Pre-emptivly scaling based on trends"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Capacity"
+        },
+        {
+          "id": "f8101d60-5786-4798-a482-e90980e13d5a",
+          "title": "How are you managing your data to handle scale?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "5b9914bc-0b30-4867-b62e-91eaa3f68323",
+              "title": "Using multiple databases",
+              "answer_tooltip": "Possibility of poor query performance, complex scalability, poor management, and poor availability.",
+              "output": "Implement partitioning guidance to meet scalability requirements.",
+              "priority": "medium",
+              "heading": "Managing database load"
+            },
+            {
+              "id": "c459273e-7262-452f-8703-be19f7a36d16",
+              "title": "Managing data consistency appropriately",
+              "answer_tooltip": "Inability to improve scalability by reducing time needed for data synchronization.",
+              "output": "Use Data Consistency Primer guidance. Ensure appropriate consistency and isolation level while making database connections.",
+              "priority": "medium",
+              "heading": "Data consistency"
+            },
+            {
+              "id": "4e8be95d-47b7-4a4c-b165-635e713722bd",
+              "title": "Optimize database queries & indexes",
+              "answer_tooltip": "Possibility of poor query/database performance.",
+              "output": "Review Query Tuning guidance. Utilize automatic tuning in Azure SQL Database. Use Azure Managed Database Services for automatic tuning.",
+              "priority": "medium",
+              "heading": "Database query optimimization"
+            },
+            {
+              "id": "5de0cf80-7d09-40de-a0a3-7447fb2f1a6f",
+              "title": "Documented plans for data growth and retention",
+              "answer_tooltip": "Possibility of increased latency, and reduced application throughput and performance.",
+              "output": "Manage future growth with choices provided by Azure SQL Database. Use Azure Managed Database Services for built-in security, automatic monitoring, threat detection, automatic tuning, and turnkey global distribution.",
+              "priority": "medium",
+              "heading": "Planning for data growth"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Data Management"
+        },
+        {
+          "id": "e589906f-a6c2-451c-b7da-b5186c612cd0",
+          "title": "What scalability tradeoffs are you making?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "1c28b8ad-c6e4-4d8d-881b-fcb0609ee928",
+              "title": "Balance performance and cost appropriately",
+              "answer_tooltip": "While you can build a very high performance system, it can also be very expensive and not match the business requirements.",
+              "output": "When architecting, strike a balance between performance and cost.",
+              "priority": "low",
+              "heading": "Balancing performance and cost"
+            },
+            {
+              "id": "2ba81c3e-794e-4b7f-b834-dbce290d3225",
+              "title": "Choosing the correct data store based on Capacity, Availability, and Performance requirements (CAP)",
+              "answer_tooltip": "The CAP theorem implies that a distributed system must make trade-offs between availability and consistency.",
+              "output": "Often, you can achieve higher availability by adopting an _eventual consistency_ model. Learn More: [https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/use-the-best-data-store](https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/use-the-best-data-store)",
+              "priority": "low",
+              "heading": "CAP theorem"
+            }
+          ],
+          "display_logic": [],
+          "heading": "Tradeoffs"
+        },
+        {
+          "choices": [
+            {
+              "answer_tooltip": "",
+              "output": "Do you know how long requests typically take?  Do you know when they take longer than normal?",
+              "priority": "medium",
+              "title": "Monitor and alert on user experience",
+              "id": "c3d89c92-c78c-4b15-ae1b-cbf3dfe731f8",
+              "heading": "Monitoring user performance"
+            },
+            {
+              "answer_tooltip": "",
+              "output": "You need to be able to view system utilization (CPU, Memory, Disk, etc) to troubleshoot system performance and look for additional metrics to scale on.",
+              "priority": "medium",
+              "title": "Graph system utilization metrics",
+              "id": "df880e97-e112-45c9-980d-6c2bb48d4717",
+              "heading": "Monitoring system utilization"
+            },
+            {
+              "answer_tooltip": "",
+              "output": "Do you know when resources were added to handle scale?  Do you know when they were removed?",
+              "priority": "medium",
+              "title": "Track when resources scale in and out",
+              "id": "1f7261c1-d0cf-48e0-b3b7-b1f8e6b00054",
+              "heading": "Monitoring scaling events"
+            },
+            {
+              "answer_tooltip": "",
+              "output": "You should know trends of increased load over time",
+              "priority": "medium",
+              "title": "Monitor and graph historical usage of the system",
+              "id": "2cbb21af-0a9c-40b1-8aee-74aa66403bb3",
+              "heading": "Historical monitoring"
+            }
+          ],
+          "title": "How are you monitoring to ensure you're scaling appropriately?",
+          "type": "checkbox",
+          "id": "d6014104-7718-406a-b19b-c75d0038970b",
+          "heading": "Monitoring"
+        }
+      ]
+    },
+    {
+      "id": "617871cc-5a26-4c9d-be63-652d6115df30",
+      "name": "DevOps",
+      "questions": [
+        {
+          "id": "cbe90001-1365-42ff-8437-4f9914a7fb9c",
+          "title": "Testing",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "afaf992e-7913-4145-972f-17783bf8335e",
+              "title": "Are the failover and failback processes tested?",
+              "answer_tooltip": "Uncertainty on application services coming back online in a synchronized manner.",
+              "output": "Use Azure Site Recovery failback process for servers.",
+              "priority": "medium"
+            },
+            {
+              "id": "e095b44d-c7ba-40cd-b3a7-37e8360dd474",
+              "title": "Is fault-injection testing done?",
+              "answer_tooltip": "Uncertainty on ability to recover from all types of faults, alone and in combination. Uncertainty on cascading failures in system.",
+              "output": "Test the application by simulating or triggering real failures, such as deleting certificates, artificially consuming system resources, or deleting a storage source.",
+              "priority": "medium"
+            },
+            {
+              "id": "0d121952-0a0c-41d9-9425-b78b6ceeffe9",
+              "title": "Is performance testing done?",
+              "answer_tooltip": "Uncertainty on application behavior in production under real load and fully deployed.",
+              "output": "Use load testing with VSTS to identify application behavior under load.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "62dea221-d82b-4e1c-adc0-e74c16ec8d98",
+          "title": "Deployment",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "390047e0-f3ec-4f51-b19a-d7763018b99e",
+              "title": "Is the release process automated and documented?",
+              "answer_tooltip": "Possibility of an operator deploying a bad update or improperly configuring settings for an application.",
+              "output": "Use VSTS release management for end-to-end traceability. Utilize VSTS history and auditing for a consolidated view of changes to code and infrastructure.",
+              "priority": "medium"
+            },
+            {
+              "id": "ae884b97-1c0d-4902-ae41-1745d28d4910",
+              "title": "Are blue/green or canary release deployment techniques used?",
+              "answer_tooltip": "Possibility of users not being redirected to production code in the event of a failure.",
+              "output": "Use the blue/green or canary release deployment technique.",
+              "priority": "medium"
+            },
+            {
+              "id": "dd0d72c4-415f-4793-ac8c-2399e697d2cc",
+              "title": "Is the deployment process logged and audited?",
+              "answer_tooltip": "Inability to determine which version of an application is causing a problem after a new release.",
+              "output": "Use VSTS release management for end-to-end traceability. Utilize VSTS history and auditing for a consolidated view of changes to code and infrastructure.",
+              "priority": "medium"
+            },
+            {
+              "id": "66c5f1ba-ea70-4107-811d-0d26d1d246c5",
+              "title": "Do you have a rollback plan?",
+              "answer_tooltip": "Inability to go back to a last- known good version and minimize downtime.",
+              "output": "Use App Service deployment slots to fall back on last-known good menu. Run VSTS conditional rollback.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "b7d3dda1-6deb-4ee0-8016-ef5bd07cb8b8",
+          "title": "Deployment and maintenance",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "3559edc2-decd-47cc-943a-c7de2edc4983",
+              "title": "Use autoscaling to respond to increases in load.",
+              "answer_tooltip": "If your application is not configured to scale out automatically as load increases, it's possible that your application's services will fail if they become saturated with user requests.",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "7287e5c9-9da4-4794-a685-d1818fff1609",
+              "title": "Are multiple datacenters (DCs) used?",
+              "answer_tooltip": "An outage in one region brings down application availability.",
+              "output": "Deploy multiple instances of the web app. Deploy the application in multiple Azure paired regions.",
+              "priority": "medium"
+            },
+            {
+              "id": "8efe952a-dfd8-46b8-a2ca-374a71e181ec",
+              "title": "Is deployment and testing implemented?",
+              "answer_tooltip": "Manual deployment can add human error, bringing down availability. Untested deployment process poses a risk to availability.",
+              "output": "Use Continuous Integration and Delivery with Visual Studio Team Services (VSTS).",
+              "priority": "medium"
+            },
+            {
+              "id": "3f6ed587-09d2-488b-b6ab-804f794f8bba",
+              "title": "Are staging/production or rolling updates used?",
+              "answer_tooltip": "Applications becomes unavailable when a new version is rolled into production.",
+              "output": "Use staging slots in Azure App Service.",
+              "priority": "medium"
+            },
+            {
+              "id": "e34660d4-de06-4f34-bbb5-171e9e07642b",
+              "title": "Is the application deployed using any technologies or methods to maintain high availability?",
+              "answer_tooltip": "Applications becomes unavailable during planned/unplanned maintenance.",
+              "output": "Use an App Service plan that offers multiple instances. Use virtual machine scale set. Deploy multiple instances of the web app.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "02bf3920-a8f7-400c-bb95-6814e72acf66",
+          "title": "How are you treating Infrastructure as Code?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "b92799d2-a55d-4eac-a8c6-14b2aa642123",
+              "title": "What tools are you using to automate your deployments?",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "14522e02-5732-45cb-8817-f947aca27d2e",
+              "title": "What are your dependencies?",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "2a8c4e47-b309-4ed8-95ef-ca0d8093fccc",
+              "title": "Do you know what your limitations are?",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "883663d0-5614-4851-8c75-d40440502c5c",
+              "title": "Do you have Tagging/Resources name conventions?",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "6079f868-3185-4a07-a63f-ee1e3354e155",
+          "title": "How are you handling monitoring of your application?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "3478b3fb-9e0b-4446-a14d-ef425de1b152",
+              "title": "You are monitoring your workload.",
+              "answer_tooltip": "Monitoring earlier in the lifecycle provides teams with the ability to collaboratively work to optimize performance and availability. By reusing artifacts from design and test phases to create monitors that can run in pre-production and production environments, teams can streamline standardization and ensure everyone is on the same page.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "b29a704d-c754-4cde-a361-23851ee4dc11",
+              "title": "What are you doing with alerts?",
+              "answer_tooltip": "Automation around alerts is critical due to the highly collaborative nature of DevOps and the inherent speed needed for effective incident management. Earlier this year, a report from DevOps.com came out stating that 80% of IT teams are alerted to critical incidents via email. Email is an effective form of communication, but it shouldn’t be the most common notification method for a critical issue.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "e9952236-b543-4e4b-8b21-8c6b09926e19",
+              "title": "Are you logging at appropriate levels to take action on alerts?",
+              "answer_tooltip": "A logging tool should collect logs from each system component, application-side or server-side, and provide access to them in one centralized location. Not all logging platforms are capable of maintaining speed as the amount of logs they process grows. Therefore, you should keep a critical eye on the process when trying out different solutions.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "c3dd0d14-2c4f-4dd7-8c1a-26f206301fc1",
+              "title": "Are you correlating events?",
+              "answer_tooltip": "This enables you to trace communications between applications distributed across systems/containers to identify errors and exceptions from your applications and resolve latency quickly.",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "b56429ec-2bb4-429a-ad01-b471ed29c041",
+              "title": "Application v. Platform",
+              "answer_tooltip": "The first step for full observability is to enable monitoring across all your web apps and services. If you are working in code, you should add Azure Monitor Application Insights SDKs to your apps written in .NET, Java, Node.js, or any other programming languages. This is the recommended way since now you can also specify any custom events, metrics, or page views that are relevant to your app or business.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "5b49c91f-6c2a-4ca1-b950-7a2d0791e120",
+              "title": "Is monitoring at the right level?",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "688bdb38-5158-433d-9ab3-ece73bd940bb",
+          "title": "How are you deploying and testing this workload?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "5001d2a7-4abe-4cd0-8584-14b3a7fafd65",
+              "title": "do you automate deployment/testing/integration? ",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "1b79abb8-383b-4808-af7f-66d75f552f61",
+              "title": "Are you testing DR and fault injection?",
+              "answer_tooltip": "Experimentation on a system to uncover its weaknesses. Breaking things on purpose is preferable to being surprised when things break.",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "14277fdf-b66b-4642-ab40-4b0a0d1636df",
+              "title": "How frequently are you checking in code?",
+              "answer_tooltip": "Continuous Integration (CI) is a development practice that requires developers to integrate code into a shared repository several times a day. Each check-in is then verified by an automated build, allowing teams to detect problems early. The key details to note are that you need to run code integration multiple times a day, every day, and you need to run the automated verification of the integration. What’s the motivation for this? Well, in the development process, the earlier we surface errors, the better. And one source of frequently occurring errors is the code integration step.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "3cc58773-5bb1-47ae-8c49-a54c911b6920",
+              "title": "Have you tested your rollback procedure? ",
+              "answer_tooltip": "The most important step is to implement an architecture that supports the need to rollback. For instance, componentized, service based architectures lend themselves well to this. Persistent message queues and asynchronous services allow you to bring components down for rollback without impacting the main user base. Work towards something like the Blue-Green release pattern such that your application can stay available whilst you are working on one half of the system.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "43486cd2-5a5d-49a3-b20b-d5feb954a0eb",
+              "title": "Do you have prod/preprod/dev/test stages? ",
+              "answer_tooltip": "Deployment to various stages and running tests/validations at each stage before moving on to the next ensures friction free production deployment.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "2a7ebdb3-3c61-44aa-bf6e-866bfe13f369",
+              "title": "Where do you get your secrets from?",
+              "answer_tooltip": "Safeguarding confidential source, connection strings, certificates, secrets etc. required in the deployment pipeline ensures security of end products.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "83c48dd4-889a-4711-9e98-ddda179d73c2",
+              "title": "Are you using a common release strategy (blue/green, pilot light, canary)? ",
+              "answer_tooltip": "One of the challenges with automating deployment is the cut-over itself, taking software from the final stage of testing to live production. You usually need to do this quickly in order to minimize downtime. The blue-green deployment approach does this by ensuring you have two production environments, as identical as possible.",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "cae1c9b8-cd75-4433-a580-858c2bfd7078",
+              "title": "You use feature flags.",
+              "answer_tooltip": "Using feature flags is a technique that will help you integrate code into a shared repository at least once a day and ship it, even if you haven't finished the feature yet. You'll be able to deploy at any time but defer the decision to release for another day.",
+              "output": "",
+              "priority": "low"
+            },
+            {
+              "id": "1a6700ca-54e2-4cf8-bf73-182b93982c33",
+              "title": "You isolate and secure your workload from others in your organization.",
+              "answer_tooltip": "With DevOps, organizations aim to improve operational processes in terms of security, reliability and efficiency. In DevOps environments, since software components are often developed in parallel but separately, you’ll require certain network configurations.",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "b008bdad-8cfb-4c5e-b236-889331be7468",
+              "title": "Hotfixes go through your pipeline?",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "dac9805b-1713-4c0b-809e-72689805c169",
+          "title": "How well do you understand your Reporting/Analytics needs?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "0c30d827-3ddb-4876-ae55-18b6816426ed",
+              "title": "You know what reports you need.",
+              "answer_tooltip": "Dev ops metrics are critical for measuring production and project management",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "640fdb08-27c0-4d56-a32b-f7990e9afc1d",
+              "title": "Your reports are actionable.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "f07797dc-b418-4aaa-9bc0-aa061bd58e3d",
+              "title": "You have defined appropriate KPI's.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "293f7c83-ebde-4707-a573-6649e5dd539e",
+              "title": "You report on your KPI's.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "03b6bc94-33ca-4722-ad55-e145565c1395",
+              "title": "You can identify and act on the leading and lagging indicators in your workload.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "93919a2a-5de8-4175-b75b-eb664ad6131d",
+          "title": "How have you secured your devops infrastructure?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "70d2ca59-1a2a-4f56-8df6-a4b8239f4a5c",
+              "title": "We have separation of duties.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "4270a636-6596-4478-aacb-bb456c0f2c66",
+              "title": "We have secret management in place.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "bf6c6d4d-b3ec-4916-be8d-14cc162e19fe",
+              "title": "We don't have keys in our source code.",
+              "answer_tooltip": "This includes passwords / API keys / etc.",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "7bcf82aa-1783-4e4c-ad4e-7f3678aa5679",
+              "title": "We know how to engage our infosec team.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "b0d43cfe-df6a-43bf-8b2d-9f33feaf9ea9",
+          "title": "What processes are in place for the development workflow?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "52f4074b-b4b0-4de4-bb31-bb250f276989",
+              "title": "We have defined branching strategies.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "c625c7ec-8247-4da4-a429-d1dcd5798089",
+              "title": "We understand our source code policies and licensing.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "c9d9f828-003c-47ea-9b48-77e02a2f233b",
+              "title": "We have and understand our policy around repo creation and usage.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low"
+            },
+            {
+              "id": "cae80c59-4a0b-4dab-9817-4a2e0d3cd374",
+              "title": "You monitor for bugs and patch them in your dependencies.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "0459a857-a941-42d4-90f8-c993b1dee8fe",
+              "title": "You have defined and enforce a set of coding standards/naming conventions",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low"
+            },
+            {
+              "id": "b0247aeb-2ccf-44b2-8c77-5bbae2d15d66",
+              "title": "error handling, exponential backoff, uniqueness guarantees, retry logic",
+              "answer_tooltip": "this needs to be updated.",
+              "output": "",
+              "priority": "low"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "26f996a4-e8ca-4fd6-b8e1-a98ba698e966",
+          "title": "What have you done to isolate and/or containerize your workload?",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "7bd1eaba-6099-4504-ab38-0716ef0c5a9a",
+              "title": "You have an ephemeral environment for testing.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low"
+            },
+            {
+              "id": "4d65f9fc-32bd-4ede-8d5a-77e86202c1c0",
+              "title": "You primarily use micro services (instead of a giant monolithic app).",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low"
+            },
+            {
+              "id": "add20060-4a23-405d-a698-005efdfb5082",
+              "title": "You understand when to scale up, and when to scale out for your workload. ",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low"
+            },
+            {
+              "id": "4f9c77a5-0cc1-4398-8623-92a3c5160bfd",
+              "title": "Your workload is available for upstream providers as appropriate.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "low"
+            },
+            {
+              "id": "c14d1c85-8935-4050-8a3f-b9b4be2fcc8a",
+              "title": "You have an orchestration system, and it is used to deploy your workload.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium"
+            },
+            {
+              "id": "d69c2e09-257e-4073-94b6-beb45e7c402a",
+              "title": "The level of isolation of this workload meets your security requirements.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "high"
+            },
+            {
+              "id": "12f34c82-3113-47c9-ab0c-95addd7fcb82",
+              "title": "You are aware of all the OS dependencies your workload has, and patch appropriately.",
+              "answer_tooltip": "",
+              "output": "",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "e6f02396-e5c8-454d-8636-dd3541d99b68",
+          "title": "Culture",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "b10c5b28-57e9-4878-b2fc-633392de7df0",
+              "title": "Do all stakeholders have a single view of goals and timelines?",
+              "answer_tooltip": "Possibility of conflict over resources, purposes, goals, and priorities.",
+              "output": "Adopt VSTS Agile as a single source of truth for all stakeholders to avoid mismatched expectations and to give an accurate picture of the current status.",
+              "priority": "medium"
+            },
+            {
+              "id": "40f23dc7-57ef-4223-8710-1c2508ab4ea8",
+              "title": "Have you automated build, test, and deployment?",
+              "answer_tooltip": "Inability to know what each team member is doing and should be doing in the future.",
+              "output": "Utilize VSTS continuous testing. Use VSTS Test Case Management for documenting and fixing bugs after test execution. Practice VSTS Unit, Integration, and UAT testing for code coverage.",
+              "priority": "medium"
+            },
+            {
+              "id": "92c24a3f-7456-4193-aaf2-1ba583d5fee5",
+              "title": "Have you implemented continuous improvement?",
+              "answer_tooltip": "Inability to quickly identify issues, escalate, fix, and confirm resolution.",
+              "output": "Use VSTS dashboards and VSTS Power BI integration for data-driven reporting and improvement.",
+              "priority": "medium"
+            },
+            {
+              "id": "c6864ae8-2f10-4ee8-bae8-cfd2ee138a6f",
+              "title": "Do you have documented operations?",
+              "answer_tooltip": "Inability to understand design, architecture, tools, processes, and code.",
+              "output": "Track ideas to implementation using VSTS work-item tracking. Implement DevOps using VSTS.",
+              "priority": "medium"
+            },
+            {
+              "id": "a97a7fad-8338-4f29-a704-79d71db11fbb",
+              "title": "How do you share knowledge within the team?",
+              "answer_tooltip": "Inability to keep knowledge organized and quickly discoverable.",
+              "output": "Use VSTS Wiki to distribute information, share knowledge, and collaborate.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "131bea2d-c514-4fee-9cc7-7df45b00eaeb",
+          "title": "Development",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "e3f32b98-6146-4815-a551-d4ff776f9bcf",
+              "title": "Do you have a production-like environment for dev/test?",
+              "answer_tooltip": "Inability to test and diagnose problems.",
+              "output": "Use VSTS load testing with cloud scale and mimic real- life, peak-usage scenario.",
+              "priority": "medium"
+            },
+            {
+              "id": "c886591c-7517-4d21-9809-214b882d9a48",
+              "title": "Do you have existing scripts for deployment?",
+              "answer_tooltip": "Possibility of needing manual tasks or detailed technical knowledge of application.",
+              "output": "Employ Azure Resource Manager and VSTS to implement infrastructure-as- code model.",
+              "priority": "medium"
+            },
+            {
+              "id": "dbb364d4-2e30-4ec9-b454-75db70e0bdec",
+              "title": "Are you using application instrumentation for insight?",
+              "answer_tooltip": "Inability to understand application health, performance, or errors.",
+              "output": "Use Azure Monitor, Azure Advisor, Azure Service Health, Activity Log, Azure Application Insights, Log Analytics, ExpressRoute monitor, Service Map, availability tests, and general monitoring Azure applications and resources.",
+              "priority": "medium"
+            },
+            {
+              "id": "5ee611b5-50d9-4477-9cfe-ef153daf61ea",
+              "title": "Are you tracking technical debt?",
+              "answer_tooltip": "Possibility of shortcuts and non-optimal code with respect to the release schedule.",
+              "output": "Track technical debt using SonarQube with Visual Studio Team Services (VSTS).",
+              "priority": "medium"
+            },
+            {
+              "id": "10678501-0721-496c-9e04-e0dc77042e38",
+              "title": "How do you push updates to production?",
+              "answer_tooltip": "Inability to reduce cycle time for production release.",
+              "output": "Use feature toggles and canary releases. Utilize App Service deployment slots to safely deploy applications.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "a38de54c-3eec-4752-8497-3c9d55972748",
+          "title": "Testing",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "c082dcc5-8e37-4150-96a5-b576f01512f2",
+              "title": "Have you automated testing?",
+              "answer_tooltip": "Possibility of tedious and error-prone manual testing.",
+              "output": "Review development and test guidance. Use VSTS continuous testing. Use VSTS Test Case Management for documenting and fixing bugs after test execution. Practice VSTS Unit, Integration, and UAT testing for code coverage.",
+              "priority": "medium"
+            },
+            {
+              "id": "0b8e34d6-b81b-4d06-ba7e-c8d894e64332",
+              "title": "How do you test in production?",
+              "answer_tooltip": "Inability to determine if code is working as expected.",
+              "output": "Use App Service deployment slots for testing in production.",
+              "priority": "medium"
+            },
+            {
+              "id": "bfa7a665-0009-431c-80f0-24d1ca024cac",
+              "title": "How do you manage performance, load, and stress testing?",
+              "answer_tooltip": "Inability to detect serious performance issues.",
+              "output": "Practice VSTS load testing with cloud scale.",
+              "priority": "medium"
+            },
+            {
+              "id": "83339cb6-0f1d-4000-b789-71aa4953908d",
+              "title": "How do you manage capacity testing?",
+              "answer_tooltip": "Inability to determine resource limitations.",
+              "output": "Use VSTS load testing for regular stress testing to identify and fix resource limitations.",
+              "priority": "medium"
+            },
+            {
+              "id": "bc58e10e-7ea1-4889-88c5-3c45183a219b",
+              "title": "Are you doing penetration testing?",
+              "answer_tooltip": "Inability to determine possible vulnerabilities and attacks.",
+              "output": "Request a penetration test for your application.",
+              "priority": "medium"
+            },
+            {
+              "id": "38669caa-fa5d-4a5f-9728-6f3092614387",
+              "title": "Do you have BCP (Business Continuity Process)/DR (Disaster Recovery) drills?",
+              "answer_tooltip": "Inability to determine business continuity.",
+              "output": "Review guidance on disaster recovery for Azure applications. Use Azure Site Recovery drills.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "ddce2b28-abac-49b7-9c48-495ac0f3f542",
+          "title": "Release",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "17b87032-5ee6-4e01-81de-9018c2d4be00",
+              "title": "Have you automated release and deployment?",
+              "answer_tooltip": "Inability to release consistent deployments quickly and reliably.",
+              "output": "Use VSTS Release Management for continuous delivery of software at a faster pace and with lower risk.",
+              "priority": "medium"
+            },
+            {
+              "id": "e2661dbc-2aa5-4d43-a442-af823f1438e1",
+              "title": "Do you use continuous integration (CI)?",
+              "answer_tooltip": "Inability to let developers work on a single codebase and find bugs early.",
+              "output": "Employ VSTS continuous integration to build, test, and deploy applications quickly.",
+              "priority": "medium"
+            },
+            {
+              "id": "6baa9b09-754b-4480-ac04-d058ab8ae944",
+              "title": "Do you use continuous delivery (CD)?",
+              "answer_tooltip": "Inability to deliver tested production code in a very short time.",
+              "output": "Use VSTS continuous delivery to deploy tested code automatically.",
+              "priority": "medium"
+            },
+            {
+              "id": "fb7d7941-48de-4040-a458-a7d83519acfb",
+              "title": "Do you document/log changes in deployment?",
+              "answer_tooltip": "Possibility of confusion and versioning conflict.",
+              "output": "Use VSTS extensions to create documentation from source code. Utilize VSTS history and auditing for a consolidated view of changes to code and infrastructure.",
+              "priority": "medium"
+            },
+            {
+              "id": "f8adb3e1-172f-4f8b-9b9a-805cc81b4e65",
+              "title": "How do you prevent infrastructure changes after deployment?",
+              "answer_tooltip": "Inability to determine ad- hoc changes and their impact.",
+              "output": "Use VSTS access management to grant or restrict access to resources and features you want to control. Use Azure Automation Change Tracking.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "5b66f04f-c6a0-4cb1-877b-b95818ff8c75",
+          "title": "Monitoring",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "12ce28d8-6be6-4988-a377-7d6354511309",
+              "title": "How do you monitor the health of your application/services?",
+              "answer_tooltip": "Inability to determine application health and status.",
+              "output": "Use Azure Monitor, Azure Advisor, Azure Service Health, Activity Log, Azure Application Insights, Log Analytics, ExpressRoute monitor, Service Map, availability tests, and general monitoring Azure applications and resources.",
+              "priority": "medium"
+            },
+            {
+              "id": "a473176f-07f1-43ff-8bf4-aa67afeb094c",
+              "title": "How do you correlate logs?",
+              "answer_tooltip": "Inability to have a cohesive view of issues. Inability to have an up-to- date picture of system health.",
+              "output": "Use Azure Log Analytics for viewing data for a particular application. Utilize Service Map and Application Map for logs across multiple components.",
+              "priority": "medium"
+            },
+            {
+              "id": "83e2e818-8983-4c62-b628-844931c1f5d1",
+              "title": "Are there automated alerts and notifications?",
+              "answer_tooltip": "Inability to detect patterns or conditions that indicate potential or current issues and send alerts to address them.",
+              "output": "Create, view, and manage alerts using Azure Monitor. Use Log Analytics Alerts based on conditions in Log Analytics data.",
+              "priority": "medium"
+            },
+            {
+              "id": "bf1b9a7d-44e9-443e-a78c-e1256e1e0f51",
+              "title": "How do you monitor assets and resources for expiration?",
+              "answer_tooltip": "Inability to determine services or features that depend on the expiration of resources.",
+              "output": "Use Azure VM expire and certificate monitoring.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        },
+        {
+          "id": "4e4d619e-d767-4140-ae89-7b05ec24eeef",
+          "title": "Management",
+          "explanation": "",
+          "context": "",
+          "type": "checkbox",
+          "choices": [
+            {
+              "id": "95263fb5-466b-4a1e-8df3-91ae0e736862",
+              "title": "Are there manual activities to automate?",
+              "answer_tooltip": "Possibility of error-prone manual handling of repetitive operations.",
+              "output": "Use Azure Automation for complete control during deployment, operations, and decommissioning of workloads and resources.",
+              "priority": "medium"
+            },
+            {
+              "id": "3c58ebc8-9f5f-413a-8ab7-62450c0552bf",
+              "title": "Do you have existing scripts for deployment?",
+              "answer_tooltip": "Inability to minimize the amount of manual configuration needed to provision resources.",
+              "output": "Utilize Azure Resource Manager templates and scripts for automated resource provisioning.",
+              "priority": "medium"
+            },
+            {
+              "id": "a5720c08-b1db-4535-bf6a-72439222ef2a",
+              "title": "Are you planning to use containers?",
+              "answer_tooltip": "Inability to create self- contained packages, including all dependencies and files needed to run the application, which simplifies the deployment.",
+              "output": "Use VSTS hosted CI/CD for containers to create and deploy containers.",
+              "priority": "medium"
+            },
+            {
+              "id": "45e361a7-1f0c-44cd-b171-25ffd63d5851",
+              "title": "Do you have an operations manual?",
+              "answer_tooltip": "Inability to refer to any documented operations scenarios and mitigation plans during a failure or other disruption in service.",
+              "output": "Use Azure Operations Management Suite (OMS) for process automation.",
+              "priority": "medium"
+            },
+            {
+              "id": "e3e6a7bb-6b05-43ea-8da6-fe33dcab7321",
+              "title": "Do you have on-call procedures documented?",
+              "answer_tooltip": "Inability to refer to on-call duties, schedules, and procedures.",
+              "output": "Employ third-party extensions such as Remedy OnDemand to notify on-call responders for critical VSTS work items.",
+              "priority": "medium"
+            },
+            {
+              "id": "306aec6d-1ce4-4d0f-8337-4fd2593dd957",
+              "title": "Do you have escalation procedures documented?",
+              "answer_tooltip": "Inability to deal with outages, including identifying support contacts and escalation paths.",
+              "output": "Practice agile planning and portfolio management with VSTS for a full view of the work escalation and decomposition of tasks.",
+              "priority": "medium"
+            },
+            {
+              "id": "b291a821-1e55-4702-86ee-30cff9c563ac",
+              "title": "How do you implement configuration management?",
+              "answer_tooltip": "Inability to plan, create, and record configuration changes and make them visible to operations.",
+              "output": "Employ VSTS configuration management for visibility to dev and operations teams. Use PowerShell DSC for configuration management.",
+              "priority": "medium"
+            },
+            {
+              "id": "66e2b7d0-448a-4417-92b6-5943a4260e3f",
+              "title": "Do you have an Azure support plan?",
+              "answer_tooltip": "Inability to understand details of the plan, how the support process works, getting service limits changed, and opening support tickets.",
+              "output": "Understand Azure support plans. Refer to Azure Support FAQs.",
+              "priority": "medium"
+            },
+            {
+              "id": "671536e5-822b-4e14-a274-0da1566455fc",
+              "title": "Have you implemented RBAC?",
+              "answer_tooltip": "Inability to manage access to resources and enforce security principles.",
+              "output": "Use role-based access control (RBAC) to grant access based on Azure Active Directory identities and groups.",
+              "priority": "medium"
+            },
+            {
+              "id": "e398637a-7b8a-40bd-9be3-ead53058a531",
+              "title": "Do you use a bug-tracking system?",
+              "answer_tooltip": "Possibility of missed items, duplicate work, or introduction of additional problems.",
+              "output": "Utilize VSTS bug tracking tool for establishing links between code and bugs. Use Bugzilla integration with VSTS.",
+              "priority": "medium"
+            },
+            {
+              "id": "d5862e72-3300-44cd-b4d0-9244565b0fed",
+              "title": "Do you audit and track changes in code and infrastructure?",
+              "answer_tooltip": "Inability to track and audit changes (code, infrastructure, configuration, documentation, and scripts).",
+              "output": "Employ VSTS history and auditing for a consolidated view of changes to code and infrastructure.",
+              "priority": "medium"
+            }
+          ],
+          "display_logic": [],
+          "heading": null
+        }
+      ]
+    }
+  ]
+}

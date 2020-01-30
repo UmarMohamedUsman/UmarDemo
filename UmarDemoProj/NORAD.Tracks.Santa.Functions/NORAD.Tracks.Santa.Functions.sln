@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NORAD.Tracks.Santa.Functions", "NORAD.Tracks.Santa.Functions\NORAD.Tracks.Santa.Functions.csproj", "{7116003A-B360-415B-B93D-2971BFFFAB81}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7116003A-B360-415B-B93D-2971BFFFAB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7116003A-B360-415B-B93D-2971BFFFAB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7116003A-B360-415B-B93D-2971BFFFAB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7116003A-B360-415B-B93D-2971BFFFAB81}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {845BDFA6-5527-4278-A158-1E256728FC77}
+	EndGlobalSection
+EndGlobal

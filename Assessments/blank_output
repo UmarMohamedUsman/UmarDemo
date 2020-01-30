@@ -1,0 +1,6 @@
+{
+    "type": "html",
+    "content": "",
+    "logic": "NOT failure_resistance_A", //supports NOT AND OR
+    "control_config": {"height": "10%"} //not sure if this makes sense or not, but might be something we need.
+}

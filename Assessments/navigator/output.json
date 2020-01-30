@@ -1,0 +1,11 @@
+{
+    "asssessment_id": "1",
+    "output_id": "output_governance",
+    "display_summary": true,  //this generates a summary of the questions/responses/notes.
+    "output_elements": [{
+        "type": "markdown",
+        "content":"Governance Assessment Results", //add a background image, and overlay this text
+        "logic": null, //always display
+        "control_config": {"height": "10%"} //not sure if this makes sense or not, but might be something we need.
+    }]
+}

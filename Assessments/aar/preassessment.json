@@ -1,0 +1,8 @@
+{ 
+    // Show these on the first page
+    "profile": ["country", "industry", "size", "role", "division", "customer"],
+    "category": [ "Cost", "DevOps", "Resiliency", "Scalability", "Security"],
+    "profile_value_path": "/some/path/",
+    // Show these in the normal question flow (1 per page)
+    "questions":[]
+}

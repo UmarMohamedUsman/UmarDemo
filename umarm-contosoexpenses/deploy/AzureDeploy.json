@@ -1,0 +1,626 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "baseResourceName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the resource"
+            },
+            "maxLength": 15
+        },
+        "employeeName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the employee"
+            }
+        },
+        "sqlAdministratorLogin": {
+            "type": "string",
+            "metadata": {
+                "description": "The admin user of the SQL Server"
+            }
+        },
+        "sqlAdministratorLoginPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "The password of the admin user of the SQL Server"
+            }
+        },
+        "storageAccountType": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_ZRS",
+                "Premium_LRS"
+            ],
+            "metadata": {
+                "description": "Storage Account type"
+            }
+        },
+        "environments": {
+            "defaultValue": [
+                "Staging"
+            ],
+            "type": "array",
+            "metadata": {
+                "description": "Array with the names for the environment slots"
+            },
+            "maxLength": 19
+        }
+    },
+    "variables": {
+        "standardPlanMaxAdditionalSlots": 1,
+        "intWebAppPortalName": "[concat(parameters('baseResourceName'), '-int-Portal')]",
+        "intFunctionName": "[concat(parameters('baseResourceName'), '-int-fx')]",
+        "intWebAppApiName": "[concat(parameters('baseResourceName'), '-int-Api')]",
+        "intStorageAccountName": "[concat(parameters('baseResourceName'), 'intst')]",
+        "intSqlServerName": "[concat(parameters('baseResourceName'), '-intsqlsvr')]",
+        "intSqlDbName": "contosoexpensesintdb",
+        "intAppServicePlanName": "[concat(parameters('baseResourceName'), '-int-asp')]",
+        "prodWebAppPortalName": "[concat(parameters('baseResourceName'), 'Portal')]",
+        "prodFunctionName": "[concat(parameters('baseResourceName'), 'fx')]",
+        "prodWebAppApiName": "[concat(parameters('baseResourceName'), 'Api')]",
+        "prodStorageAccountName": "[concat(parameters('baseResourceName'), 'st')]",
+        "prodSqlServerName": "[concat(parameters('baseResourceName'), '-prodsqlsvr')]",
+        "prodSqlDbName": "contosoexpensesdb",
+        "prodAppServicePlanName": "[concat(parameters('baseResourceName'), '-prod-asp')]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('intStorageAccountName')]",
+            "apiVersion": "2016-01-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "[parameters('storageAccountType')]"
+            },
+            "kind": "Storage",
+            "properties": {}
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('prodStorageAccountName')]",
+            "apiVersion": "2016-01-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "[parameters('storageAccountType')]"
+            },
+            "kind": "Storage",
+            "properties": {}
+        },
+        {
+            "name": "[variables('prodSqlServerName')]",
+            "type": "Microsoft.Sql/servers",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "SqlServer"
+            },
+            "apiVersion": "2014-04-01",
+            "properties": {
+                "administratorLogin": "[parameters('sqlAdministratorLogin')]",
+                "administratorLoginPassword": "[parameters('sqlAdministratorLoginPassword')]",
+                "version": "12.0"
+            },
+            "resources": [
+                {
+                    "name": "[variables('prodSqlDbName')]",
+                    "type": "databases",
+                    "location": "[resourceGroup().location]",
+                    "tags": {
+                        "displayName": "Database"
+                    },
+                    "apiVersion": "2015-01-01",
+                    "dependsOn": [
+                        "[variables('prodSqlServerName')]"
+                    ],
+                    "properties": {
+                        "edition": "Basic",
+                        "collation": "SQL_Latin1_General_CP1_CI_AS",
+                        "maxSizeBytes": "1073741824",
+                        "requestedServiceObjectiveName": "Basic"
+                    }
+                },
+                {
+                    "name": "AllowAllWindowsAzureIps",
+                    "type": "firewallRules",
+                    "location": "[resourceGroup().location]",
+                    "apiVersion": "2014-04-01-preview",
+                    "dependsOn": [
+                        "[variables('prodSqlServerName')]"
+                    ],
+                    "properties": {
+                        "endIpAddress": "0.0.0.0",
+                        "startIpAddress": "0.0.0.0"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "[variables('intSqlServerName')]",
+            "type": "Microsoft.Sql/servers",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "SqlServer"
+            },
+            "apiVersion": "2014-04-01",
+            "properties": {
+                "administratorLogin": "[parameters('sqlAdministratorLogin')]",
+                "administratorLoginPassword": "[parameters('sqlAdministratorLoginPassword')]",
+                "version": "12.0"
+            },
+            "resources": [
+                {
+                    "name": "[variables('intSqlDbName')]",
+                    "type": "databases",
+                    "location": "[resourceGroup().location]",
+                    "tags": {
+                        "displayName": "Database"
+                    },
+                    "apiVersion": "2015-01-01",
+                    "dependsOn": [
+                        "[variables('intSqlServerName')]"
+                    ],
+                    "properties": {
+                        "edition": "Basic",
+                        "collation": "SQL_Latin1_General_CP1_CI_AS",
+                        "maxSizeBytes": "1073741824",
+                        "requestedServiceObjectiveName": "Basic"
+                    }
+                },
+                {
+                    "name": "AllowAllWindowsAzureIps",
+                    "type": "firewallRules",
+                    "location": "[resourceGroup().location]",
+                    "apiVersion": "2014-04-01-preview",
+                    "dependsOn": [
+                        "[variables('intSqlServerName')]"
+                    ],
+                    "properties": {
+                        "endIpAddress": "0.0.0.0",
+                        "startIpAddress": "0.0.0.0"
+                    }
+                }
+            ]
+        },
+        {
+            "apiVersion": "2017-08-01",
+            "type": "Microsoft.Web/serverfarms",
+            "kind": "app",
+            "name": "[variables('prodAppServicePlanName')]",
+            "location": "[resourceGroup().location]",
+            "comments": "This app service plan is used for the web app and slots.",
+            "tags": {
+                "displayName": "AppServicePlan"
+            },
+            "properties": {},
+            "dependsOn": [],
+            "sku": {
+                "name": "[if(lessOrEquals(length(parameters('environments')), variables('standardPlanMaxAdditionalSlots')), 'S1', 'P1')]"
+            }
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "type": "Microsoft.Web/sites",
+            "kind": "api",
+            "name": "[variables('prodWebAppApiName')]",
+            "location": "[resourceGroup().location]",
+            "comments": "This is the web api, also the default 'nameless' slot.",
+            "tags": {
+                "displayName": "WebApi"
+            },
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('prodAppServicePlanName'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('prodAppServicePlanName'))]"
+            ]
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[variables('prodWebAppPortalName')]",
+            "location": "[resourceGroup().location]",
+            "comments": "This is the web app, also the default 'nameless' slot.",
+            "tags": {
+                "displayName": "WebApp"
+            },
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('prodAppServicePlanName'))]",
+                "siteConfig": {
+                    "connectionStrings": [
+                        {
+                            "name": "ContosoExpensesDataEntities",
+                            "connectionString": "[concat('metadata=res://*/Models.ContosoExpensesModel.csdl|res://*/Models.ContosoExpensesModel.ssdl|res://*/Models.ContosoExpensesModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=tcp:', reference(variables('prodSqlServerName')).fullyQualifiedDomainName, ';initial catalog=', variables('prodSqlDbName'), ';Integrated Security=False;User Id=', parameters('sqlAdministratorLogin'), ';Password=', parameters('sqlAdministratorLoginPassword'), ';MultipleActiveResultSets=True;App=EntityFramework\"')]",
+                            "type": "Custom"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('prodAppServicePlanName'))]",
+                "[resourceId('Microsoft.Sql/servers', variables('prodSqlServerName'))]"
+            ],
+            "resources": [
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "appsettings",
+                    "dependsOn": [
+                        "[concat('Microsoft.Web/Sites/', variables('prodWebAppPortalName'))]",
+                        "[concat('Microsoft.Storage/storageAccounts/', variables('prodStorageAccountName'))]",
+                        "[resourceId('Microsoft.Web/sites', variables('prodWebAppApiName'))]"
+                    ],
+                    "properties": {
+                        "EmployeeName": "[parameters('employeeName')]",
+                        "EmployeeApiUri": "[concat('https://', reference(concat('Microsoft.Web/sites/', variables('prodWebAppApiName'))).defaultHostName)]",
+                        "StorageConnectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',variables('prodStorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]"
+                    }
+                },
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "slotconfignames",
+                    "dependsOn": [
+                        "[concat('Microsoft.Web/Sites/', variables('prodWebAppPortalName'))]",
+                        "[concat('Microsoft.Storage/storageAccounts/', variables('prodStorageAccountName'))]",
+                        "[resourceId('Microsoft.Web/sites', variables('prodWebAppApiName'))]"
+                    ],
+                    "properties": {
+                        "connectionStringNames": [
+                            "ContosoExpensesDataEntities"
+                        ],
+                        "appSettingNames": [
+                            "EmployeeApiUri",
+                            "StorageConnectionString"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "apiVersion": "2015-04-01",
+            "type": "Microsoft.Web/sites",
+            "name": "[variables('prodFunctionName')]",
+            "location": "[resourceGroup().location]",
+            "kind": "functionapp",
+            "properties": {
+                "name": "[variables('prodFunctionName')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('prodAppServicePlanName'))]",
+                "hostingEnvironment": "",
+                "clientAffinityEnabled": false,
+                "siteConfig": {
+                    "alwaysOn": true,
+                    "connectionStrings": [
+                        {
+                            "name": "SQLConnection",
+                            "connectionString": "[concat('Server=tcp:', reference(variables('prodSqlServerName')).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('prodSqlDbName'), ';Persist Security Info=False;User ID=', parameters('sqlAdministratorLogin'), ';Password=', parameters('sqlAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]",
+                            "type": "SQLAzure"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('prodAppServicePlanName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName'))]",
+                "[resourceId('Microsoft.Sql/servers', variables('prodSqlServerName'))]"
+            ],
+            "resources": [
+                {
+                    "apiVersion": "2016-03-01",
+                    "name": "appsettings",
+                    "type": "config",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', variables('prodFunctionName'))]",
+                        "[resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName'))]"
+                    ],
+                    "properties": {
+                        "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('prodStorageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName')), '2015-05-01-preview').key1,';')]",
+                        "AzureWebJobsDashboard": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('prodStorageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName')), '2015-05-01-preview').key1,';')]",
+                        "StorageConnectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',variables('prodStorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]",
+                        "FUNCTIONS_EXTENSION_VERSION": "~1"
+                    }
+                },
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "slotconfignames",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', variables('prodFunctionName'))]",
+                        "[resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName'))]"
+                    ],
+                    "properties": {
+                        "connectionStringNames": [
+                            "SQLConnection"
+                        ],
+                        "appSettingNames": [
+                            "AzureWebJobsStorage",
+                            "AzureWebJobsDashboard",
+                            "StorageConnectionString"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "type": "Microsoft.Web/sites/slots",
+            "name": "[concat(variables('prodWebAppApiName'), '/', parameters('environments')[copyIndex()])]",
+            "kind": "api",
+            "location": "[resourceGroup().location]",
+            "comments": "This specifies the web api slots.",
+            "tags": {
+                "displayName": "WebApiSlots"
+            },
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('prodAppServicePlanName'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/Sites', variables('prodWebAppApiName'))]"
+            ],
+            "copy": {
+                "name": "apiPortalSlot",
+                "count": "[length(parameters('environments'))]"
+            }
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "type": "Microsoft.Web/sites/slots",
+            "name": "[concat(variables('prodWebAppPortalName'), '/', parameters('environments')[copyIndex()])]",
+            "kind": "app",
+            "location": "[resourceGroup().location]",
+            "comments": "This specifies the web app slots.",
+            "tags": {
+                "displayName": "WebAppSlots"
+            },
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('prodAppServicePlanName'))]",
+                "siteConfig": {
+                    "connectionStrings": [
+                        {
+                            "name": "ContosoExpensesDataEntities",
+                            "connectionString": "[concat('metadata=res://*/Models.ContosoExpensesModel.csdl|res://*/Models.ContosoExpensesModel.ssdl|res://*/Models.ContosoExpensesModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=tcp:', reference(variables('prodSqlServerName')).fullyQualifiedDomainName, ';initial catalog=', variables('prodSqlDbName'), ';Integrated Security=False;User Id=', parameters('sqlAdministratorLogin'), ';Password=', parameters('sqlAdministratorLoginPassword'), ';MultipleActiveResultSets=True;App=EntityFramework\"')]",
+                            "type": "Custom"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/Sites', variables('prodWebAppPortalName'))]",
+                "[resourceId('Microsoft.Sql/servers', variables('prodSqlServerName'))]"
+            ],
+            "copy": {
+                "name": "webPortalSlot",
+                "count": "[length(parameters('environments'))]"
+            },
+            "resources": [
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "appsettings",
+                    "dependsOn": [
+                        "[concat('Microsoft.Web/Sites/', variables('prodWebAppPortalName'))]",
+                        "[concat('Microsoft.Storage/storageAccounts/', variables('prodStorageAccountName'))]",
+                        "[resourceId('Microsoft.Web/sites/slots', variables('prodWebAppPortalName'), parameters('environments')[copyIndex()])]",
+                        "[resourceId('Microsoft.Web/sites/slots', variables('prodWebAppApiName'), parameters('environments')[copyIndex()])]"
+                    ],
+                  "properties": {
+                    "EmployeeName": "[parameters('employeeName')]",
+                    "EmployeeApiUri": "[concat('https://', reference(resourceId('Microsoft.Web/sites/slots', variables('prodWebAppApiName'), parameters('environments')[copyIndex()])).defaultHostName)]",
+                    "StorageConnectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',variables('prodStorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]"
+                  }
+                }
+            ]
+        },
+        {
+            "apiVersion": "2015-04-01",
+            "type": "Microsoft.Web/sites/slots",
+            "name": "[concat(variables('prodFunctionName'), '/', parameters('environments')[copyIndex()])]",
+            "location": "[resourceGroup().location]",
+            "kind": "functionapp",
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('prodAppServicePlanName'))]",
+                "siteConfig": {
+                    "alwaysOn": true,
+                    "connectionStrings": [
+                        {
+                            "name": "SQLConnection",
+                            "connectionString": "[concat('Server=tcp:', reference(variables('prodSqlServerName')).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('prodSqlDbName'), ';Persist Security Info=False;User ID=', parameters('sqlAdministratorLogin'), ';Password=', parameters('sqlAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]",
+                            "type": "SQLAzure"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', variables('prodFunctionName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName'))]",
+                "[resourceId('Microsoft.Sql/servers', variables('prodSqlServerName'))]"
+            ],
+            "copy": {
+                "name": "functionAppSlot",
+                "count": "[length(parameters('environments'))]"
+            },
+            "resources": [
+                {
+                    "apiVersion": "2016-03-01",
+                    "name": "appsettings",
+                    "type": "config",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.Web/sites', variables('prodFunctionName'))]",
+                    "[resourceId('Microsoft.Web/sites/slots', variables('prodFunctionName'), parameters('environments')[copyIndex()])]",
+                    "[resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName'))]"
+                  ],
+                  "properties": {
+                    "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('prodStorageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName')), '2015-05-01-preview').key1,';')]",
+                    "AzureWebJobsDashboard": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('prodStorageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName')), '2015-05-01-preview').key1,';')]",
+                    "StorageConnectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',variables('prodStorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('prodStorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]",
+                    "FUNCTIONS_EXTENSION_VERSION": "~1"
+                  }
+                }
+            ]
+        },
+        {
+            "apiVersion": "2017-08-01",
+            "type": "Microsoft.Web/serverfarms",
+            "kind": "app",
+            "name": "[variables('intAppServicePlanName')]",
+            "location": "[resourceGroup().location]",
+            "comments": "This app service plan is used for the web app and slots.",
+            "tags": {
+                "displayName": "AppServicePlan"
+            },
+            "properties": {},
+            "dependsOn": [],
+            "sku": {
+                "name": "S1"
+            }
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "type": "Microsoft.Web/sites",
+            "kind": "api",
+            "name": "[variables('intWebAppApiName')]",
+            "location": "[resourceGroup().location]",
+            "comments": "This is the web api, also the default 'nameless' slot.",
+            "tags": {
+                "displayName": "WebApi"
+            },
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('intAppServicePlanName'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('intAppServicePlanName'))]"
+            ]
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[variables('intWebAppPortalName')]",
+            "location": "[resourceGroup().location]",
+            "comments": "This is the web app, also the default 'nameless' slot.",
+            "tags": {
+                "displayName": "WebApp"
+            },
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('intAppServicePlanName'))]",
+                "siteConfig": {
+                    "connectionStrings": [
+                        {
+                            "name": "ContosoExpensesDataEntities",
+                            "connectionString": "[concat('metadata=res://*/Models.ContosoExpensesModel.csdl|res://*/Models.ContosoExpensesModel.ssdl|res://*/Models.ContosoExpensesModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=tcp:', reference(variables('intSqlServerName')).fullyQualifiedDomainName, ';initial catalog=', variables('intSqlDbName'), ';Integrated Security=False;User Id=', parameters('sqlAdministratorLogin'), ';Password=', parameters('sqlAdministratorLoginPassword'), ';MultipleActiveResultSets=True;App=EntityFramework\"')]",
+                            "type": "Custom"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('intAppServicePlanName'))]",
+                "[resourceId('Microsoft.Sql/servers', variables('intSqlServerName'))]"
+            ],
+            "resources": [
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "appsettings",
+                    "dependsOn": [
+                        "[concat('Microsoft.Web/Sites/', variables('intWebAppPortalName'))]",
+                        "[concat('Microsoft.Storage/storageAccounts/', variables('intStorageAccountName'))]",
+                        "[resourceId('Microsoft.Web/sites', variables('intWebAppApiName'))]"
+                    ],
+                    "properties": {
+                        "EmployeeName": "[parameters('employeeName')]",
+                        "EmployeeApiUri": "[concat('https://', reference(concat('Microsoft.Web/sites/', variables('intWebAppApiName'))).defaultHostName)]",
+                        "StorageConnectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',variables('intStorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('intStorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]"
+                    }
+                },
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "slotconfignames",
+                    "dependsOn": [
+                        "[concat('Microsoft.Web/Sites/', variables('intWebAppPortalName'))]",
+                        "[concat('Microsoft.Storage/storageAccounts/', variables('intStorageAccountName'))]",
+                        "[resourceId('Microsoft.Web/sites', variables('intWebAppApiName'))]"
+                    ],
+                    "properties": {
+                        "connectionStringNames": [
+                            "ContosoExpensesDataEntities"
+                        ],
+                        "appSettingNames": [
+                            "EmployeeApiUri",
+                            "StorageConnectionString"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "apiVersion": "2015-04-01",
+            "type": "Microsoft.Web/sites",
+            "name": "[variables('intFunctionName')]",
+            "location": "[resourceGroup().location]",
+            "kind": "functionapp",
+            "properties": {
+                "name": "[variables('intFunctionName')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('intAppServicePlanName'))]",
+                "hostingEnvironment": "",
+                "clientAffinityEnabled": false,
+                "siteConfig": {
+                    "alwaysOn": true,
+                    "connectionStrings": [
+                        {
+                            "name": "SQLConnection",
+                            "connectionString": "[concat('Server=tcp:', reference(variables('intSqlServerName')).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('intSqlDbName'), ';Persist Security Info=False;User ID=', parameters('sqlAdministratorLogin'), ';Password=', parameters('sqlAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]",
+                            "type": "SQLAzure"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('intAppServicePlanName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('intStorageAccountName'))]",
+                "[resourceId('Microsoft.Sql/servers', variables('intSqlServerName'))]"
+            ],
+            "resources": [
+                {
+                    "apiVersion": "2016-03-01",
+                    "name": "appsettings",
+                    "type": "config",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', variables('intFunctionName'))]",
+                        "[resourceId('Microsoft.Storage/storageAccounts', variables('intStorageAccountName'))]"
+                    ],
+                    "properties": {
+                        "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('intStorageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('intStorageAccountName')), '2015-05-01-preview').key1,';')]",
+                        "AzureWebJobsDashboard": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('intStorageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('intStorageAccountName')), '2015-05-01-preview').key1,';')]",
+                        "StorageConnectionString": "[Concat('DefaultEndpointsProtocol=https;AccountName=',variables('intStorageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('intStorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]",
+                        "FUNCTIONS_EXTENSION_VERSION": "~1"
+                    }
+                },
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "slotconfignames",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', variables('intFunctionName'))]",
+                        "[resourceId('Microsoft.Storage/storageAccounts', variables('intStorageAccountName'))]"
+                    ],
+                    "properties": {
+                        "connectionStringNames": [
+                            "SQLConnection"
+                        ],
+                        "appSettingNames": [
+                            "AzureWebJobsStorage",
+                            "AzureWebJobsDashboard",
+                            "StorageConnectionString"
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

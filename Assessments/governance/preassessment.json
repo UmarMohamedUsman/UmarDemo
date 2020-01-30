@@ -1,0 +1,163 @@
+{ 
+    // Show these on the first page
+    "profile": ["country", "industry", "size", "role", "division", "customer"],
+    "category": ["Organization Readiness", 
+        "Cost Management", 
+        "Security Baseline", 
+        "Resource Consistency", 
+        "Deployment Acceleration", 
+        "Identity Baseline"],
+    "profile_value_path": "/some/path/",
+    // Show these in the normal question flow (1 per page)
+    "questions":[{
+        "id": "1", 
+        "title": "Which of the following is most important to accomplish?", 
+        "explanation": "", 
+        "context": "",
+        "type": "radio",
+        "choices": [ 
+            { 
+                "id": "1A", 
+                "title": "Optimizing operations to reduce costs ",
+                "score": "We need to figure this out"
+            }, 
+            { 
+                "id": "1B", 
+                "title": "Engaging customers with improved digital experiences ",
+                "score": "We need to figure this out"
+            }, 
+            { 
+                "id": "1C", 
+                "title": "Transforming products and services to drive new revenue opportunities",
+                "score": "We need to figure this out"
+            }, 
+            { 
+                "id": "1D", 
+                "title": "Empowering employees to improve agility",
+                "score": "We need to figure this out"
+            } 
+        ], 
+        "display_logic": [] 
+},{
+    "id": "2", 
+    "title": "Which of the following best represents your primary business strategy focus?", 
+    "explanation": "", 
+    "context": "",
+    "type": "radio",
+    "choices": [ 
+        { 
+            "id": "2A", 
+            "title": "Growing market share",
+            "score": "We need to figure this out"
+        }, 
+        { 
+            "id": "2B", 
+            "title": "Retaining customers",
+            "score": "We need to figure this out"
+        }, 
+        { 
+            "id": "2C", 
+            "title": "Improving physical/digital customer experiences",
+            "score": "We need to figure this out"
+        }, 
+        { 
+            "id": "2D", 
+            "title": "Disrupting the market with new solutions",
+            "score": "We need to figure this out"
+        } 
+    ], 
+    "display_logic": [] 
+},{
+"id": "3", 
+"title": "Which of the following is most important to project success?", 
+"explanation": "", 
+"context": "",
+"type": "radio",
+"choices": [ 
+    { 
+        "id": "3A", 
+        "title": "Meeting a business critical timeline (e.g. 'Exit a data center' or 'launch an app')",
+        "score": "We need to figure this out"
+    }, 
+    { 
+        "id": "3B", 
+        "title": "Stabilizing or improving performance of an application ",
+        "score": "We need to figure this out"
+    }, 
+    { 
+        "id": "3C", 
+        "title": "Securing assets to avoid business risk ",
+        "score": "We need to figure this out"
+    }, 
+    { 
+        "id": "3D", 
+        "title": "Improving governance positioning",
+        "score": "We need to figure this out"
+    },
+    { 
+        "id": "3E", 
+        "title": "Adopting new technologies",
+        "score": "We need to figure this out"
+    },
+    { 
+        "id": "3F", 
+        "title": "Expanding integration of data into products or services",
+        "score": "We need to figure this out"
+    } 
+], 
+"display_logic": [] 
+},{
+"id": "4", 
+"title": "What will you consider technical success?", 
+"explanation": "", 
+"context": null,
+"type": "radio",
+"choices": [ 
+{ 
+    "id": "4A", 
+    "title": "Moving applications to the cloud ",
+    "score": "We need to figure this out"
+}, 
+{ 
+    "id": "4B", 
+    "title": "Building net new cloud native applications ",
+    "score": "We need to figure this out"
+}, 
+{ 
+    "id": "4C", 
+    "title": "Launching new data-driven or ambient intelligence solutions ",
+    "score": "We need to figure this out"
+}, 
+{ 
+    "id": "4D", 
+    "title": "Transforming your business to be cloud first ",
+    "score": "We need to figure this out"
+}
+], 
+"display_logic": [] 
+},{
+"id": "5", 
+"title": "", 
+"explanation": "", 
+"context": null,
+"type": "radio",
+"choices": [ 
+{ 
+    "id": "5A", 
+    "title": "Internal customer - including CEO ",
+    "score": "We need to figure this out"
+}, 
+{ 
+    "id": "5B", 
+    "title": "External customer - including lost market share ",
+    "score": "We need to figure this out"
+}, 
+{ 
+    "id": "5C", 
+    "title": "Future customer - do the right thing, even if it doesn't impact revenue for 10 years ",
+    "score": "We need to figure this out"
+}
+], 
+"display_logic": [] 
+}]
+}

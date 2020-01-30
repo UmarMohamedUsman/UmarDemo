@@ -1,0 +1,1349 @@
+{
+	"pillars": [{
+			"pillar": "Resiliency",
+			"questions": [{
+					"question": "Application design",
+					"choices": [{
+							"choice": "Are multiple instances of the app/database running?",
+							"risks": ["Individual virtual machines (VMs) become single points of congestion.",
+								"Database becomes a single point of failure."
+							],
+							"recommendations": ["Deploy the application in multiple Azure paired regions.",
+								"Use auto-failover and active geo-replication for SQL Database.",
+								"Use Azure Managed Database Services for turnkey global distribution.",
+								"Deploy multiple instances of the web app."
+							]
+						},
+						{
+							"choice": "Are there different SLAs for application components?",
+							"risks": ["Not decomposing services based on their SLAs makes it difficult to manage these services for their availability."],
+							"recommendations": ["Consider adopting a microservices architecture."]
+						},
+						{
+							"choice": "Is there a message broker?",
+							"risks": ["Transactions may get lost during congestion/load while waiting to get processed."],
+							"recommendations": ["Use Service Bus Queues between the front end and back end."]
+						},
+						{
+							"choice": "How’s throttling implemented?",
+							"risks": ["Load continues to hit the application running with stretched resources, affecting even further loss of available resources."],
+							"recommendations": ["Use the Throttling pattern."]
+						}
+					]
+				},
+				{
+					"question": "Deployment and maintenance",
+					"choices": [{
+							"choice": "Are multiple datacenters (DCs) used?",
+							"risks": ["An outage in one region brings down application availability."],
+							"recommendations": ["Deploy multiple instances of the web app.",
+								"Deploy the application in multiple Azure paired regions."
+							]
+						},
+						{
+							"choice": "Is deployment and testing implemented?",
+							"risks": ["Manual deployment can add human error, bringing down availability.",
+								"Untested deployment process poses a risk to availability."
+							],
+							"recommendations": ["Use Continuous Integration and Delivery with Visual Studio Team Services (VSTS)."]
+						},
+						{
+							"choice": "Are staging/production or rolling updates used?",
+							"risks": ["Applications becomes unavailable when a new version is rolled into production."],
+							"recommendations": ["Use staging slots in Azure App Service."]
+						},
+						{
+							"choice": "Is the application deployed using any technologies or methods to maintain high availability?",
+							"risks": ["Applications becomes unavailable during planned/unplanned maintenance."],
+							"recommendations": ["Use an App Service plan that offers multiple instances.",
+								"Use virtual machine scale set.",
+								"Deploy multiple instances of the web app."
+							]
+						}
+					]
+				},
+				{
+					"question": "Data management",
+					"choices": [{
+							"choice": "Is geo-replication of storage implemented?",
+							"risks": ["Application becomes unavailable in case of outage or unavailability of storage."],
+							"recommendations": ["Use Azure Storage replication."]
+						},
+						{
+							"choice": "Is geo-replication of databases implemented?",
+							"risks": ["Application becomes unavailable in case of outage or unavailability of primary database."],
+							"recommendations": ["Utilize auto-failover and active geo-replication for SQL Database.",
+								"Use Azure Managed Database Services for turnkey global distribution."
+							]
+						},
+						{
+							"choice": "How’s consistency and concurrency implemented?",
+							"risks": ["Transactions are queued, affecting application availability when load starts to increase."],
+							"recommendations": ["Practice appropriate consistency and isolation level while making database connection."]
+						},
+						{
+							"choice": "Are backup/restore operations scheduled and tested?",
+							"risks": ["Unscheduled and untested backup/restore operations are a risk to continued availability if they do not meet the recovery point objective (RPO)."],
+							"recommendations": ["Employ Azure to Azure Site Recovery."]
+						}
+					]
+				},
+				{
+					"question": "Errors and failures",
+					"choices": [{
+							"choice": "Are request timeouts configured?",
+							"risks": ["Very short timeouts can cause excessive retry operations for services and resources that have considerable latency.",
+								"Very long timeouts can cause blocking if a large number of requests are queued, waiting for a service or resource to respond."
+							],
+							"recommendations": ["Set SQL Connection timeout to 30s.",
+								"Use guidance on troubleshoot, diagnose, and prevent SQL connection errors and transient errors for SQL Database."
+							]
+						},
+						{
+							"choice": "How are transient network/other errors handled? Is there a Retry pattern?",
+							"risks": ["Application becomes unavailable during a transient error."],
+							"recommendations": ["Use the Retry pattern."]
+						},
+						{
+							"choice": "Is the Circuit Breaker pattern implemented?",
+							"risks": ["Failure in one part of the system can lead to cascading failures, resulting in many operations becoming blocked while holding onto critical system resources, such as memory, database connections."],
+							"recommendations": ["Use the Circuit Breaker pattern."]
+						},
+						{
+							"choice": "Are application components decomposed and used?",
+							"risks": ["Inability to detect and avoid sending requests to failed instances minimizes availability."],
+							"recommendations": ["Utilize Application Gateway health monitoring.",
+								"Use Azure Traffic Manager health probing."
+							]
+						},
+						{
+							"choice": "Is the CQRS (Command and Query Responsibility Segregation) pattern implemented?",
+							"risks": ["Command (INSERT/UPDATE) and Query (SELECT) operations target the same resource (database) affecting availability."],
+							"recommendations": ["Use the CQRS pattern in Azure."]
+						}
+					]
+				},
+				{
+					"question": "Monitoring and disaster recovery",
+					"choices": [{
+							"choice": "Are errors/failures captured and reported?",
+							"risks": ["Inability to provide sufficient data to enable operations staff to determine the cause, mitigate the situation, and ensure availability."],
+							"recommendations": ["Use Azure Log Analytics for a detailed reporting on errors and failures.",
+								"Employ Service Map and Application Map for coherent error/failure reporting."
+							]
+						},
+						{
+							"choice": "Are health probes implemented?",
+							"risks": ["Inability to validate response, measure latency, and extract information on availability."],
+							"recommendations": ["Use Application Gateway health monitoring.",
+								"Utilize Azure Traffic Manager health probing."
+							]
+						},
+						{
+							"choice": "Are failover/fallback processes orchestrated?",
+							"risks": ["Undetected system and operation changes affect availability."],
+							"recommendations": ["Use Azure to Azure Site Recovery."]
+						},
+						{
+							"choice": "What monitoring tools are used?",
+							"risks": ["Inability to provide sufficient data to enable operations staff to determine the cause, mitigate the situation, and ensure availability."],
+							"recommendations": ["Use Azure Monitor to monitor services/infrastructure.",
+								"Build a customized Azure dashboard.",
+								"Review monitoring Azure applications and resources guidance."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"pillar": "Scalability",
+			"questions": [{
+					"question": "Application design",
+					"choices": [{
+							"choice": "Are you using the Microservices pattern?",
+							"risks": ["Inability to distribute application components to maximize the use of each compute unit."],
+							"recommendations": ["Consider adopting a microservices architecture."]
+						},
+						{
+							"choice": "Are you using queues?",
+							"risks": ["Inability to route requests and balance application load."],
+							"recommendations": ["Employ the Load Levelling pattern using Azure queues/questions."]
+						},
+						{
+							"choice": "Have you identified a correlation between scaled-up instances (web and SQL)?",
+							"risks": ["Possibility of negative impact due to limitation imposed by lack of resources in some part of the overall application."],
+							"recommendations": ["Identify a correlation between app instance scaling and database scaling units."]
+						},
+						{
+							"choice": "Is there client affinity?",
+							"risks": ["Possibility of overhead in storing, retrieving, and maintaining state information."],
+							"recommendations": ["Avoid using Application Request Routing (ARR) Affinity in the App Service Environment (ASE)."]
+						},
+						{
+							"choice": "What provisions are in place when the load on the application increases?",
+							"risks": ["Possibility of delay in additional resources/capacity increase."],
+							"recommendations": ["Use Autoscaling guidance.",
+								"Implement autoscale for services."
+							]
+						},
+						{
+							"choice": "Are you using background jobs?",
+							"risks": ["Possibility of application becoming unresponsive and not taking requests."],
+							"recommendations": ["Review background jobs guidance.",
+								"Use Azure Logic Apps to create and schedule regularly running tasks."
+							]
+						}
+					]
+				},
+				{
+					"question": "Data management",
+					"choices": [{
+							"choice": "Are you using multiple databases or sharding?",
+							"risks": ["Possibility of poor query performance, complex scalability, poor management, and poor availability."],
+							"recommendations": ["Implement partitioning guidance to meet scalability requirements."]
+						},
+						{
+							"choice": "How are you implementing data consistency?",
+							"risks": ["Inability to improve scalability by reducing time needed for data synchronization."],
+							"recommendations": ["Use Data Consistency Primer guidance.",
+								"Ensure appropriate consistency and isolation level while making database connections."
+							]
+						},
+						{
+							"choice": "Are you using data batch operations?",
+							"risks": ["Inability to reduce chatty operations with database/services."],
+							"recommendations": ["Use batch queries over multiple and frequent queries."]
+						},
+						{
+							"choice": "Are you using queues/cache?",
+							"risks": ["Possibility of services becoming overwhelmed causing escalating failure.",
+								"Inability to reduce load on database that generates and serves data."
+							],
+							"recommendations": ["Review caching guidance.",
+								"Use the Queue-Based Load Leveling pattern.",
+								"Use Service Bus Queue/question.",
+								"Employ Azure Redis Cache to cache frequently used data."
+							]
+						},
+						{
+							"choice": "Are you using offline data processing?",
+							"risks": ["Inability to serialize/deserialize XML/JSON data and store it in native database datatype making it difficult to scale."],
+							"recommendations": ["Consider using Azure Cosmos DB for storing XML/JSON documents."]
+						},
+						{
+							"choice": "Have you optimized database queries/indexes?",
+							"risks": ["Possibility of poor query/database performance."],
+							"recommendations": ["Review Query Tuning guidance.",
+								"Utilize automatic tuning in Azure SQL Database.",
+								"Use Azure Managed Database Services for automatic tuning."
+							]
+						},
+						{
+							"choice": "Do you have plans for data growth and retention?",
+							"risks": ["Possibility of increased latency, and reduced application throughput and performance."],
+							"recommendations": ["Manage future growth with choices provided by Azure SQL Database.",
+								"Use Azure Managed Database Services for built-in security, automatic monitoring, threat detection, automatic tuning, and turnkey global distribution."
+							]
+						},
+						{
+							"choice": "Are you using a content delivery network (CDN)?",
+							"risks": ["Inability to reduce server load for dynamically generated content for each request."],
+							"recommendations": ["Review content delivery network guidance.",
+								"Utilize cache control headers when applicable."
+							]
+						}
+					]
+				},
+				{
+					"question": "Implementation",
+					"choices": [{
+							"choice": "Are you using the async/await pattern?",
+							"risks": ["Possibility of locking the thread while accessing resources with higher latency, limited I/O, or network bandwidth."],
+							"recommendations": ["Use the Asynchronous Programming pattern available in your programming language."]
+						},
+						{
+							"choice": "What is your locking approach?",
+							"risks": ["Possibility of poor performance from services with high latency."],
+							"recommendations": ["Ensure appropriate consistency and isolation level while making database connection."]
+						},
+						{
+							"choice": "Are you using data compression?",
+							"risks": ["Inability to reduce load on the network."],
+							"recommendations": ["Use GZip compression in web.config.",
+								"Utilize bundling and minification."
+							]
+						},
+						{
+							"choice": "Are you using connection pooling?",
+							"risks": ["Inability to limit connection resources."],
+							"recommendations": ["Use SQL Database connection pooling."]
+						},
+						{
+							"choice": "Have you conducted performance profiling and load testing?",
+							"risks": ["Inability to determine if application performs and scales as expected."],
+							"recommendations": ["Run VSTS load testing for regular stress testing to identify and fix hotspots."]
+						}
+					]
+				}
+			]
+		},
+		{
+			"pillar": "Resiliency",
+			"questions": [{
+					"question": "Requirements",
+					"choices": [{
+						"choice": "Are resiliency requirements (SLA, RPO, and others) documented/desired in the new system?",
+						"risks": ["Incorrect documentation leads to a system design that may not meet the customer's expectations."],
+						"recommendations": ["Review resiliency requirements guidance."]
+					}]
+				},
+				{
+					"question": "Application design",
+					"choices": [{
+							"choice": "Is failure mode analysis (FMA) performed?",
+							"risks": ["Inability to identify what types of failures an application might experience, capture the potential effects and impacts of each type of failure on the application, and identify recovery strategies."],
+							"recommendations": ["Perform failure mode analysis to identify possible failures, impacts, and recovery strategies."]
+						},
+						{
+							"choice": "Are multiple app service instances deployed?",
+							"risks": ["Individual VMs become single points of congestion.",
+								"Database becomes a single point of failure."
+							],
+							"recommendations": ["Utilize an App Service plan that offers multiple instances.",
+								"Use virtual machine scale sets.",
+								"Deploy multiple instances of the web app."
+							]
+						},
+						{
+							"choice": "What provisions are in place when the load on the application increases?",
+							"risks": ["Possibility that the application's services will fail if they become saturated with user requests."],
+							"recommendations": ["Implement autoscale for services."]
+						},
+						{
+							"choice": "Is load balancing implemented?",
+							"risks": ["Inability to distribute an application's requests to healthy service instances by removing unhealthy instances from rotation."],
+							"recommendations": ["Adopt Load Balancer to distribute the load on the application.",
+								"Use Azure Traffic Manager."
+							]
+						},
+						{
+							"choice": "Is the application deployed using RAID clusters to maintain high availability?",
+							"risks": ["Inability to serve user requests when an instance of a service goes down."],
+							"recommendations": ["Deploy the application in multiple Azure paired regions.",
+								"Deploy multiple instances of the web app."
+							]
+						},
+						{
+							"choice": "Is multi-DC set up implemented?",
+							"risks": ["Inability to serve user requests when a site goes down."],
+							"recommendations": ["Use business continuity and disaster recovery (BCDR): Azure paired regions."]
+						},
+						{
+							"choice": "Are health probes/checks implemented for load balancers (LB) and application gateway (AGW)?",
+							"risks": ["Inability to prevent user requests going to faulty instance of service."],
+							"recommendations": ["Use the Health Endpoint Monitoring pattern."]
+						},
+						{
+							"choice": "Are third-party services monitored?",
+							"risks": ["Inability to gauge the effect of third-party services on the application."],
+							"recommendations": ["Review monitoring and diagnostics guidance.",
+								"Utilize Analytics in Application Insights to predict reliability issues and monitor third-party SLAs."
+							]
+						},
+						{
+							"choice": "Are third-party services SLAs bound?",
+							"risks": ["Inability to serve user requests when third-party service goes down."],
+							"recommendations": ["Implement the Health Endpoint Monitoring pattern."]
+						},
+						{
+							"choice": "Are Retry and Circuit Breaker patterns used?",
+							"risks": ["Inability to serve user requests when remote service communication fails."],
+							"recommendations": ["Use the Retry pattern and Circuit Breaker pattern.",
+								"Use resiliency strategies and asynchronous programming with async and await."
+							]
+						}
+					]
+				},
+				{
+					"question": "Data management",
+					"choices": [{
+							"choice": "Are storage and database services replicated/fail-over?",
+							"risks": ["Inability to serve user requests when storage and/or database service fails."],
+							"recommendations": ["Use Azure Storage replication and SQL Database active geo-replication to ensure that the application's data requirements are satisfied.",
+								"Employ Azure Managed Database Services for turnkey global distribution."
+							]
+						},
+						{
+							"choice": "Is the user account for the production database and backup separate?",
+							"risks": ["A single user can maliciously delete _all_ data (original and backup) resulting in compromised backup."],
+							"recommendations": ["Keep user permissions separate between production and backup data."]
+						},
+						{
+							"choice": "Are failover and fallback processes orchestrated/tested?",
+							"risks": ["Inability to verify that an operator following the processes can successfully fail over and fail back the data source."],
+							"recommendations": ["Use auto-failover and active geo-replication for SQL Database.",
+								"Employ Azure Managed Database Services for built-in resiliency."
+							]
+						},
+						{
+							"choice": "Is data backup validated?",
+							"risks": ["Inability to validate data integrity, schema, and queries of the backup."],
+							"recommendations": ["Use automatic SQL Database backups."]
+						}
+					]
+				},
+				{
+					"question": "Security",
+					"choices": [{
+							"choice": "Is web application firewall (WAF) and distributed denial-of- service (DDoS) protection enabled?",
+							"risks": ["Inability to distinguish true user requests from malicious user requests."],
+							"recommendations": ["Use WAF in front of a web app.",
+								"Review Azure DDoS Protection guidance.",
+								"Utilize Azure Key Vault to manage secrets, such as _connectionstring._"
+							]
+						},
+						{
+							"choice": "Is role-based access control (RBAC) implemented?",
+							"risks": ["Possibility of someone purposely or accidentally deleting resources making application unavailable."],
+							"recommendations": ["Use RBAC with Azure AD for Azure subscription.",
+								"Utilize Azure Security Center for threat detection and protection."
+							]
+						}
+					]
+				},
+				{
+					"question": "Testing",
+					"choices": [{
+							"choice": "Are the failover and failback processes tested?",
+							"risks": ["Uncertainty on application services coming back online in a synchronized manner."],
+							"recommendations": ["Use Azure Site Recovery failback process for servers."]
+						},
+						{
+							"choice": "Is fault-injection testing done?",
+							"risks": ["Uncertainty on ability to recover from all types of faults, alone and in combination.",
+								"Uncertainty on cascading failures in system."
+							],
+							"recommendations": ["Test the application by simulating or triggering real failures, such as deleting certificates, artificially consuming system resources, or deleting a storage source."]
+						},
+						{
+							"choice": "Is performance testing done?",
+							"risks": ["Uncertainty on application behavior in production under real load and fully deployed."],
+							"recommendations": ["Use load testing with VSTS to identify application behavior under load."]
+						}
+					]
+				},
+				{
+					"question": "Deployment",
+					"choices": [{
+							"choice": "Is the release process automated and documented?",
+							"risks": ["Possibility of an operator deploying a bad update or improperly configuring settings for an application."],
+							"recommendations": ["Use VSTS release management for end-to-end traceability.",
+								"Utilize VSTS history and auditing for a consolidated view of changes to code and infrastructure."
+							]
+						},
+						{
+							"choice": "Are blue/green or canary release deployment techniques used?",
+							"risks": ["Possibility of users not being redirected to production code in the event of a failure."],
+							"recommendations": ["Use the blue/green or canary release deployment technique."]
+						},
+						{
+							"choice": "Is the deployment process logged and audited?",
+							"risks": ["Inability to determine which version of an application is causing a problem after a new release."],
+							"recommendations": ["Use VSTS release management for end-to-end traceability.",
+								"Utilize VSTS history and auditing for a consolidated view of changes to code and infrastructure."
+							]
+						},
+						{
+							"choice": "Do you have a rollback plan?",
+							"risks": ["Inability to go back to a last- known good version and minimize downtime."],
+							"recommendations": ["Use App Service deployment slots to fall back on last-known good menu.",
+								"Run VSTS conditional rollback."
+							]
+						}
+					]
+				},
+				{
+					"question": "Operations",
+					"choices": [{
+							"choice": "Have you implemented alerting and monitoring?",
+							"risks": ["Inability to detect failures in an application and alert an operator to fix them."],
+							"recommendations": ["Review monitoring and diagnostics guidance.",
+								"Review monitoring Azure applications and resources guidance."
+							]
+						},
+						{
+							"choice": "Are remote API/SQL call statistics available to the app team?",
+							"risks": ["Inability to have an instantaneous view into the health of an application and reveal issues in the services."],
+							"recommendations": ["Employ usage analysis with Application Insights."]
+						},
+						{
+							"choice": "Do you track retries for transient errors?",
+							"risks": ["Possibility of an issue or failure remaining hidden by an application's retry logic."],
+							"recommendations": ["Review retry service-specific guidance."]
+						},
+						{
+							"choice": "Have you assigned operators for system alerts?",
+							"risks": ["Possibility of unidentified issues becoming critical."],
+							"recommendations": ["Use action groups to ensure people receive alerts."]
+						},
+						{
+							"choice": "Are multiple people trained for monitoring?",
+							"risks": ["Possibility of a single person being unavailable, resulting in a single point of failure."],
+							"recommendations": ["Train multiple people on Azure Monitor.",
+								"Send alerts and notifications to multiple recipients."
+							]
+						},
+						{
+							"choice": "Are your Azure subscription/service limits documented and known within the team?",
+							"risks": ["Possibility of poor customer experience when hit with subscription limits."],
+							"recommendations": ["Review Azure subscription limits."]
+						},
+						{
+							"choice": "Are VM sizes appropriate for your workload?",
+							"risks": ["Possibility of application experiencing capacity issues when VMs approach their limit."],
+							"recommendations": ["Use VSTS load testing for regular stress testing to identify and fix capacity hotspots."]
+						},
+						{
+							"choice": "Is the DB/SQL tier right for your workload?",
+							"risks": ["Possibility of data use getting throttled."],
+							"recommendations": ["Review SQL Database choices and performance guidance.",
+								"Use Azure Managed Database Services for built-in automatic tuning."
+							]
+						},
+						{
+							"choice": "Is the process to contact Azure support understood by your team?",
+							"risks": ["Possibility of prolonged downtime as support process is navigated for the first time."],
+							"recommendations": ["Understand Azure support plans.",
+								"Refer to Azure support FAQs.",
+								"Familiarize your team with Azure support."
+							]
+						}
+					]
+				},
+				{
+					"question": "Telemetry",
+					"choices": [{
+							"choice": "Do you collect all telemetric information?",
+							"risks": ["Possibility of not having sufficient information for issues while they are actively serving users."],
+							"recommendations": ["Use Azure Application Insights to log and monitor application events and exceptions."]
+						},
+						{
+							"choice": "Have you used the async pattern for logging?",
+							"risks": ["Possibility of logging operations blocking application code."],
+							"recommendations": ["Use the asynchronous programming with async and await pattern."]
+						},
+						{
+							"choice": "Do you have correlated log information across tiers?",
+							"risks": ["Inability of tracking user requests across multiple tiers/Azure services."],
+							"recommendations": ["Use Service Map and Application Map for logs across multiple components."]
+						}
+					]
+				}
+			]
+		},
+		{
+			"pillar": "DevOps",
+			"questions": [{
+					"question": "Culture",
+					"choices": [{
+							"choice": "Do all stakeholders have a single view of goals and timelines?",
+							"risks": ["Possibility of conflict over resources, purposes, goals, and priorities."],
+							"recommendations": ["Adopt VSTS Agile as a single source of truth for all stakeholders to avoid mismatched expectations and to give an accurate picture of the current status."]
+						},
+						{
+							"choice": "Have you automated build, test, and deployment?",
+							"risks": ["Inability to know what each team member is doing and should be doing in the future."],
+							"recommendations": ["Utilize VSTS continuous testing.",
+								"Use VSTS Test Case Management for documenting and fixing bugs after test execution.",
+								"Practice VSTS Unit, Integration, and UAT testing for code coverage."
+							]
+						},
+						{
+							"choice": "Have you implemented continuous improvement?",
+							"risks": ["Inability to quickly identify issues, escalate, fix, and confirm resolution."],
+							"recommendations": ["Use VSTS dashboards and VSTS Power BI integration for data-driven reporting and improvement."]
+						},
+						{
+							"choice": "Do you have documented operations?",
+							"risks": ["Inability to understand design, architecture, tools, processes, and code."],
+							"recommendations": ["Track ideas to implementation using VSTS work-item tracking.",
+								"Implement DevOps using VSTS."
+							]
+						},
+						{
+							"choice": "How do you share knowledge within the team?",
+							"risks": ["Inability to keep knowledge organized and quickly discoverable."],
+							"recommendations": ["Use VSTS Wiki to distribute information, share knowledge, and collaborate."]
+						}
+					]
+				},
+				{
+					"question": "Development",
+					"choices": [{
+							"choice": "Do you have a production-like environment for dev/test?",
+							"risks": ["Inability to test and diagnose problems."],
+							"recommendations": ["Use VSTS load testing with cloud scale and mimic real- life, peak-usage scenario."]
+						},
+						{
+							"choice": "Do you have existing scripts for deployment?",
+							"risks": ["Possibility of needing manual tasks or detailed technical knowledge of application."],
+							"recommendations": ["Employ Azure Resource Manager and VSTS to implement infrastructure-as- code model."]
+						},
+						{
+							"choice": "Are you using application instrumentation for insight?",
+							"risks": ["Inability to understand application health, performance, or errors."],
+							"recommendations": ["Use Azure Monitor, Azure Advisor, Azure Service Health, Activity Log, Azure Application Insights, Log Analytics, ExpressRoute monitor, Service Map, availability tests, and general monitoring Azure applications and resources."]
+						},
+						{
+							"choice": "Are you tracking technical debt?",
+							"risks": ["Possibility of shortcuts and non-optimal code with respect to the release schedule."],
+							"recommendations": ["Track technical debt using SonarQube with Visual Studio Team Services (VSTS)."]
+						},
+						{
+							"choice": "How do you push updates to production?",
+							"risks": ["Inability to reduce cycle time for production release."],
+							"recommendations": ["Use feature toggles and canary releases.",
+								"Utilize App Service deployment slots to safely deploy applications."
+							]
+						}
+					]
+				},
+				{
+					"question": "Testing",
+					"choices": [{
+							"choice": "Have you automated testing?",
+							"risks": ["Possibility of tedious and error-prone manual testing."],
+							"recommendations": ["Review development and test guidance.",
+								"Use VSTS continuous testing.",
+								"Use VSTS Test Case Management for documenting and fixing bugs after test execution.",
+								"Practice VSTS Unit, Integration, and UAT testing for code coverage."
+							]
+						},
+						{
+							"choice": "How do you test in production?",
+							"risks": ["Inability to determine if code is working as expected."],
+							"recommendations": ["Use App Service deployment slots for testing in production."]
+						},
+						{
+							"choice": "How do you manage performance, load, and stress testing?",
+							"risks": ["Inability to detect serious performance issues."],
+							"recommendations": ["Practice VSTS load testing with cloud scale."]
+						},
+						{
+							"choice": "How do you manage capacity testing?",
+							"risks": ["Inability to determine resource limitations."],
+							"recommendations": ["Use VSTS load testing for regular stress testing to identify and fix resource limitations."]
+						},
+						{
+							"choice": "Are you doing penetration testing?",
+							"risks": ["Inability to determine possible vulnerabilities and attacks."],
+							"recommendations": ["Request a penetration test for your application."]
+						},
+						{
+							"choice": "Do you have BCP (Business Continuity Process)/DR (Disaster Recovery) drills?",
+							"risks": ["Inability to determine business continuity."],
+							"recommendations": ["Review guidance on disaster recovery for Azure applications.",
+								"Use Azure Site Recovery drills."
+							]
+						}
+					]
+				},
+				{
+					"question": "Release",
+					"choices": [{
+							"choice": "Have you automated release and deployment?",
+							"risks": ["Inability to release consistent deployments quickly and reliably."],
+							"recommendations": ["Use VSTS Release Management for continuous delivery of software at a faster pace and with lower risk."]
+						},
+						{
+							"choice": "Do you use continuous integration (CI)?",
+							"risks": ["Inability to let developers work on a single codebase and find bugs early."],
+							"recommendations": ["Employ VSTS continuous integration to build, test, and deploy applications quickly."]
+						},
+						{
+							"choice": "Do you use continuous delivery (CD)?",
+							"risks": ["Inability to deliver tested production code in a very short time."],
+							"recommendations": ["Use VSTS continuous delivery to deploy tested code automatically."]
+						},
+						{
+							"choice": "Do you document/log changes in deployment?",
+							"risks": ["Possibility of confusion and versioning conflict."],
+							"recommendations": ["Use VSTS extensions to create documentation from source code.",
+								"Utilize VSTS history and auditing for a consolidated view of changes to code and infrastructure."
+							]
+						},
+						{
+							"choice": "How do you prevent infrastructure changes after deployment?",
+							"risks": ["Inability to determine ad- hoc changes and their impact."],
+							"recommendations": ["Use VSTS access management to grant or restrict access to resources and features you want to control.",
+								"Use Azure Automation Change Tracking."
+							]
+						}
+					]
+				},
+				{
+					"question": "Monitoring",
+					"choices": [{
+							"choice": "How do you monitor the health of your application/services?",
+							"risks": ["Inability to determine application health and status."],
+							"recommendations": ["Use Azure Monitor, Azure Advisor, Azure Service Health, Activity Log, Azure Application Insights, Log Analytics, ExpressRoute monitor, Service Map, availability tests, and general monitoring Azure applications and resources."]
+						},
+						{
+							"choice": "How do you correlate logs?",
+							"risks": ["Inability to have a cohesive view of issues.",
+								"Inability to have an up-to- date picture of system health."
+							],
+							"recommendations": ["Use Azure Log Analytics for viewing data for a particular application.",
+								"Utilize Service Map and Application Map for logs across multiple components."
+							]
+						},
+						{
+							"choice": "Are there automated alerts and notifications?",
+							"risks": ["Inability to detect patterns or conditions that indicate potential or current issues and send alerts to address them."],
+							"recommendations": ["Create, view, and manage alerts using Azure Monitor.",
+								"Use Log Analytics Alerts based on conditions in Log Analytics data."
+							]
+						},
+						{
+							"choice": "How do you monitor assets and resources for expiration?",
+							"risks": ["Inability to determine services or features that depend on the expiration of resources."],
+							"recommendations": ["Use Azure VM expire and certificate monitoring."]
+						}
+					]
+				},
+				{
+					"question": "Management",
+					"choices": [{
+							"choice": "Are there manual activities to automate?",
+							"risks": ["Possibility of error-prone manual handling of repetitive operations."],
+							"recommendations": ["Use Azure Automation for complete control during deployment, operations, and decommissioning of workloads and resources."]
+						},
+						{
+							"choice": "Do you have existing scripts for deployment?",
+							"risks": ["Inability to minimize the amount of manual configuration needed to provision resources."],
+							"recommendations": ["Utilize Azure Resource Manager templates and scripts for automated resource provisioning."]
+						},
+						{
+							"choice": "Are you planning to use containers?",
+							"risks": ["Inability to create self- contained packages, including all dependencies and files needed to run the application, which simplifies the deployment."],
+							"recommendations": ["Use VSTS hosted CI/CD for containers to create and deploy containers."]
+						},
+						{
+							"choice": "Do you have an operations manual?",
+							"risks": ["Inability to refer to any documented operations scenarios and mitigation plans during a failure or other disruption in service."],
+							"recommendations": ["Use Azure Operations Management Suite (OMS) for process automation."]
+						},
+						{
+							"choice": "Do you have on-call procedures documented?",
+							"risks": ["Inability to refer to on-call duties, schedules, and procedures."],
+							"recommendations": ["Employ third-party extensions such as Remedy OnDemand to notify on-call responders for critical VSTS work items."]
+						},
+						{
+							"choice": "Do you have escalation procedures documented?",
+							"risks": ["Inability to deal with outages, including identifying support contacts and escalation paths."],
+							"recommendations": ["Practice agile planning and portfolio management with VSTS for a full view of the work escalation and decomposition of tasks."]
+						},
+						{
+							"choice": "How do you implement configuration management?",
+							"risks": ["Inability to plan, create, and record configuration changes and make them visible to operations."],
+							"recommendations": ["Employ VSTS configuration management for visibility to dev and operations teams.",
+								"Use PowerShell DSC for configuration management."
+							]
+						},
+						{
+							"choice": "Do you have an Azure support plan?",
+							"risks": ["Inability to understand details of the plan, how the support process works, getting service limits changed, and opening support tickets."],
+							"recommendations": ["Understand Azure support plans.",
+								"Refer to Azure Support FAQs."
+							]
+						},
+						{
+							"choice": "Have you implemented RBAC?",
+							"risks": ["Inability to manage access to resources and enforce security principles."],
+							"recommendations": ["Use role-based access control (RBAC) to grant access based on Azure Active Directory identities and groups."]
+						},
+						{
+							"choice": "Do you use a bug-tracking system?",
+							"risks": ["Possibility of missed items, duplicate work, or introduction of additional problems."],
+							"recommendations": ["Utilize VSTS bug tracking tool for establishing links between code and bugs.",
+								"Use Bugzilla integration with VSTS."
+							]
+						},
+						{
+							"choice": "Do you audit and track changes in code and infrastructure?",
+							"risks": ["Inability to track and audit changes (code, infrastructure, configuration, documentation, and scripts)."],
+							"recommendations": ["Employ VSTS history and auditing for a consolidated view of changes to code and infrastructure."]
+						}
+					]
+				}
+			]
+		},
+		{
+			"pillar": "Security",
+			"questions": [{
+					"question": "Network boundary security",
+					"choices": [{
+							"choice": "How do you implement DDoS protection?",
+							"risks": ["Potential of smaller-scale attack that doesn't trip the platform-level protection."],
+							"recommendations": ["Use Azure DDoS Protection to prevent volumetric attacks, protocol attacks, and resource (application)-layer attacks."]
+						},
+						{
+							"choice": "How do you configure public IPs for which traffic is passed in, and how and where it's translated?",
+							"risks": ["Inability to provision VMs with private IP addresses for protection."],
+							"recommendations": ["Use Azure Firewall for built-in high availability and unrestricted cloud scalability.",
+								"Utilize Azure IP address to determine which traffic is passed in, and how and where it's translated on to the virtual network."
+							]
+						},
+						{
+							"choice": "How do you isolate network traffic?",
+							"risks": ["Inability to ensure VMs and communication between them remains private within a network boundary."],
+							"recommendations": ["Use Azure Virtual Network to allow VMs to securely communicate with each other, the Internet, and on- premises networks."]
+						},
+						{
+							"choice": "How do you configure traffic flow between multiple application tiers?",
+							"risks": ["Inability to define different access policies based on the workload types, and to control traffic flows between them."],
+							"recommendations": ["Employ Azure Virtual Network Subnet to designate separate address spaces for different elements or “tiers” within the workload, define different access policies, and control traffic flows between the tiers."]
+						},
+						{
+							"choice": "How do you route network traffic through security appliances for security boundary policy enforcement, auditing, and inspection?",
+							"risks": ["Inability to define communication paths between different tiers within a network boundary."],
+							"recommendations": ["Use Azure Virtual Network User Defined Routes (UDR) to control next hop for traffic between Azure, on-premises, and Internet resources through virtual appliance, virtual network gateway, virtual network, or Internet."]
+						},
+						{
+							"choice": "Do you use firewalls, load balancers, and intrusion detection systems (IDS)/intrusion prevention systems (IPS)?",
+							"risks": ["Possibility of not being able to select comprehensive solutions for secure network boundaries."],
+							"recommendations": ["Use Network Appliances from Azure Marketplace to deploy a variety of preconfigured network virtual appliances.",
+								"Utilize Application Gateway WAF to detect and protect against common web attacks."
+							]
+						}
+					]
+				},
+				{
+					"question": "Network security",
+					"choices": [{
+							"choice": "How do you segment the larger address space into subnets?",
+							"risks": ["Inability to allow or deny inbound network traffic to, or outbound network traffic from, within larger network space."],
+							"recommendations": ["Use network security groups (NSGs) to allow or deny traffic to and from single IP address, to and from multiple IP addresses, or even to and from entire subnets."]
+						},
+						{
+							"choice": "How do you control routing behavior between VM connectivity?",
+							"risks": ["Inability to customize the routing configuration."],
+							"recommendations": ["Employ Azure Virtual Network User Defined Routes (UDR) to customize the routing configuration for deployments."]
+						},
+						{
+							"choice": "How do you implement forced tunneling?",
+							"risks": ["Potential of outbound connections from any VM increasing attack surface area leveraged by attackers."],
+							"recommendations": ["Utilize forced tunneling to ensure that connections to the Internet go through corporate network security devices."]
+						},
+						{
+							"choice": "How do you implement enhanced levels of security (firewall, IPS/IDS, antivirus, vulnerability management, botnet protection) on top of network-level controls?",
+							"risks": ["Inability to enable security for other OSI model layers other than network and transport layer."],
+							"recommendations": ["Use Azure Marketplace to provision devices for higher levels of network security than with network-level access controls."]
+						},
+						{
+							"choice": "How do you establish cross- premises connectivity?",
+							"risks": ["Potential of access to company’s information assets on-premises."],
+							"recommendations": ["Use Azure site-to-site VPN or ExpressRoute to set up cross- premises connectivity to on- premises networks."]
+						},
+						{
+							"choice": "How do you implement global load balancing?",
+							"risks": ["Inability to make services available even when datacenters might become unavailable."],
+							"recommendations": ["Utilize Azure Traffic Manager to load balance connections to services based on the location of the user and/or other criteria."]
+						},
+						{
+							"choice": "How do you disable RDP/SSH access to virtual machines?",
+							"risks": ["Potential for attackers to use brute force techniques to gain access and launch other attacks."],
+							"recommendations": ["Disable RDP/SSH access to Azure Virtual Machines and use VPN/ExpressRoute to access these virtual machines for remote management."]
+						},
+						{
+							"choice": "How do you prevent, detect, and respond to threats?",
+							"risks": ["Inability to have a single pane of visibility to prevent, detect, and respond to threats."],
+							"recommendations": ["Employ Azure Security Center for increased visibility into, and control over, the security of Azure resources, integrated security monitoring, and policy management across Azure subscriptions."]
+						},
+						{
+							"choice": "How do you monitor and diagnose conditions of the network?",
+							"risks": ["Inability to understand, diagnose, and gain insights to the network in Azure."],
+							"recommendations": ["Use Network Watcher to understand, diagnose, and gain insights to the network in Azure."]
+						},
+						{
+							"choice": "How do you gain access to real- time performance information at the packet level?",
+							"risks": ["Inability to investigate an issue in detail for better diagnoses."],
+							"recommendations": ["Utilize packet capture to set alerts and gain access to real- time performance information at the packet level."]
+						},
+						{
+							"choice": "How do you gather data for compliance, auditing, and monitoring the network security profile?",
+							"risks": ["Inability to build a deeper understanding of the network traffic pattern."],
+							"recommendations": ["Use network security group flow logs to gather data for compliance, auditing, and monitoring of your network security profile."]
+						},
+						{
+							"choice": "How do you diagnose VPN connectivity issues?",
+							"risks": ["Inability to identify the issue and use the detailed logs for further investigation."],
+							"recommendations": ["Use Network Watcher troubleshooter to diagnose most common VPN gateway and connections issues."]
+						}
+					]
+				},
+				{
+					"question": "Database security",
+					"choices": [{
+							"choice": "How do you restrict database access? Do you use a firewall?",
+							"risks": ["Inability to grant access to databases based on the originating IP address of each request."],
+							"recommendations": ["Use firewall rules to restrict database access.",
+								"Utilize Virtual Network service endpoints to secure databases to only your virtual networks."
+							]
+						},
+						{
+							"choice": "How do you enable database authentication?",
+							"risks": ["Inability to prove a user’s identity."],
+							"recommendations": ["Use database authentication.",
+								"Employ Azure Managed Database Services for built-in security, automatic monitoring, threat detection, automatic tuning, and turnkey global distribution."
+							]
+						},
+						{
+							"choice": "Do you use encryption for data protection?",
+							"risks": ["Potential threat of malicious activity."],
+							"recommendations": ["Protect data using encryption.",
+								"Use Storage Encryption, Disk Encryption, and SQL Encryption to encrypt data in Azure."
+							]
+						},
+						{
+							"choice": "How do you protect data in transit?",
+							"risks": ["Susceptibility for man-in- the-middle attacks, eavesdropping, and session hijacking."],
+							"recommendations": ["Use Azure site-to-site VPN or ExpressRoute or application- level SSL/TLS for protection."]
+						},
+						{
+							"choice": "How do you perform database auditing?",
+							"risks": ["Inability to maintain regulatory compliance, understand database activity, and gain insight into discrepancies and anomalies."],
+							"recommendations": ["Enable database auditing.",
+								"Use Azure Managed Database Services for built-in security, automatic monitoring, threat detection, automatic tuning, and turnkey global distribution."
+							]
+						},
+						{
+							"choice": "How do you monitor database threat detection?",
+							"risks": ["Inability to identify suspicious database activities, potential vulnerabilities, and SQL injection attacks, as well as anomalous database access patterns."],
+							"recommendations": ["Enable database threat detection."]
+						}
+					]
+				},
+				{
+					"question": "Data storage security",
+					"choices": [{
+							"choice": "Do you use Azure Multi-Factor Authentication (MFA) for verifying a user’s identity?",
+							"risks": ["Risk of credential theft attack, which may lead to data compromise."],
+							"recommendations": ["Use Azure AD MFA to secure data and application access without added hassles for customers.",
+								"Enforce MFA."
+							]
+						},
+						{
+							"choice": "Do you use RBAC to assign permissions to users, groups, and applications at a certain scope?",
+							"risks": ["Risk of giving more privileges than necessary to users, leading to data compromise by having some users having access to data that they shouldn’t have in the first place."],
+							"recommendations": ["Use role-based access control (RBAC)."]
+						},
+						{
+							"choice": "Do you encrypt Windows and Linux virtual machine (VM) disks?",
+							"risks": ["Risk of data integrity issues, such as malicious or rogue users stealing data and compromised accounts gaining unauthorized access to data."],
+							"recommendations": ["Use Azure Disk Encryption to protect and safeguard data to meet organizational security and compliance commitments.",
+								"Encrypt Azure Virtual Machines."
+							]
+						},
+						{
+							"choice": "How do you implement key management for data protection?",
+							"risks": ["Risk of attackers gaining access to the secret keys to decrypt the data and potentially have access to confidential information."],
+							"recommendations": ["Use Azure Key Vault to safeguard cryptographic keys and other secrets used by cloud apps and services.",
+								"Use Hardware Security Modules."
+							]
+						},
+						{
+							"choice": "How do you secure workstations for endpoint protection?",
+							"risks": ["Risk of attacker compromising workstation and leveraging a user’s credentials to gain access to organizational data."],
+							"recommendations": ["Use Azure Information Protection to secure email, documents, and sensitive data shared outside the company.",
+								"Manage with Secure Workstations."
+							]
+						},
+						{
+							"choice": "How do you enforce file-level data encryption?",
+							"risks": ["Risk of data leakage and lack of business insights monitor for abuse and prevent malicious access to files."],
+							"recommendations": ["Use Azure Managed Disks for persistent and secure disk storage for Azure virtual machines.",
+								"Enforce file-level data encryption."
+							]
+						}
+					]
+				},
+				{
+					"question": "Identity management and access control security",
+					"choices": [{
+							"choice": "Do you use a centralized identity management system?",
+							"risks": ["Risk of increased administrative overhead in managing accounts, increasing the likelihood of mistakes and security breaches."],
+							"recommendations": ["Centralize identity management."]
+						},
+						{
+							"choice": "How have you enabled Single Sign-On (SSO)?",
+							"risks": ["Exposure to scenarios where users have multiple passwords, increasing the likelihood of users reusing passwords or using weak passwords."],
+							"recommendations": ["Enable Single Sign-On (SSO)."]
+						},
+						{
+							"choice": "Do you use self-service password reset and password management?",
+							"risks": ["Susceptibility to a higher call volume to the service desk due to password issues."],
+							"recommendations": ["Deploy password management."]
+						},
+						{
+							"choice": "Do you enforce multi-factor authentication (MFA) for users?",
+							"risks": ["Risk of not complying with industry standards, such as PCI DSS version 3.2 and credential theft type of attack, such as Pass-the- Hash (PtH)."],
+							"recommendations": ["Enforce MFA for users."]
+						},
+						{
+							"choice": "Have you implemented role- based access control (RBAC)?",
+							"risks": ["Risk of giving more privileges than necessary to users, leading to data compromise by having some users having access to data that they shouldn’t have in the first place."],
+							"recommendations": ["Use RBAC."]
+						},
+						{
+							"choice": "How do you control how resources are created? Do you use governance?",
+							"risks": ["Susceptibility to users that may abuse the service by creating more resources than they need."],
+							"recommendations": ["Control resource creation using Resource Manager."]
+						},
+						{
+							"choice": "How do you enforce identity control to access software-as-a- service (SaaS) apps? How do you guide developers on securely integrating apps with the identity management system?",
+							"risks": ["Risk of a credential-theft type of attack, such as weak authentication and session management described in Open Web Application Security Project (OWASP) Top 10."],
+							"recommendations": ["Guide developers to leverage identity capabilities for SaaS apps."]
+						},
+						{
+							"choice": "How do you actively monitor for suspicious activities?",
+							"risks": ["Risk of compromised user credentials and suspicious activities occurring using these credentials."],
+							"recommendations": ["Actively monitor for suspicious activities."]
+						},
+						{
+							"choice": "How do you manage, monitor, and control access of admin account holders?",
+							"risks": ["Risk of compromised admin accounts negating the value of all the other measures taken to ensure the confidentiality and integrity of data."],
+							"recommendations": ["Limit and constrain administrative access."]
+						}
+					]
+				},
+				{
+					"question": "Operational security",
+					"choices": [{
+							"choice": "How do you harden systems?",
+							"risks": ["Exposure of service endpoints that are not required for installed applications."],
+							"recommendations": ["Use Security Compliance Manager to import the current configuration by using either group policies based on Active Directory or configuration of a “golden master” reference machine by using the LocalGPO tool. You can then import the local group policy into Security Compliance Manager."]
+						},
+						{
+							"choice": "How do you manage antimalware?",
+							"risks": ["Risk of malware infecting machines."],
+							"recommendations": ["Install and manage antimalware."]
+						},
+						{
+							"choice": "How do you deploy and test a backup solution?",
+							"risks": ["Exposure to data loss. • Use Azure Backup to address backup requirements."]
+						},
+						{
+							"choice": "How do you actively monitor all resources?",
+							"risks": ["Inability to visualize, query, route, archive, and take action on the metrics and logs coming from resources."],
+							"recommendations": ["Utilize Azure Monitor to get the granular, up-to-date monitoring data all in one place.",
+								"Use monitoring services."
+							]
+						},
+						{
+							"choice": "How do you manage and protect your infrastructure?",
+							"risks": ["Exposure to gathering data from multiple security and management systems."],
+							"recommendations": ["Utilize Azure Monitor to get the granular, up-to-date monitoring data all in one place.",
+								"Review monitor, manage, and protect cloud infrastructure guidance."
+							]
+						},
+						{
+							"choice": "How do you collect and process data about resources (security event log, Windows firewall log, antimalware assessment)?",
+							"risks": ["Inability to prevent, detect, and respond to threats."],
+							"recommendations": ["Use Operations Management Suite (OMS) Security and Audit Solution to collect and processes data about resources."]
+						},
+						{
+							"choice": "How do you trace requests, analyze usage trends, and diagnose issues?",
+							"risks": ["Inability to trace requests, analyze usage trends, and diagnose issues with your storage account."],
+							"recommendations": ["Use Azure Security Center for security management and advanced threat protection across hybrid cloud workloads.",
+								"Review trace requests, analyze usage trends, and diagnose issues guidance."
+							]
+						},
+						{
+							"choice": "Have you defined security policies according to your company’s security needs, and tailored it to the type of applications or sensitivity of the data?",
+							"risks": ["Inability to correlate information from multiple sources to identify threats."],
+							"recommendations": ["Use Azure Security Center for security management and advanced threat protection across hybrid cloud workloads.",
+								"Review Prevent, detect, and respond to threats guidance."
+							]
+						},
+						{
+							"choice": "How do you implement secure deployment using proven DevOps tools?",
+							"risks": ["Potential of unproductive and inefficient enterprises and teams."],
+							"recommendations": ["Use Secure DevOps Kit for Azure to build and deploy applications on Azure with security integrated at every step."]
+						}
+					]
+				}
+			]
+		},
+		{
+			"pillar": "Management",
+			"questions": [{
+					"question": "Monitoring",
+					"choices": [{
+							"choice": "Do you get proactively notified of critical conditions and take corrective action?",
+							"risks": ["Risk of critical conditions going unnoticed."],
+							"recommendations": ["Use Azure alerts to get proactive notifications.",
+								"Employ action groups to notify recipients to respond to alerts."
+							]
+						},
+						{
+							"choice": "How do you combine different kinds of data into a single pane?",
+							"risks": ["Inability to combine metrics, activity, usage, and logs for unified monitoring."],
+							"recommendations": ["Use Azure dashboards to combine data into a single pane and share it with multiple stakeholders."]
+						},
+						{
+							"choice": "How do you do additional visualizations and make them available to others within and outside of your organization?",
+							"risks": ["Inability to look at monitoring from multiple perspectives and dissecting logs."],
+							"recommendations": ["Export Log Analytics data to Power BI to create additional visualizations."]
+						},
+						{
+							"choice": "How do you monitor the collection of metrics, activity logs, and diagnostic logs?",
+							"risks": ["Inability to track when new resources are created/modified, or to monitor performance statistics with trending and detailed analysis."],
+							"recommendations": ["Use Azure Monitor for collection of metrics, activity logs, and diagnostic logs."]
+						},
+						{
+							"choice": "How do you monitor resource configuration and usage telemetry? Do you generate best-practice recommendations from usage?",
+							"risks": ["Inability to improve performance, security, and availability."],
+							"recommendations": ["Utilize Azure Advisor for monitoring resource configuration and usage telemetry, and to get personalized recommendations based on best practices."]
+						},
+						{
+							"choice": "How do you identify issues with underlying services that affect your application?",
+							"risks": ["Inability to proactively take steps to know about application unavailability and notify application users about it."],
+							"recommendations": ["Use Azure Service Health to identify issues with services affecting application and plan for scheduled maintenance."]
+						},
+						{
+							"choice": "How do you monitor configuration changes, service health incidents, and other similar events?",
+							"risks": ["Risk of configuration changes and health incidents going unnoticed."],
+							"recommendations": ["Utilize Activity Log for detecting configuration changes, health incidents, better utilization, and autoscale operations."]
+						},
+						{
+							"choice": "How do you monitor availability, performance, and usage of applications?",
+							"risks": ["Inability to achieve deep insights, quickly identify and diagnose errors, and make informed choices on application maintenance and improvements."],
+							"recommendations": ["Use Azure Application Insights to monitor availability, performance, and usage of application."]
+						},
+						{
+							"choice": "Do you analyze logs using query language?",
+							"risks": ["Inability to form a complete picture of the operating environment."],
+							"recommendations": ["Use Log Analytics to collect data from a variety of resources into a single repository and analyze it using a powerful query language."]
+						},
+						{
+							"choice": "How do you monitor third-party services (containers, SQL)?",
+							"risks": ["Inability to monitor third- party services and their impact on application unavailability."],
+							"recommendations": ["Employ Management solutions for monitoring third-party solutions, such as Container Monitoring and Azure SQL Analytics."]
+						},
+						{
+							"choice": "How do you monitor and diagnose different network scenarios?",
+							"risks": ["Inability to detect reachability, latency, and network topology changes between the VM and the endpoint."],
+							"recommendations": ["Use Network Watcher for scenario-based monitoring."]
+						},
+						{
+							"choice": "How do you monitor security, performance, and operations-related insights based on DNS servers?",
+							"risks": ["Inability to detect clients that try to resolve malicious domain names, stale resource records, request load on DNS servers, and dynamic DNS registration failures."],
+							"recommendations": ["Utilize DNS Analytics for gathering security, performance and operations-related insights of DNS servers."]
+						},
+						{
+							"choice": "How do you test the reachability of applications and detect performance bottlenecks across on- premises, carrier networks, and cloud/private datacenters?",
+							"risks": ["Inability to correlate application delivery with network performance, detect precise location of degradation along the path between the user and the application, and test application reachability from multiple user locations across the globe."],
+							"recommendations": ["Employ Service Endpoint Monitoring for testing reachability of applications and detect performance bottlenecks across on- premises, carrier networks and cloud/private data centers."]
+						},
+						{
+							"choice": "Do you gather insight by analyzing virtual machines with their different processes and dependencies on other computers and external processes?",
+							"risks": ["Inability to visualize interconnected systems delivering critical services mapping servers, processes, and ports."],
+							"recommendations": ["Use Service Map to gain insight by analyzing virtual machines with their different processes and dependencies on other computers and external processes."]
+						},
+						{
+							"choice": "How do you monitor connectivity across public clouds, datacenters, and on-premises environments?",
+							"risks": ["Inability to detect traffic blackholing, routing errors, and issues that conventional network monitoring methods can’t detect."],
+							"recommendations": ["Adopt Network Performance Monitor (NPM) for monitoring across public clouds, datacenters, and on- premises."]
+						},
+						{
+							"choice": "How do you monitor ExpressRoute circuits?",
+							"risks": ["Inability to detect loss and latency across various VNets, monitor all paths (including redundant paths), troubleshoot transient and point - in -time network issues, determine a specific cause degrading performance, track throughput per virtual network, and see ExpressRoute system state from a previous point in time."],
+							"recommendations": ["Use ExpressRoute Monitor for monitoring connectivity and performance of ExpressRoute circuits."]
+						}
+					]
+				},
+				{
+					"question": "Configuration",
+					"choices": [{
+							"choice": "How do you automate frequent, time-consuming, and error-prone management tasks?",
+							"risks": ["Inability to reduce errors, boost efficiency, and lower operational costs."],
+							"recommendations": ["Use automation runbooks with hybrid runbook worker to unify management by orchestrating across on- premises environments.",
+								"Use webhooks to provide a way to fulfill requests and ensure continuous delivery and operations by triggering automation from ITSM, DevOps, and monitoring systems."
+							]
+						},
+						{
+							"choice": "How do you monitor and automatically update machine configuration?",
+							"risks": ["Inability to automatically receive configurations, conform to the desired state, and report back on compliance."],
+							"recommendations": ["Use Azure Automation State Configuration to provide configuration management required for enterprise environments."]
+						},
+						{
+							"choice": "How do you schedule deployments to orchestrate the installation of updates within a defined maintenance window? How do you get visibility into update compliance?",
+							"risks": ["Inability to quickly assess the status of available updates on all agent computers and manage the process of installing required updates for servers."],
+							"recommendations": ["Employ Update Management to manage VM updates in Azure, on- premises, or in other cloud providers."]
+						},
+						{
+							"choice": "How do you monitor resource configuration and usage telemetry? Do you generate best-practice recommendations from usage?",
+							"risks": ["Inability to get personalized recommendations to help manage the Azure environment."],
+							"recommendations": ["Use Azure Advisor to follow best practices to optimize Azure deployments and analyze your resource configuration and usage telemetry."]
+						},
+						{
+							"choice": "How do you identify opportunities to reduce overall cost?",
+							"risks": ["Inability to identifying idle and underutilized resources."],
+							"recommendations": ["Adopt Advisor cost recommendations to optimize and reduce overall Azure spend."]
+						},
+						{
+							"choice": "How do you generate recommendations with proposed actions inline?",
+							"risks": ["Inability to improve speed and responsiveness of applications."],
+							"recommendations": ["Review Advisor performance recommendations and Advisor high-availability recommendations for proposed actions inline."]
+						},
+						{
+							"choice": "How do you deploy, manage, and monitor a solution as a group rather than handling its components individually?",
+							"risks": ["Inability to apply common lifecycle to interdependent application parts that can be deployed or deleted in a single action."],
+							"recommendations": ["Use Azure Resource Manager to define the dependencies between resources so they're deployed in the correct order."]
+						},
+						{
+							"choice": "How do you repeatedly deploy solutions throughout the development lifecycle?",
+							"risks": ["Lack of confidence that resources are deployed in a consistent state."],
+							"recommendations": ["Utilize Azure Resource Manager deployment modes to provision all resources specified in the template."]
+						},
+						{
+							"choice": "Do you manage infrastructure through declarative templates rather than scripts?",
+							"risks": ["Inability to make deployments consistent and repeatable across environments."],
+							"recommendations": ["Use Azure Resource Manager templates to ensure that investments for one location are reusable in another."]
+						},
+						{
+							"choice": "How do you define dependencies between resources so they're deployed in the correct order?",
+							"risks": ["Inability to evaluate dependencies between resources and deploy them in their dependent order."],
+							"recommendations": ["Use Azure Resource Manager templates to define dependencies for resources that are deployed in the same template."]
+						},
+						{
+							"choice": "How do you apply access control to all services?",
+							"risks": ["Inability to provide fine- grained access management of resources."],
+							"recommendations": ["Use Azure Resource Manager RBAC to manage access to Azure resources, what users can do with those resources, and to what areas they have access."]
+						},
+						{
+							"choice": "How do you apply tags to resources to logically organize all the resources in your subscription?",
+							"risks": ["Inability to associate resources with the appropriate department, customer, and environment."],
+							"recommendations": ["Utilize resource tags to logically organize Azure resources by categories."]
+						},
+						{
+							"choice": "Do you clarify your organization's billing by viewing costs for a group of resources?",
+							"risks": ["Inability to organize resources for billing or management."],
+							"recommendations": ["Use resource tags for the purposes of chargebacks."]
+						},
+						{
+							"choice": "How do you implement recurring application actions?",
+							"risks": ["Inability to create, maintain, and invoke scheduled work for apps."],
+							"recommendations": ["Employ Azure Scheduler to declaratively describe actions to run in the cloud, on-premises, or with another provider."]
+						},
+						{
+							"choice": "How do manage daily pruning of logs, performing backups, and other maintenance tasks?",
+							"risks": ["Inability to set multiple one- time and recurring schedules."],
+							"recommendations": ["Adopt Azure Scheduler jobs for a wide variety of business scenarios."]
+						},
+						{
+							"choice": "Do you have browser-based command-line experience for management tasks?",
+							"risks": ["Inability to manage Azure resources without the overhead of installing, versioning, and maintaining a machine."],
+							"recommendations": ["Use Azure Cloud Shell for an interactive, browser- accessible shell for managing Azure resources."]
+						},
+						{
+							"choice": "How do you plan to switch between Bash and PowerShell?",
+							"risks": ["Inability to integrate with open-source tooling, such as Terraform, Ansible, and Chef InSpec."],
+							"recommendations": ["Use Azure Cloud Shell tools for deep integration with open-source tooling."]
+						},
+						{
+							"choice": "How do you securely authenticate for instant access to resources?",
+							"risks": ["Inability to provide secure and automatic authentication account access."],
+							"recommendations": ["Use Cloud Shell to secure automatic authentication for the Azure CLI 2.0 and Azure PowerShell."]
+						},
+						{
+							"choice": "How do you stay connected to your resources regardless of time or location?",
+							"risks": ["Inability to keep track of Azure resources when on the go."],
+							"recommendations": ["Download the Azure mobile app and stay connected to Azure resources—anytime, anywhere."]
+						}
+					]
+				},
+				{
+					"question": "Governance",
+					"choices": [{
+							"choice": "How do you monitor usage and spending?",
+							"risks": ["Inability to provide a view to people with different responsibilities (financial controller, executives, project owners) in your organization."],
+							"recommendations": ["Use Cost Management metrics with dashboards to view key cost metrics and business-trend highlights to help make important business decisions."]
+						},
+						{
+							"choice": "How do manage costs and improve efficiency?",
+							"risks": ["Risk of usage exceeding agreement thresholds, resulting in unexpected cost overages."],
+							"recommendations": ["Utilize Cost Management budgeting to set up budgets and budget-based alerts to improve cloud governance and accountability."]
+						},
+						{
+							"choice": "How do you build custom policies to enable security and management (restrict deployment choices for organization to specific datacenters or enable the creation of specific resource types only) at scale?",
+							"risks": ["Risk of resources not staying compliant with corporate standards and service-level agreements (SLAs)."],
+							"recommendations": ["Use Custom Azure Policy to enforce different rules and effects over resources to ensure that resources stay compliant with corporate standards and SLAs."]
+						},
+						{
+							"choice": "How do you apply policy over resources at scale (from a single subscription to a management group with control across your entire organization)?",
+							"risks": ["Inability to provide RBAC assignments over multiple subscriptions."],
+							"recommendations": ["Employ Azure Policy scoping to apply governance conditions to multiple subscriptions (management groups) all at once."]
+						},
+						{
+							"choice": "How do audit policy compliance against best practices?",
+							"risks": ["Risk of resources getting created in wrong location, enforcing common and consistent tag usage, or auditing existing resources for appropriate configurations and setting."],
+							"recommendations": ["Use Azure Policy compliance monitoring to understand the compliance state of environment."]
+						}
+					]
+				},
+				{
+					"question": "Protection",
+					"choices": [{
+							"choice": "Do you have pay-as-you-go backup service reducing unnecessary costs?",
+							"risks": ["Inability to pick and choose the data you want to protect."],
+							"recommendations": ["Use Azure Backup to pay only for the storage you consume."]
+						},
+						{
+							"choice": "How do you automatically detect virtual machines for backup?",
+							"risks": ["Inability to detect virtual machines to back up."],
+							"recommendations": ["Adopt Azure Backup VMWare integration to back up VMware server to Azure."]
+						},
+						{
+							"choice": "How do you access control backup operations so only authorized users can perform them?",
+							"risks": ["Inability to segregate duties within your team and grant only the amount of access users need to perform backups."],
+							"recommendations": ["Use RBAC to manage Azure Backup recovery points."]
+						},
+						{
+							"choice": "Do you get notifications if any suspicious activity in backup is detected?",
+							"risks": ["Risk of insecure backups and recovery if production and backup servers are compromised."],
+							"recommendations": ["Utilize Azure Backup security capabilities to prevent, alert, and recover suspicious activities."]
+						},
+						{
+							"choice": "How do you ensure applications are available during outages with automatic recovery?",
+							"risks": ["Inability to orchestrate replication, perform disaster recovery testing, and run failovers and failback."],
+							"recommendations": ["Use Azure Site Recovery to deploy application-aware replication to the cloud or to a secondary site."]
+						},
+						{
+							"choice": "Do you minimize recovery issues by sequencing the order of multi-tier applications running on multiple virtual machines?",
+							"risks": ["Possibility of manual backup and file recovery, which is cumbersome, error-prone, and not scalable."],
+							"recommendations": ["Employ Azure Site Recovery Replication of multi-tier web applications to prevent loss of productivity."]
+						},
+						{
+							"choice": "Do you ensure compliance by testing your disaster recovery plan without impacting production workloads or end users?",
+							"risks": ["Inability to test failover without impacting ongoing replication or production environment."],
+							"recommendations": ["Use Azure Site Recovery test failover to validate replication and disaster recovery strategy."]
+						},
+						{
+							"choice": "How do you reduce costs by conducting business during outages?",
+							"risks": ["Inability to automate tasks that require manual intervention and convert from multi-step recovery to a single-click recovery action."],
+							"recommendations": ["Use Azure Automation integration with Azure Site Recovery to make recovery consistently accurate, repeatable, and automated."]
+						},
+						{
+							"choice": "How do you minimize downtime (RPO, RTO) with dependable recovery (SLA)?",
+							"risks": ["Inability to define a systematic recovery process by creating small independent units that can fail over."],
+							"recommendations": ["Use Azure Site Recovery Plan to model an app around its dependencies and automate recovery tasks to reduce RTO."]
+						}
+					]
+				}
+			]
+		}
+	]
+}

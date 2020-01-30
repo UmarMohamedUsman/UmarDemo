@@ -1,0 +1,949 @@
+{
+    "id": "1",
+    "title": "Azure Architecture Review",
+    "category": [
+        {
+            "id": "management",
+            "name": "Management",
+            "questions": [
+                {
+                    "id": "junk",
+                    "title": "Junk",
+                    "explanation": "",
+                    "context": null,
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "junka",
+                            "title": "Junk",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                }
+            ]
+        },
+        {
+            "id": "resiliency",
+            "name": "Resiliency",
+            "questions": [
+                {
+                    "id": "failure_resistance",
+                    "title": "How have you ensured that your application is resilient to failures?",
+                    "explanation": "",
+                    "context": null,
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "failure_resistance_A",
+                            "title": "Performed a failure mode analysis of the application.",
+                            "answer_tooltip": "The goal of a failure mode analysis is to identify the types of failures that your application might experience, capture the potential effects, and identify recovery strategies.",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "failure_resistance_B",
+                            "title": "Deployed multiple instances of services.",
+                            "answer_tooltip": "If your application depends on a single instance of a service, it creates a single point of failure.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "failure_resistance_C",
+                            "title": "Use autoscaling to respond to increases in load.",
+                            "answer_tooltip": "If your application is not configured to scale out automatically as load increases, it's possible that your application's services will fail if they become saturated with user requests.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "failure_resistance_D",
+                            "title": "Use load balancing to distribute requests",
+                            "answer_tooltip": "Load balancing distributes your application's requests to healthy service instances by removing unhealthy instances from rotation",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "failure_resistance_E",
+                            "title": "Use Availability Sets for each application tier",
+                            "answer_tooltip": "An availability set helps keep your virtual machines available during downtime, such as during maintenance. Placing two or more similarly configured virtual machines in an availability set creates the redundancy needed to maintain availability of the applications or services that your virtual machine runs.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "failure_resistance_F",
+                            "title": "Replicate VMs using Azure Site Recovery",
+                            "answer_tooltip": "Azure Site Recovery orchestrates and manages disaster recovery for Azure VMs, and on-premises VMs and physical servers.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "failure_resistance_G",
+                            "title": "Deployed the application across multiple regions",
+                            "answer_tooltip": "If your application is deployed to a single region, in the rare event the entire region becomes unavailable, your application will also be unavailable. This may be unacceptable under the terms of your application's SLA. If so, consider deploying your application and its services across multiple regions. A multi-region deployment can use an active-active pattern (distributing requests across multiple active instances) or an active-passive pattern (keeping a \"warm\" instance in reserve, in case the primary instance fails)",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "failure_resistance_H",
+                            "title": "Configure and test health probes for your load balancers and traffic managers.",
+                            "answer_tooltip": "Ensure that your health logic checks the critical parts of the system and responds appropriately to health probes.",
+                            "priority": "medium"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "",
+                    "title": "Have you defined business metrics for your application?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "",
+                            "title": "Do you have clear SLA's internal and external",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "",
+                            "title": "Do you have a set of clear RTO metric",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "data_management",
+                    "title": "How are you managing your data?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "data_management_A",
+                            "title": "Understand the replication methods for your application's data sources",
+                            "answer_tooltip": "Your application data will be stored in different data sources and have different availability requirements.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "data_management_B",
+                            "title": "Ensure that no single user account has access to both production and backup data.",
+                            "answer_tooltip": "Your data backups are compromised if one single user account has permission to write to both production and backup sources. A malicious user could purposely delete all your data, while a regular user could accidentally delete it. Design your application to limit the permissions of each user account so that only the users that require write access have write access and it's only to either production or backup, but not both.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "data_management_C",
+                            "title": "Document your data source fail over and fail back process and test it.",
+                            "answer_tooltip": "In the case where your data source fails catastrophically, a human operator will have to follow a set of documented instructions to fail over to a new data source. If the documented steps have errors, an operator will not be able to successfully follow them and fail over the resource. Regularly test the instruction steps to verify that an operator following them is able to successfully fail over and fail back the data source.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "data_management_D",
+                            "title": "Validate your data backups.",
+                            "answer_tooltip": "Regularly verify that your backup data is what you expect by running a script to validate data integrity, schema, and queries. There's no point having a backup if it's not useful to restore your data sources. Log and report any inconsistencies so the backup service can be repaired.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "data_management_E",
+                            "title": "Consider geo-redundancy.",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        }
+                    ],
+                    "display_logic": []
+                }
+            ]
+        },
+        {
+            "id": "security",
+            "name": "Security",
+            "questions": [
+                {
+                    "id": "security_threats",
+                    "title": "How are you modeling threats that can impact this workload?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "security_threats_a",
+                            "title": "Considering the impact of adversaries.",
+                            "answer_tooltip": "Protecting identity, data, physical resources, and other assets is crucial.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_threats_b",
+                            "title": "Modelling internal and external threats",
+                            "answer_tooltip": "Attacker can gain access to the system and change the authentication data, read user profile data, and gain access to user database.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_threats_c",
+                            "title": "Performing penetration testing.",
+                            "answer_tooltip": "Pen testing provides a way determine if the system is resilient to security attacks. This also identifies the expose vulnerabilities and the extend of attack.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_threats_d",
+                            "title": "Performing vulnerability scanning.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_threats_e",
+                            "title": "Cataloged potential entry points for bad actors.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_threats_f",
+                            "title": "option_title",
+                            "answer_tooltip": "An attack surface is the total number of points or vectors through which an attacker can try to enter an environment or network. In terms of cybersecurity, this means how a bad actor could gain access to your network to either send, extract, or encrypt data through the holes they find in a network. Every network interaction point allows for a potential network attack surface. In other words, an attack on a surface occurs when bad actors can find holes in a network which then allows them to cause disruption. This disruption can come in the forms of data breaches, ransomware, and more.",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "security_authorization",
+                    "title": "How are you handling Authorization for your workload?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "security_authorization_a",
+                            "title": "Are you using common authorization patterns?",
+                            "answer_tooltip": "Authorization is a security mechanism used to determine user/client privileges or access levels related to system resources, including computer programs, files, services, data and application features. Authorization is normally preceded by authentication for user identity verification.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_authorization_b",
+                            "title": "Are you using role or resource based authorization?",
+                            "answer_tooltip": "Role-based: If you want to authorize based on users. A user can either be an administrator, creator, or reader. If you want to authorize an action based on a particular resource, consider resource based. For example, the app can check whether a user is the owner for of a resource.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_authorization_c",
+                            "title": "Are you auditing the authorizations that occur?",
+                            "answer_tooltip": "Conducting internal security audits help companies keep their compliance programs up to date and aimed in the right direction.  An effective security risk assessment can prevent breaches, reduce the impact of realized breaches, and keep your company's name from appearing in the spotlight for all the wrong reasons.",
+                            "priority": "medium"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "security_monitoring",
+                    "title": "How are you ensuring that monitoring is traceable?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "security_monitoring_a",
+                            "title": "You are able to understand who has access to what data.",
+                            "answer_tooltip": "Data security is essential for every business. Businesses rely on data storage and transactions to perform certain operations. Usage of data has increased business profitability and efficiency. At the same time, it also has potential security risks that could devastate a company.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_monitoring_b",
+                            "title": "You audit your access log.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_monitoring_c",
+                            "title": "You are actively monitoring your logs for suspicious activity.",
+                            "answer_tooltip": "Being on top of logs means a quicker response time to security events and better security program effectiveness. Not only will log analysis and daily monitoring demonstrate your willingness to comply with PCI DSS and HIPAA requirements, it will also help you defend against insider and outsider threats.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_monitoring_d",
+                            "title": "You are correlating calls across systems (end-to-end tracing).",
+                            "answer_tooltip": "You must think about security for all resources that take part in the workload. Azure Security Center provides integrated security monitoring and policy management across your Azure subscriptions. The events collected from the agents and from Azure are correlated in the security analytics engine to provide you tailored recommendations (hardening tasks), that you should follow to make sure your workloads are secure, and threat detection alerts. You should investigate such alerts as soon as possible to make sure malicious attacks aren't taking place on your workloads.",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "security_identity",
+                    "title": "How are you managing identity for this workload?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "security_identity_a",
+                            "title": "You are considering identity as a central component of your security strategy.",
+                            "answer_tooltip": "Many consider identity to be the primary perimeter for security. This is a shift from the traditional focus on network security. Network perimeters keep getting more porous, and that perimeter defense can’t be as effective as it was before the explosion of BYOD devices and cloud applications. Azure Active Directory (Azure AD) is the Azure solution for identity and access management. Azure AD is a multitenant, cloud-based directory and identity management service from Microsoft. It combines core directory services, application access management, and identity protection into a single solution.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_identity_b",
+                            "title": "You have a strategy around identity in place that you are adhering to.",
+                            "answer_tooltip": "Manage accounts from one single location, regardless of where an account is created. Enable single sign-on. Otherwise, it becomes an administrative problem not only for IT but also for users who have to remember multiple passwords. Turn on conditional access because focusing on who can access a resource is not sufficient anymore. Enable password management and use appropriate security policies to prevent abuse.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_identity_c",
+                            "title": "You have a system in place to manage identity.",
+                            "answer_tooltip": "Don't take this decision lightly, for the following reasons:                 It's the first decision for an organization that wants to move to the cloud.                 The authentication method is a critical component of an organization’s presence in the cloud. It controls access to all cloud data and resources.                 It's the foundation of all the other advanced security and user experience features in Azure AD.                 The authentication method is difficult to change after it's implemented.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_identity_d",
+                            "title": "You have a credential rotation policy implemented.",
+                            "answer_tooltip": "Limiting the lifespan of a credential reduces the risk from and effectiveness of password-based attacks and exploits, by condensing the window of time during which a stolen credential is valid.",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "security_encryption",
+                    "title": "How is encryption being used in this workload?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "security_encryption_a",
+                            "title": "Data for the workload is encrypted where it needs to be.",
+                            "answer_tooltip": "Encryption is important because it allows you to securely protect data that you don't want anyone else to have access to.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_encryption_b",
+                            "title": "You have a key management strategy in place.",
+                            "answer_tooltip": "Protecting your keys is essential to protecting your data in the cloud.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_encryption_c",
+                            "title": "Data at Rest is encrypted according to your encryption policy.",
+                            "answer_tooltip": ": Encryption at rest provides data protection for stored data (at rest). Attacks against data at-rest include attempts to obtain physical access to the hardware on which the data is stored, and then compromise the contained data. In such an attack, a server’s hard drive may have been mishandled during maintenance allowing an attacker to remove the hard drive. Later the attacker would put the hard drive into a computer under their control to attempt to access the data.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_encryption_d",
+                            "title": "Data in transit is encrypted according to your encryption policy.",
+                            "answer_tooltip": "If data moving over a network is not encrypted, there’s a chance that it can be captured and stolen by unauthorized users. When you're dealing with database services, make sure that data is encrypted between the database client and server. Also make sure that data is encrypted between database servers that communicate with each other and with middle-tier applications.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_encryption_e",
+                            "title": "You are using appropriate encryption algorithms to meet your requirements.",
+                            "answer_tooltip": "Organizations have to think about what type of threats they want to protect against, and that will determine the type of technology used.",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "security_compliance",
+                    "title": "How are you handling compliance/governance requirements?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "security_compliance_a",
+                            "title": "You know the compliance and governance standards you need to adhere to.",
+                            "answer_tooltip": "Good governance is at the heart of any successful business. It is essential for a company or organization to achieve its objectives and drive improvement, as well as maintain legal and ethical standing in the eyes of shareholders, regulators and the wider community.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_compliance_b",
+                            "title": "You are enforcing your policies.",
+                            "answer_tooltip": "Policies and procedures are an essential part of any organization. Together, policies and procedures provide a roadmap for day-to-day operations. They ensure compliance with laws and regulations, give guidance for decision-making, and streamline internal processes.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_compliance_c",
+                            "title": "You are complying with data residency requirements.",
+                            "answer_tooltip": "Data residency is a particular issue that businesses face as they move more and more information into the cloud. The cloud provides flexibility for data storage, file sharing and the use of different SaaS applications, but it presents challenges when it comes to establishing and maintaining data control. It is having clear control over their data that businesses need to be able to prove in order to meet internal and customer requirements, standards and legal obligations, such as the General Data Protection Regulation (GDPR).",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_compliance_d",
+                            "title": "You are adhering to appropriate standards.",
+                            "answer_tooltip": "Standards provide people and organizations with a basis for mutual understanding, and are used as tools to facilitate communication, measurement, commerce and manufacturing.",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "security_data_classification",
+                    "title": "What have you considered in terms of data classification?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "security_data_classification_a",
+                            "title": "You have a data classification strategy",
+                            "answer_tooltip": "The process of data classification allows organizations to categorize their stored data by sensitivity and business impact in order to determine the risks associated with the data.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_data_classification_b",
+                            "title": "You have a method to ensure appropriate access after classification.",
+                            "answer_tooltip": "After the process is completed, organizations can manage their data in ways that reflect its value to them instead of treating all data the same way.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_data_classification_c",
+                            "title": "You’ve identified what happens if there is a breach.",
+                            "answer_tooltip": "You'll need to pin down exactly what kind of information was lost in the data breach. ",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "security_data_classification_d",
+                            "title": "You know where all of your data is.",
+                            "answer_tooltip": "Where customer data actually ends up has long been a concern. Doubts as to the answer are something often cited by opponents of the trend towards cloud services.",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                }
+            ]
+        },
+        {
+            "id": "cost",
+            "name": "Cost",
+            "questions": [
+                {
+                    "id": "cost_optimize",
+                    "title": "What actions are you taking to optimize cloud costs?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "cost_optimize_a",
+                            "title": "Define metric-based requirements.",
+                            "answer_tooltip": "Detailed metrics about your application translate to better cost estimates while planning.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "cost_optimize_b",
+                            "title": "Use cost management tools.",
+                            "answer_tooltip": "How do you get visibility into the costs you're already accruing?",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "cost_optimize_c",
+                            "title": "Involve the Finance Department.",
+                            "answer_tooltip": "Creating a financial model that accurately represents the full business value of any cloud transformation can be complicated. Financial models and business justifications tend to be different from one organization to the next. This article establishes some formulas and points out a few things that are commonly missed when creating a financial model.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "cost_optimize_d",
+                            "title": "Rely on a cloud operating model.",
+                            "answer_tooltip": "A cloud operating model summarizes the organizations goals for cloud adoption. Having a cloud operating model clarifies areas of focus that are readily translate to subjects of cost optimization.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "cost_optimize_e",
+                            "title": "Optimize data transfer.",
+                            "answer_tooltip": "Data Transfer costs, most notably, network egress from Azure are areas typically not factored in to multi-cloud and hybrid architecture decisions. Not understanding the true cost of network transfer is a key area often overlooked.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "cost_optimize_f",
+                            "title": "Tagging",
+                            "answer_tooltip": "Tags allow for a logical grouping of cloud resources that work together to achieve a business goal. Tags facilitate fine-grain instrumentation, tracking and forecast of cloud spending.",
+                            "priority": "low"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "cost_provision",
+                    "title": "How do you ensure that cloud resources are appropriately provisioned?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "cost_provision_a",
+                            "title": "Perform capacity planning iteratively.",
+                            "answer_tooltip": "One of the largest benefits of cloud computing is its rapid adaptability to changes in capacity. Having a good understanding of capacity requirements allows organizations to allocate resources with minimal overhead and grow/shrink on demand.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "cost_provision_b",
+                            "title": "Configure auto-scaling policies (both in and out).",
+                            "answer_tooltip": "For certain application, capacity requirements may swing over time. Auto-scaling policies allow for less error-prone operations and cost savings through robust automation.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "cost_provision_c",
+                            "title": "Select right resource offering size (VM, disk, database).",
+                            "answer_tooltip": "Certain infrastructure resources are delivered to customers as fix-sized building blocks. Ensuring that these building blocks are adequately sized is important to meet capacity demand as well as to eliminate waste.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "cost_provision_d",
+                            "title": "Choose appropriate service that matches requirements.",
+                            "answer_tooltip": "The number of cloud services in Azure continues to grow and services have similar overlapping features, capabilities and functionality. It is important for customers to select the service that match requirements at the most favorable cost profile.",
+                            "priority": "medium"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "cost_savings_considerations",
+                    "title": "What saving considerations does your cost model incorporate?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "cost_savings_considerations_a",
+                            "title": "Resources as utility.",
+                            "answer_tooltip": "The cloud is all about change. Your resources in the cloud are virtual, and unless built for durability, are to be considered ephemeral. Your provider may reboot or replace your resources for troubleshooting or updates. Mapping resources as 1 to 1 drop in replacement for on-prem resources is not recommended.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "cost_savings_considerations_b",
+                            "title": "Reserved Capacity",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "cost_savings_considerations_c",
+                            "title": "Low priority VMs.",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "cost_savings_considerations_d",
+                            "title": "Platform as a Service.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "cost_storage_footprint",
+                    "title": "How do you manage the storage footprint of your digital assets?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "cost_storage_footprint_a",
+                            "title": "Define and enforce data retention and archival requirements.",
+                            "answer_tooltip": "In typical systems, not all data needs to be available for online processing. Data no longer needed can be removed, freeing up underlying storage.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "cost_storage_footprint_b",
+                            "title": "Use tiered storage.",
+                            "answer_tooltip": "In typical systems, not all data needs to be available for online processing. For the data that needs to be retained long-term, finding the right tradeoffs on durability and latency against costs allows for cost changes.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "cost_storage_footprint_c",
+                            "title": "Selection of appropriate storage service.",
+                            "answer_tooltip": "Some types of storage are better suited to different workloads.  ",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                }
+            ]
+        },
+        {
+            "id": "scalability",
+            "name": "Scalability",
+            "questions": []
+        },
+        {
+            "id": "devops",
+            "name": "DevOps",
+            "questions": [
+                {
+                    "id": "devops_infrastructure",
+                    "title": "How are you treating Infrastructure as Code?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "devops_infrastructure_a",
+                            "title": "What tools are you using to automate your deployments?",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_infrastructure_b",
+                            "title": "What are your dependencies?",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_infrastructure_c",
+                            "title": "Do you know what your limitations are?",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_infrastructure_d",
+                            "title": "Do you have Tagging/Resources name conventions?",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "devops_monitoring",
+                    "title": "How are you handling monitoring of your application?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "devops_monitoring_a",
+                            "title": "You are monitoring your workload.",
+                            "answer_tooltip": "Monitoring earlier in the lifecycle provides teams with the ability to collaboratively work to optimize performance and availability. By reusing artifacts from design and test phases to create monitors that can run in pre-production and production environments, teams can streamline standardization and ensure everyone is on the same page.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_monitoring_b",
+                            "title": "What are you doing with alerts?",
+                            "answer_tooltip": "Automation around alerts is critical due to the highly collaborative nature of DevOps and the inherent speed needed for effective incident management. Earlier this year, a report from DevOps.com came out stating that 80% of IT teams are alerted to critical incidents via email. Email is an effective form of communication, but it shouldn’t be the most common notification method for a critical issue.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_monitoring_c",
+                            "title": "Are you logging at appropriate levels to take action on alerts?",
+                            "answer_tooltip": "A logging tool should collect logs from each system component, application-side or server-side, and provide access to them in one centralized location. Not all logging platforms are capable of maintaining speed as the amount of logs they process grows. Therefore, you should keep a critical eye on the process when trying out different solutions.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_monitoring_d",
+                            "title": "Are you correlating events?",
+                            "answer_tooltip": "This enables you to trace communications between applications distributed across systems/containers to identify errors and exceptions from your applications and resolve latency quickly.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_monitoring_e",
+                            "title": "Application v. Platform",
+                            "answer_tooltip": "The first step for full observability is to enable monitoring across all your web apps and services. If you are working in code, you should add Azure Monitor Application Insights SDKs to your apps written in .NET, Java, Node.js, or any other programming languages. This is the recommended way since now you can also specify any custom events, metrics, or page views that are relevant to your app or business.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_monitoring_f",
+                            "title": "Is monitoring at the right level?",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "devops_deploying",
+                    "title": "How are you deploying and testing this workload?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "devops_deploying_a",
+                            "title": "do you automate deployment/testing/integration? ",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_deploying_b",
+                            "title": "Are you testing DR and fault injection?",
+                            "answer_tooltip": "Experimentation on a system to uncover its weaknesses. Breaking things on purpose is preferable to being surprised when things break.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_deploying_c",
+                            "title": "How frequently are you checking in code?",
+                            "answer_tooltip": "Continuous Integration (CI) is a development practice that requires developers to integrate code into a shared repository several times a day. Each check-in is then verified by an automated build, allowing teams to detect problems early. The key details to note are that you need to run code integration multiple times a day, every day, and you need to run the automated verification of the integration. What’s the motivation for this? Well, in the development process, the earlier we surface errors, the better. And one source of frequently occurring errors is the code integration step.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_deploying_d",
+                            "title": "Have you tested your rollback procedure? ",
+                            "answer_tooltip": "The most important step is to implement an architecture that supports the need to rollback. For instance, componentized, service based architectures lend themselves well to this. Persistent message queues and asynchronous services allow you to bring components down for rollback without impacting the main user base. Work towards something like the Blue-Green release pattern such that your application can stay available whilst you are working on one half of the system.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_deploying_e",
+                            "title": "Do you have prod/preprod/dev/test stages? ",
+                            "answer_tooltip": "Deployment to various stages and running tests/validations at each stage before moving on to the next ensures friction free production deployment.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_deploying_f",
+                            "title": "Where do you get your secrets from?",
+                            "answer_tooltip": "Safeguarding confidential source, connection strings, certificates, secrets etc. required in the deployment pipeline ensures security of end products.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_deploying_g",
+                            "title": "Are you using a common release strategy (blue/green, pilot light, canary)? ",
+                            "answer_tooltip": "One of the challenges with automating deployment is the cut-over itself, taking software from the final stage of testing to live production. You usually need to do this quickly in order to minimize downtime. The blue-green deployment approach does this by ensuring you have two production environments, as identical as possible.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_deploying_h",
+                            "title": "You use feature flags.",
+                            "answer_tooltip": "Using feature flags is a technique that will help you integrate code into a shared repository at least once a day and ship it, even if you haven't finished the feature yet. You'll be able to deploy at any time but defer the decision to release for another day.",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_deploying_i",
+                            "title": "You isolate and secure your workload from others in your organization.",
+                            "answer_tooltip": "With DevOps, organizations aim to improve operational processes in terms of security, reliability and efficiency. In DevOps environments, since software components are often developed in parallel but separately, you’ll require certain network configurations.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_deploying_j",
+                            "title": "Hotfixes go through your pipeline?",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "devops_backup",
+                    "title": "How are you handling DR (Backup & Restore) for this workload?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "devops_backup_a",
+                            "title": "We perform backups.",
+                            "answer_tooltip": "Usually devops environments are ephemeral and often need to be recreated for clean builds and deployments.",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_backup_b",
+                            "title": "We have an MTTR/RPO/RTO defined.",
+                            "answer_tooltip": "When a production failure occurs, how long does it take to recover from the issue? What impact does this have on your business?",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_backup_c",
+                            "title": "We conduct outage retrospectives.",
+                            "answer_tooltip": "No amount of safeguards or preparation can prevent every possible incident, and sometimes simple human error can have significant consequences to a development project. You can't avoid it, but you can learn from it and take steps to minimize the chances of a similar incident in the future. The question is how software organizations can best go about learning from mistakes with agile postmortems.",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_backup_d",
+                            "title": "What happens if the region goes down?",
+                            "answer_tooltip": "When you run production workloads on cloud, you might use a globally distributed system so that if something goes wrong in one region, the application continues to provide service even if it's less widely available. In essence, that application invokes its DR plan.",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_backup_e",
+                            "title": "Where/how do you store your backups?",
+                            "answer_tooltip": "Backups are about protecting data, applications, and systems that are important to the organization. In operations environments, it’s easy to provide backups: pick the workload that needs hyper-availability and back it up. Operations environments are relatively static – in that, the systems and applications used remain relatively consistent, with only the data changing daily.",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_backup_f",
+                            "title": "What is your archive strategy? ",
+                            "answer_tooltip": "It’s important to remember, that a DR plan is more than just an ordered restoration from backup and validation process. Applications may require post-restoration configuration due to site changes, or reinstallation may be necessary with restored data imported after.",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_backup_g",
+                            "title": "You have a data retention policy defined.",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_backup_h",
+                            "title": "Our backups are automated. ",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "devops_reporting",
+                    "title": "How well do you understand your Reporting/Analytics needs?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "devops_reporting_a",
+                            "title": "You know what reports you need.",
+                            "answer_tooltip": "Dev ops metrics are critical for measuring production and project management",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_reporting_b",
+                            "title": "Your reports are actionable.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_reporting_c",
+                            "title": "You have defined appropriate KPI's.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_reporting_d",
+                            "title": "You report on your KPI's.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_reporting_e",
+                            "title": "You can identify and act on the leading and lagging indicators in your workload.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "devops_security",
+                    "title": "How have you secured your devops infrastructure?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "devops_security_a",
+                            "title": "We have separation of duties.",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_security_b",
+                            "title": "We have secret management in place.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_security_c",
+                            "title": "We don't have keys in our source code.",
+                            "answer_tooltip": "This includes passwords / API keys / etc.",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_security_d",
+                            "title": "We know how to engage our infosec team.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "devops_development",
+                    "title": "What processes are in place for the development workflow?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "devops_development_a",
+                            "title": "We have defined branching strategies.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_development_b",
+                            "title": "We understand our source code policies and licensing.",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_development_c",
+                            "title": "We have and understand our policy around repo creation and usage.",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_development_d",
+                            "title": "You monitor for bugs and patch them in your dependencies.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_development_e",
+                            "title": "You have defined and enforce a set of coding standards/naming conventions",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_development_f",
+                            "title": "error handling, exponential backoff, uniqueness guarantees, retry logic",
+                            "answer_tooltip": "this needs to be updated.",
+                            "priority": "low"
+                        }
+                    ],
+                    "display_logic": []
+                },
+                {
+                    "id": "devops_isolation",
+                    "title": "What have you done to isolate and/or containerize your workload?",
+                    "explanation": "",
+                    "context": "",
+                    "type": "checkbox",
+                    "choices": [
+                        {
+                            "id": "devops_isolation_a",
+                            "title": "You have an ephemeral environment for testing.",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_isolation_b",
+                            "title": "You primarily use micro services (instead of a giant monolithic app).",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_isolation_c",
+                            "title": "You understand when to scale up, and when to scale out for your workload. ",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_isolation_d",
+                            "title": "Your workload is available for upstream providers as appropriate.",
+                            "answer_tooltip": "",
+                            "priority": "low"
+                        },
+                        {
+                            "id": "devops_isolation_e",
+                            "title": "You have an orchestration system, and it is used to deploy your workload.",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        },
+                        {
+                            "id": "devops_isolation_f",
+                            "title": "The level of isolation of this workload meets your security requirements.",
+                            "answer_tooltip": "",
+                            "priority": "high"
+                        },
+                        {
+                            "id": "devops_isolation_g",
+                            "title": "You are aware of all the OS dependencies your workload has, and patch appropriately.",
+                            "answer_tooltip": "",
+                            "priority": "medium"
+                        }
+                    ],
+                    "display_logic": []
+                }
+            ]
+        }
+    ]
+}

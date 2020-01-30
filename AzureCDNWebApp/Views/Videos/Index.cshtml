@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model AzureCDNWebApp.Models.ImagesViewModel;
+
+<h1>Videos</h1>
+
+@if (Model.ImageUrls.Any())
+{
+    foreach (var imageUrl in Model.ImageUrls)
+    {
+        <a href="@imageUrl">@imageUrl</a>
+        <img src="@imageUrl" />
+    }
+}
+

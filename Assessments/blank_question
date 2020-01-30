@@ -1,0 +1,108 @@
+{
+        "id": "", 
+        "title": "", 
+        "explanation": "", 
+        "context": null,
+        "type": "radio",
+        "choices": [ 
+            { 
+                "id": "A", 
+                "title": "",
+                "score": "We need to figure this out"
+            }, 
+            { 
+                "id": "B", 
+                "title": "",
+                "score": "We need to figure this out"
+            }, 
+            { 
+                "id": "C", 
+                "title": "",
+                "score": "We need to figure this out"
+            }, 
+            { 
+                "id": "D", 
+                "title": "",
+                "score": "We need to figure this out"
+            },
+            { 
+                "id": "E", 
+                "title": "",
+                "score": "We need to figure this out"
+            },
+            { 
+                "id": "F", 
+                "title": "",
+                "score": "We need to figure this out"
+            } 
+        ], 
+        "display_logic": [] 
+},
+{
+        "id": "", 
+        "title": "", 
+        "explanation": "", 
+        "context": "",
+        "type": "checkbox",
+        "choices": [ 
+            { 
+                "id": "", 
+                "title": "",
+                "answer_tooltip": ""
+                "priority": "", //high,medium,low
+            },
+            { 
+                "id": "", 
+                "title": "",
+                "answer_tooltip": "",
+                "priority": "" //high,medium,low
+            } 
+        ], 
+        "display_logic": [] 
+},
+{
+                "id": "", 
+                "title": "Rate the importance of each of the following statements.", 
+                "explanation": "", 
+                "context": "",
+                "type": "likert_matrix",
+                "scale": [ 
+                    { 
+                        "id": "A", 
+                        "title": "Don't know",
+                        "score": 0
+                    }, 
+                    { 
+                        "id": "B", 
+                        "title": "Not Important",
+                        "score": 1
+                    }, 
+                    { 
+                        "id": "C", 
+                        "title": "Somewhat important",
+                        "score": 2
+                    }, 
+                    { 
+                        "id": "D", 
+                        "title": "Very Important",
+                        "score": 3
+                    },
+                    { 
+                        "id": "E", 
+                        "title": "Critical",
+                        "score": 4
+                    } 
+                ], 
+                "rows" :[
+                    {
+                        "id": "1",
+                        "title": ""
+                    },
+                    {
+                        "id": "2",
+                        "title": ""
+                    }
+                ]
+                //concatenate row with choice to get answer ID for each selection.
+                "display_logic": ""
+        }

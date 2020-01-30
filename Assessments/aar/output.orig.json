@@ -1,0 +1,61 @@
+{
+    "asssessment_id": "1",
+    "output_id": "aar_output",
+    "display_summary": true,
+    "output_elements": [
+        {
+        "type": "markdown",
+        "content":"Governance Assessment Results",
+        "logic": "NOT failure_resistance_A",
+        "control_config": {"height": "10%"}
+        },
+        {
+            "type": "markdown",
+            "content": "1. VMs: [https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-windows-manage-availability/](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-windows-manage-availability/)\n2. Azure App Service: [https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-choose-me/#scaling-and-management](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-choose-me/)",
+            "logic": "NOT failure_resistance_B",
+            "control_config": {"height": "10%"}
+        },
+        {
+            "type": "html",
+            "content": "If your application is not configured to scale out automatically as load increases, it's possible that your application's services will fail if they become saturated with user requests.",
+            "logic": "NOT failure_resistance_C",
+            "control_config": {"height": "10%"}
+        },
+        {
+            "type": "html",
+            "content": "[https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview/](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview/)",
+            "logic": "NOT failure_resistance_D",
+            "control_config": {"height": "10%"}
+        },
+        {
+            "type": "html",
+            "content": "[https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-windows-manage-availability/](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-windows-manage-availability/)",
+            "logic": "NOT failure_resistance_E",
+            "control_config": {"height": "10%"}
+        },
+        {
+            "type": "html",
+            "content": "https://docs.microsoft.com/en-us/azure/site-recovery/",
+            "logic": "NOT failure_resistance_E",
+            "control_config": {"height": "10%"}
+        },
+        {
+            "type": "markdown",
+            "content": "[https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions](https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions)",
+            "logic": "NOT failure_resistance_F",
+            "control_config": {"height": "10%"}
+        },
+        {
+            "type": "markdown",
+            "content": "[https://docs.microsoft.com/en-us/azure/architecture/patterns/health-endpoint-monitoring](https://docs.microsoft.com/en-us/azure/architecture/patterns/health-endpoint-monitoring)",
+            "logic": "NOT failure_resistance_H",
+            "control_config": {"height": "10%"} 
+        },
+        {
+            "type": "markdown",
+            "content": "[https://docs.microsoft.com/en-us/azure/storage/storage-redundancy/#read-access-geo-redundant-storage](https://docs.microsoft.com/en-us/azure/storage/storage-redundancy/)",
+            "logic": "NOT data_management_E",
+            "control_config": {"height": "10%"} 
+        }
+    ]
+}

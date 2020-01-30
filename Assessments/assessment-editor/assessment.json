@@ -1,0 +1,29 @@
+{
+  "id": "1",
+  "title": "Assessment Title",
+  "category": [
+      {
+          "id": "section_id",
+          "name": "Section",
+          "questions": [
+              {
+                  "id": "question_id",
+                  "title": "Question Title",
+                  "explanation": "",
+                  "context": null,
+                  "type": "checkbox",
+                  "choices": [
+                      {
+                          "id": "choice_id",
+                          "title": "Title",
+                          "answer_tooltip": "Tooltip",
+                          "output": "Output",
+                          "priority": "high"
+                      }
+                  ],
+                  "display_logic": []
+              }
+          ]
+      }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+    "asssessment_id": "1",
+    "output_id": "output_governance",
+    "display_summary": true,  //this generates a summary of the questions/responses/notes.
+    "output_elements": [{
+        "type": "markdown",
+        "content":"Governance Assessment Results", //add a background image, and overlay this text
+        "logic": null, //always display
+        "control_config": {"height": "10%"} //not sure if this makes sense or not, but might be something we need.
+    },{
+        "type": "markdown",
+        "content": "Content will be here", //we need a way to pull in profile information and question responses into the markdown
+        "logic": null,
+        "control_config": {}
+    },{
+        "type":"graph",
+        "graph_config":{
+            "type": "grouped-bar",
+            "x-axis": ["category_list"], //all categories as the x-axis
+            "y-axis": ["current_state", "desired_state", "industry"], //see calculations
+            "legend": ""//whatever we need to display a legend
+        }, 
+        "calculations":[{
+            "id": "current_state",
+            "calc": "group by category, and questions that speak to current_state"
+        },{
+            "id": "desired_state",
+            "calc": "group by category, and questions that speak to desired_state"
+        },{
+            "id": "industry",
+            "calc": "group by category, average current_state across all assessments that have the same industry (from profile)"
+        }],
+        "logic": null,  //always show
+        "control_config": {}
+    },{
+        "type": "markdown",
+        "content": "What's next section, link to learn more.",
+        "logic": null,
+        "control_config": {}
+    },{
+        "type": "tile",
+        "content": "Deployment Acceleration <BR> <img>  Discover key activities in the Deployment Acceleration process during all phases of cloud solution implementation. <BR> link to Learn More >",
+        "logic": null,
+        "control_config": {}
+    },{
+        "type": "tile",
+        "content": "Identity Baseline  <BR> <img>  Discover how to approach developing an Identity Baseline discipline as part of your cloud governance strategy.  <BR> link to Learn More >",
+        "logic": null,
+        "control_config": {}
+    },{
+        "type": "tile",
+        "content": "Resource Consistency <BR> <img>  Discover how to develop a Resource Consistency discipline as part of your cloud governance strategy.  <BR> link to Learn More >",
+        "logic": null,
+        "control_config": {}
+    },{
+        "type": "tile",
+        "content": "Cost Management <BR> <img> Discover how to approach developing a Cost Management discipline as part of your cloud governance strategy. <BR> link to Learn More >",
+        "logic": null,
+        "control_config": {}
+    },{
+        "type": "tile",
+        "content": "Organization Readiness  <BR> <img>  Discover key activities that can help you shape your corporate policies to enable an expanded governance model. <BR> link to Learn More >",
+        "logic": null,
+        "control_config": {}
+    },{
+        "type": "tile",
+        "content": "Security Baseline <BR> <img> Discover how to approach developing a Security Baseline discipline as part of your cloud governance strategy.  <BR> link to Learn More >",
+        "logic": null,
+        "control_config": {}
+    }]
+}

@@ -1,0 +1,42 @@
+{
+	"question": {
+		"prefix": "question",
+		"body": [
+		  "{",
+		  "    \"id\": \"${1:unique_id}\", ",
+		  "    \"title\": \"${2:question_title}\", ",
+		  "    \"explanation\": \"${3}\", ",
+		  "    \"context\": \"\",",
+		  "    \"type\": \"checkbox\",",
+		  "    \"choices\": [ ${4:choice} ], ",
+		  "    \"display_logic\": [] ",
+		  "}${0}"
+		],
+		"description": "question"
+	  },
+	  "choice": {
+		"prefix": "choice",
+		"body": [
+		  "{ ",
+		  "    \"id\": \"${1:unique_id}\", ",
+		  "    \"title\": \"${CLIPBOARD:option_title}\",",
+		  "    \"answer_tooltip\": \"${3}\",",
+		  "    \"output\": \"${4}\",",
+		  "    \"priority\": \"${5|medium,high,low|}\"",
+		  "}${0}"
+		],
+		"description": "choice"
+	  },
+	  "output": {
+		"prefix": "output",
+		"body": [
+		  "{",
+		  "    \"type\": \"${2|markdown,html|}\",",
+		  "    \"content\": \"${1:html_content}\",",
+		  "    \"logic\": \"NOT ${CLIPBOARD}\",",
+		  "    \"control_config\": {\"height\": \"10%\"} ",
+		  "}${0}"
+		],
+		"description": "output"
+	  }
+}

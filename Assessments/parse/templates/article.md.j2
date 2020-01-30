@@ -1,0 +1,20 @@
+---
+title: {{ question.heading }}
+description: {{ question.context }}
+author: david-stanford
+ms.date: {{ getdate() }}
+ms.topic: article
+ms.service: architecture-center
+ms.subservice: cloud-design-principles
+ms.custom: {{ question.title }} 
+---
+
+# {{ question.heading }}
+
+{{ question.explanation -}}
+
+{% for choice in question.choices %}
+<!-- {{choice.title}} -->
+[!include[{{choice.id}}](../../../includes/aar_guidance/{{choice.id}}.md)]
+
+{% endfor %}

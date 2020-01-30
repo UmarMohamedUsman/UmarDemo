@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta
+        content="width=device-width, initial-scale=1" name="viewport">
+        <!-- Angular Material style sheet -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body >
+<!-- HTML guide when including in a Docs Markdown file:
+    * Don't include any blank lines
+    * Javascript
+        * Jquery is available from DOCS
+        * Put all JS in an "onload" event for a 0 byte image
+        * Line breaks will be automatically merged into a single line
+        * Use single quotes
+        * Don't use Comments
+    -->
+<!-- Copy from here to Markdown for DOCS -->
+<div class="">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" onload="
+        $('head').append('<style type=\'text/css\'>.md-errors-spacer { display: none; }</style>');
+        $('head').append('<style type=\'text/css\'>.dndPlaceholder{display:none}.dndPlaceholder+md-list-item{background-color:grey}.dndPlaceholder+md-card{margin-top:50px}.dndPlaceholder+li{margin:10px;background-color:grey}</style>');
+        $('head').append('<style type=\'text/css\'>.black-dragicon{color: black;}.hiddendragitem{display:none}</style>');
+        loadjs=function(){var h=function(){},c={},u={},f={};function o(e,n){if(e){var r=f[e];if(u[e]=n,r)for(;r.length;)r[0](e,n),r.splice(0,1)}}function l(e,n){e.call&&(e={success:e}),n.length?(e.error||h)(n):(e.success||h)(e)}function d(r,t,s,i){var c,o,e=document,n=s.async,u=(s.numRetries||0)+1,f=s.before||h,l=r.replace(/[\?|#].*$/,''),a=r.replace(/^(css|img)!/,'');i=i||0,/(^css!|\.css$)/.test(l)?((o=e.createElement('link')).rel='stylesheet',o.href=a,(c='hideFocus'in o)&&o.relList&&(c=0,o.rel='preload',o.as='style')):/(^img!|\.(png|gif|jpg|svg)$)/.test(l)?(o=e.createElement('img')).src=a:((o=e.createElement('script')).src=r,o.async=void 0===n||n),!(o.onload=o.onerror=o.onbeforeload=function(e){var n=e.type[0];if(c)try{o.sheet.cssText.length||(n='e')}catch(e){18!=e.code&&(n='e')}if('e'==n){if((i+=1)<u)return d(r,t,s,i)}else if('preload'==o.rel&&'style'==o.as)return o.rel='stylesheet';t(r,n,e.defaultPrevented)})!==f(r,o)&&e.head.appendChild(o)}function r(e,n,r){var t,s;if(n&&n.trim&&(t=n),s=(t?r:n)||{},t){if(t in c)throw'LoadJS';c[t]=!0}function i(n,r){!function(e,t,n){var r,s,i=(e=e.push?e:[e]).length,c=i,o=[];for(r=function(e,n,r){if('e'==n&&o.push(e),'b'==n){if(!r)return;o.push(e)}--i||t(o)},s=0;s<c;s++)d(e[s],r,n)}(e,function(e){l(s,e),n&&l({success:n,error:r},e),o(t,e)},s)}if(s.returnPromise)return new Promise(i);i()}return r.ready=function(e,n){return function(e,r){e=e.push?e:[e];var n,t,s,i=[],c=e.length,o=c;for(n=function(e,n){n.length&&i.push(e),--o||r(i)};c--;)t=e[c],(s=u[t])?n(t,s):(f[t]=f[t]||[]).push(n)}(e,function(e){l(n,e)}),r},r.done=function(e){o(e,[])},r.reset=function(){c={},u={},f={}},r.isDefined=function(e){return e in c},r}();
+        loadjs(['css!https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css',
+        'css!https://fonts.googleapis.com/icon?family=Material+Icons',
+        'css!https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic'], function() {});
+        loadjs(['https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.js',
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.js',
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-route.js',
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.js',
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.js',
+        'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular-drag-and-drop-lists/2.1.0/angular-drag-and-drop-lists.js'], 'angular-scripts',
+        {
+            async: false,
+            numRetries: 3,
+            returnPromise: true
+        });
+loadjs.ready('angular-scripts', function() {
+    console.log('all scripts loaded');
+    var app = angular.module('assessmentViewer', ['dndLists', 'ngMaterial', 'ngMessages']).config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('indigo');
+    });
+    app.controller('assessmentCtrl', function($scope, $http, $mdToast, $sce) {
+        $scope.questionIndex = 0;
+        $scope.catIndex = 0;
+        $scope.currentNavItem = 'page' + $scope.questionIndex;
+        var service = {
+            SaveState: function() {
+                sessionStorage.assessmentCtrl = angular.toJson($scope.myData);
+                console.log('Saving State');
+            },
+            RestoreState: function() {
+                console.log('Checking Local Storage')
+                $scope.myData = angular.fromJson(sessionStorage.assessmentCtrl);
+                if ($scope.myData && typeof $scope.myData !== 'undefined') {
+                    console.log('Loading from browser cache');
+                    $scope.questions = null;
+                    $scope.uidata = {
+                        questionEdit: false
+                    }
+                    $scope.question = null;
+                } else {
+                    console.log('Loading JSON');
+                    loadJson().then(function(response) {
+                        $scope.$apply(function() {
+                            $scope.questions = null;
+                            $scope.uidata = {
+                                questionEdit: false
+                            }
+                            $scope.question = null;
+                            $scope.myData = response;
+                        });
+                    });
+                }
+                console.log($scope.myData);
+            }
+        }
+        $scope.dropped = [];
+        var dragging = null;
+        $scope.load = function() {
+            console.log('App Loaded');
+            $scope.$broadcast('restorestate');
+        };
+        window.onbeforeunload = function(event) {
+            console.log('Window Unloading');
+            $scope.$broadcast('savestate');
+        };
+        $scope.select_category = function(index) {
+            $scope.questionIndex = 0;
+            $scope.catIndex = index;
+            $scope.catName = $scope.myData.category[index].name;
+            $scope.question = $scope.myData.category[index].questions[0];
+            $scope.questions = $scope.myData.category[index].questions;
+            $scope.currentNavItem = 'page' + $scope.questionIndex;
+            return true;
+        };
+        $scope.nextQuestion = function(qIndex) {
+            if ($scope.questionIndex + 1 < $scope.myData.category[$scope.catIndex].questions.length) {
+                $scope.questionIndex++;
+            } else {
+                $scope.questionIndex = 0;
+            }
+            $scope.question = $scope.myData.category[$scope.catIndex].questions[$scope.questionIndex];
+            $scope.currentNavItem = 'page' + $scope.questionIndex;
+        };
+        $scope.select_question = function(qIndex) {
+            $scope.question = $scope.myData.category[$scope.catIndex].questions[qIndex];
+            $scope.questionIndex = qIndex;
+            $scope.currentNavItem = 'page' + qIndex;
+        };
+        $scope.edit = function(index) {
+            alert(JSON.stringify($scope.myData.category[$scope.catIndex].questions[$scope.questionIndex].choices[index]));
+        };
+        $scope.addCategory = function() {
+            $scope.myData.category.push({
+                'questions': [],
+                'name': 'setMe',
+                'id': uuidv4()
+            });
+        };
+        $scope.deleteCategory = function(catIndex) {
+            $scope.deleted_category = $scope.myData.category[catIndex];
+            $scope.showUndo($scope.deleted_category.name, 'category', catIndex);
+            $scope.myData.category.splice(catIndex, 1)
+            if (catIndex + 1 > $scope.myData.category.length) {
+                catIndex--;
+            }
+            if ($scope.myData.category.length == 0) {
+                $scope.question = {};
+                $scope.questions = [];
+            }
+            $scope.select_category(catIndex);
+        };
+        $scope.addQuestion = function() {
+            $scope.myData.category[$scope.catIndex].questions.push({
+                'choices': [],
+                'title': 'setMe',
+                'type': 'checkbox',
+                'id': uuidv4()
+            });
+            $scope.questionIndex = $scope.myData.category[$scope.catIndex].questions.length - 1;
+            $scope.select_question($scope.questionIndex);
+        };
+        $scope.deleteQuestion = function() {
+            $scope.deleted_question = $scope.myData.category[$scope.catIndex].questions[$scope.questionIndex]
+            $scope.showUndo($scope.deleted_question.title, 'question', $scope.questionIndex)
+            $scope.myData.category[$scope.catIndex].questions.splice($scope.questionIndex, 1)
+            if ($scope.questionIndex + 1 > $scope.myData.category[$scope.catIndex].questions.length) {
+                $scope.questionIndex--;
+            }
+            $scope.select_question($scope.questionIndex);
+        };
+        $scope.showUndo = function(title, type, index) {
+            var toast = $mdToast.simple().textContent('Deleted: ' + title).action('UNDO').highlightAction(true).highlightClass('md-accent') // Accent is used by default, this just demonstrates the usage.
+                .position('top right');
+            $mdToast.show(toast).then(function(response) {
+                if (response == 'ok') {
+                    if (type === 'category') {
+                        $scope.myData.category.splice(index, 0, $scope.deleted_category)
+                        $scope.select_category($scope.catIndex)
+                    }
+                    if (type === 'question') {
+                        $scope.myData.category[$scope.catIndex].questions.splice(index, 0, $scope.deleted_question);
+                        $scope.select_question(index);
+                    }
+                    if (type === 'choice') {
+                        $scope.myData.category[$scope.catIndex].questions[$scope.questionIndex].choices.splice(index, 0, $scope.deleted_choice)
+                    }
+                }
+            });
+        };
+        $scope.addChoice = function() {
+            $scope.myData.category[$scope.catIndex].questions[$scope.questionIndex].choices.unshift({
+                'answer_tooltip': '',
+                'output': '',
+                'priority': 'medium',
+                'title': 'SetMe',
+                'id': uuidv4()
+            });
+        };
+        $scope.deleteChoice = function(cIndex) {
+            $scope.deleted_choice = $scope.myData.category[$scope.catIndex].questions[$scope.questionIndex].choices[cIndex];
+            $scope.myData.category[$scope.catIndex].questions[$scope.questionIndex].choices.splice(cIndex, 1);
+            $scope.showUndo($scope.deleted_choice.title, 'choice', cIndex)
+        };
+        $scope.saveChanges = function() {
+            saveData($scope.myData, 'assessment.json');
+        };
+        $scope.exportYaml = function() {
+            exportYML($scope.myData, $scope.myData.title.replace(/\s/g, '_'))
+        };
+        $scope.loadExternal = function() {
+            console.log('external');
+        };
+        $scope.moveItem = function(destination, source, itemId, item) {
+            console.log('Dropping ' + source + ' into ' + destination + ' at index ' + itemId);
+            if (destination === 'category_item') {
+                if (source === 'choice') {
+                    if ($scope.myData.category[itemId].questions.length < 1) {
+                        $scope.myData.category[itemId].questions.push({
+                            'choices': [],
+                            'title': 'setMe',
+                            'type': 'checkbox',
+                            'id': uuidv4()
+                        });
+                    }
+                    console.log('Category Index' + $scope.catIndex + ' Question Index' + $scope.questionIndex);
+                    $scope.myData.category[itemId].questions[0].choices.unshift(item);
+                    return true;
+                }
+                if (source === 'question') {
+                    $scope.myData.category[itemId].questions.unshift(item);
+                    $scope.nextQuestion();
+                    return true;
+                }
+            }
+            if (destination === 'question') {
+                if (source === 'choice') {
+                    console.log('Category Index' + $scope.catIndex + ' Question Index' + $scope.questionIndex);
+                    $scope.myData.category[$scope.catIndex].questions[itemId].choices.unshift(item);
+                    return true;
+                }
+            }
+            return false;
+        };
+        $scope.hideElement = function(event) {
+            console.log(event);
+        }
+        $scope.showElement = function(event) {
+            console.log(event);
+        }
+        $scope.logListEvent = function(action, index, external, type) {
+            var message = external ? 'External ' : '';
+            message += type + ' element was ' + action + ' position ' + index;
+            console.log(message);
+        };
+        $scope.navbarDragOn = function() {
+            console.log('Showing Fake Nav Bar');
+            $('.hiddendragitem').show();
+            $('.normaldragitem').hide();
+        };
+        $scope.navbarDragOff = function() {
+            console.log('Hiding Nav Bar');
+            $('.hiddendragitem').hide();
+            $('.normaldragitem').show();
+            $scope.select_question($scope.questionIndex)
+        };
+        $scope.dragChoiceStart = function() {
+            $scope.navbarDragOn();
+            $('.dndDraggingSource').closest('md-list-item').css('background-color', 'blue')
+        }
+        $scope.dragChoiceEnd = function() {
+            $scope.navbarDragOff();
+        }
+        $scope.dragoverSections = function(index, external, type, callback) {
+            if (type == 'container' && !external) {
+                console.log('Container being dragged contains ' + callback() + ' items');
+            }
+            return index <= $scope.myData.category.length - 1;
+        };
+        $scope.fromMarkdown = function(text) {
+            var converter = new showdown.Converter();
+            html = converter.makeHtml(text);
+            return $sce.trustAsHtml(html);
+        }
+        $scope.$on('savestate', service.SaveState);
+        $scope.$on('restorestate', service.RestoreState);
+        return service;
+    });
+    app.directive('fileChange', function() {
+        console.log('Loading Data because of file input')
+        return {
+            restrict: 'A',
+            link: function($scope, el, attrs, ngModel) {
+                el.bind('change', function(event) {
+                    var reader = new FileReader();
+                    reader.readAsText(event.target.files[0], 'UTF-8');
+                    reader.onload = function(evt) {
+                        var temp = evt.target.result;
+                        $scope.questions = null;
+                        $scope.question = null;
+                        $scope.catName = null;
+                        $scope.myData = JSON.parse(evt.target.result);
+                    };
+                    reader.onerror = function(evt) {
+                        alert('error reading file');
+                    };
+                    $scope.$apply();
+                });
+            }
+        };
+    });
+    function isActive(state) {
+        return this.$state.current.name.includes(state);
+    }
+    function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+    function saveData(data, fileName) {
+        var a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style = 'display: none';
+        var json = angular.toJson(data, true),
+            blob = new Blob([json], {
+                type: 'text/plain;charset=utf-8'
+            }),
+            url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }
+    function exportYML(data, fileName) {
+        var a = document.createElement('a');
+        document.body.appendChild(a);
+        var ymlData = [];
+        console.log(data);
+        var EOL = '\n';
+        var indent = '';
+        ymlData.push('### YamlMime:Assessment' + EOL);
+        ymlData.push('id:' + fileName + EOL);
+        ymlData.push('locale: en-us' + EOL);
+        ymlData.push('title: ' + data.title + EOL);
+        ymlData.push('description: ' + EOL);
+        ymlData.push('version: 0' + EOL);
+        ymlData.push('categories:' + EOL);
+        for (var i = 0; i < data.category.length; i++) {
+            indent = '  ';
+            ymlData.push('- isRequired: true' + EOL);
+            ymlData.push(indent + 'id: ' + data.category[i].id + EOL);
+            ymlData.push(indent + 'title: ' + data.category[i].name + EOL);
+            ymlData.push(indent + 'description: ' + '' + EOL);
+            ymlData.push(indent + 'questions:' + EOL);
+            for (var j = 0; j < data.category[i].questions.length; j++) {
+                indent = '  ';
+                ymlData.push(indent + '- type: multiSelect' + EOL);
+                indent = '    ';
+                ymlData.push(indent + 'id: ' + data.category[i].questions[j].id + EOL);
+                ymlData.push(indent + 'text: ' + data.category[i].questions[j].title + EOL);
+                ymlData.push(indent + 'choices:' + EOL);
+                for (var k = 0; k < data.category[i].questions[j].choices.length; k++) {
+                    ymlData.push(indent + '- id: \'' + k + '\'' + EOL);
+                    ymlData.push(indent + '  text: ' + data.category[i].questions[j].choices[k].title + EOL);
+                }
+            }
+        }
+        var blob = new Blob(ymlData, {
+            type: 'text/plain;charset=utf-8'
+        });
+        console.log(blob);
+        var url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = fileName + '.yml';
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }
+    async function loadJson() {
+        console.log('Loadjson');
+        const response = await fetch('assessment.json');
+        const myJson = await response.json();
+        return myJson;
+    }
+    angular.element(function() {
+        angular.bootstrap(document, ['assessmentViewer']);
+    });
+});">
+        <div ng-controller="assessmentCtrl">
+        <div ng-init="load()"></div>
+        <div class="container uhf-container" ng-cloak>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h1 class="md-toolbar-tools" flex md-truncate ng-hide="edit_title">{{myData.title}}</h1>
+                    <md-input-container flex layout-padding class="hide-error-msg" ng-show="edit_title">
+                        <input ng-model="myData.title">
+                    </md-input-container>
+                </md-list-item>
+                <md-switch ng-model="liveMode" aria-label="Preview Live">
+                        Preview
+                 </md-switch>
+                 <md-button class="md-raised" onclick="document.getElementById('file-input').click();" ng-hide="liveMode">Load JSON</md-button>
+                <input id="file-input" type="file" name="name" file-change="" class="ng-hide" />
+                <md-button class="md-raised" ng-click="exportYaml()" ng-hide="liveMode">Export to YAML</md-button>
+                <md-button class="md-raised" ng-click="saveChanges()" ng-hide="liveMode">Save All Changes</md-button>
+            </div>
+        </md-toolbar>
+        <section layout="row">
+            <md-sidenav md-is-locked-open="true" md-whiteframe="4" ng-class="md-sidenav-left" ng-if="myData.category">
+                <md-toolbar class="md-hue-1" layout="row" md-toolbar>
+                    <span class="md-toolbar-tools" ng-hide="editcat">{{ myData.category[catIndex].name }}</span>
+                    <md-input-container flex class="hide-error-msg" ng-show="editcat">
+                        <input ng-model="myData.category[catIndex].name" aria-label="Index Name">
+                    </md-input-container>
+                    <div ng-show="catName" layout="row" layout-align="end center" ng-hide="liveMode">
+                        <md-switch class="md-toolbar-tools" ng-model="editcat" ng-hide="liveMode" aria-label="Edit Label"></md-switch>
+                        <md-button class="md-icon-button" flex="grow" md-ripple-size="partial" ng-click="deleteCategory(catIndex)" ng-hide="liveMode" aria-label="Delete Category"><md-icon ng-bind="'delete'"></md-icon></md-button>
+                    </div>
+                </md-toolbar>
+                <div>
+                    <md-list dnd-list="" dnd-dragover="dragoverSections(index, external, type)" dnd-drop="moveItem('category_item', type, index, item)" dnd-allowed-types="['choice', 'question']" >
+                        <md-list-item class="md-2-line" ng-click="select_category($index)" ng-repeat="cat in myData.category">
+                                <p>{{cat.name}}</p>
+                        </md-list-item>
+                        <md-list-item dnd-nodrag class="md-2-line" ng-click="addCategory()" ng-hide="liveMode">
+                            <p>+ Add Category</p>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </md-sidenav>
+            <div flex>
+                <div>
+                    <div>
+                        <md-toolbar class="md-hue-3" md-toolbar>
+                                <!-- Fake Nav bar to hide when dragging items to question -->
+                                <md-nav-bar dnd-list="questions" class="hiddendragitem" md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" ng-if="question">
+                                <ul dnd-list="questions" dnd-drop="moveItem('question', type, index, item)" dnd-allowed-types="['choice', 'question']" class="_md-nav-bar-list" aria-label="navigation links">
+                                        <li class="md-nav-item" ng-repeat="question in questions">
+                                            <button
+                                                class="_md-nav-button md-accent md-button md-ink-ripple md-unselected"
+                                                type="button"
+                                                ng-disabled="ctrl.disabled"
+                                                tabindex="-1"
+                                                role="tab"
+                                                aria-selected="false"
+                                                aria-label="{{$index+1}}" >
+                                                <span class="_md-nav-button-text ng-scope">
+                                                    <span ng-if="!question.heading">Q{{$index+1}}</span>
+                                                    <span ng-if="question.heading">{{question.heading}}</span>
+                                                    <md-button dnd-draggable="question"
+                                                    dnd-moved="questions.splice($index, 1);"
+                                                    dnd-effect-allowed="move"
+                                                    dnd-type="'question'"
+                                                    class="md-icon-button"
+                                                    aria-label="Move Question"
+                                                    ng-hide="liveMode">
+                                                    <md-icon ng-bind="'drag_indicator'" class="black-dragicon"></md-icon>
+                                                    </md-button>
+                                                </span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </md-nav-bar>
+                            <md-nav-bar md-selected-nav-item="currentNavItem" class="normaldragitem" nav-bar-aria-label="navigation links" ng-if="question">
+                            <md-nav-item  md-nav-click="select_question($index)" name="page{{$index}}" ng-repeat="question in questions" style="list-style-type:none">
+                                    <span ng-if="!question.heading">Q{{$index+1}}</span>
+                                    <span ng-if="question.heading">{{question.heading}}</span>
+                                    <md-button dnd-draggable="question"
+                                    dnd-moved="questions.splice($index, 1);"
+                                    dnd-effect-allowed="move"
+                                    dnd-type="'question'"
+                                    class="md-icon-button"
+                                    dnd-dragstart="navbarDragOn()"
+                                    dnd-dragend="navbarDragOff()"
+                                    aria-label="Move Question"
+                                    ng-hide="liveMode">
+                                    <md-icon ng-bind="'drag_indicator'" style="color: black;" ></md-icon>
+                                    </md-button>
+                            </md-nav-item>
+                            <md-button class="md-icon-button"  md-ripple-size="partial" ng-click="addQuestion()" aria-label="Add Question" ><md-icon layout="row" layout-align="center center"  ng-bind="'add'" style="color: black;" ng-hide="liveMode"></md-button>
+                            </md-nav-bar>   
+                            <div class="md-toolbar-tools" ng-if="catName">
+                                <div layout="row" layout-align="start center" flex ng-if="question">
+                                    <p flex layout="column" layout-align="center start" ng-hide="uidata.questionEdit">Q{{questionIndex+1}}: {{question.title}}</p>
+                                    <p flex layout="column" layout-align="center start" ng-show="uidata.questionEdit"></p>
+                                    <md-switch ng-model="uidata.questionEdit" ng-hide="liveMode" aria-label="Edit Question Title">Edit</md-switch>
+                                </div>
+                                <div layout="row">
+                                    <md-button class="md-icon-button"  md-ripple-size="partial" ng-click="addQuestion()" ng-hide="liveMode"><md-icon ng-bind="'add'" aria-label="Add Question"></md-button>
+                                    <md-button class="md-icon-button" md-ripple-size="partial" ng-click="deleteQuestion($index)" ng-if="question" ng-hide="liveMode"><md-icon ng-bind="'delete'" aria-label="Delete Question"></md-icon></md-button>
+                                    <md-button class="md-icon-button" md-ripple-size="partial" ng-click="nextQuestion()" ng-if="question"><md-icon ng-bind="'navigate_next'" aria-label="Next Question"></md-icon></md-button>
+                                </div>
+                            </div>
+                        </md-toolbar>
+                    </div>
+                        <div class="md-hue-1">
+                                <form layout-padding layout="row" name="editForm" ng-show="uidata.questionEdit"> 
+                                        <div class="flex flex-col" flex="100">
+                                            <md-input-container class="md-block">
+                                                <label>Question:
+                                                </label>
+                                                <input placeholder="The question to ask the customer" ng-model="question.title">
+                                            </md-input-container>
+                                            <md-input-container class="md-block">
+                                                <label>Docs Heading:
+                                                </label>
+                                                <input placeholder="Title when shown inside the doc article" ng-model="question.heading">
+                                            </md-input-container>
+                                            <md-input-container class="md-block">
+                                                <label>Context:
+                                                </label>
+                                                <textarea placeholder="A description of why I would need to do this and when." ng-model="question.context" rows="2"></textarea>
+                                            </md-input-container>
+                                            <md-input-container class="md-block">
+                                                <label>Explanation:
+                                                </label>
+                                                <textarea placeholder="A detailed introduction to the topic of {{question.heading}}." ng-model="question.explanation" rows="2"></textarea>
+                                            </md-input-container>
+                                        </div>
+                                    </form>
+                                <md-card ng-hide="liveMode">
+                                        <md-list-item class="md-2-line" ng-click="addChoice()" ng-if="question">
+                                            <p>+ Add Choice</p>
+                                        </md-list-item>
+                                    </md-card>
+                                    <md-content style="height: 800px;">
+                                            <section>
+                            <md-subheader class="md-primary" ng-hide="uidata.questionEdit" ng-if="question">{{question.heading}}
+                                <span></span>
+                            <md-divider></md-divider>
+                            </md-subheader>
+                            <span ng-if="question.explanation||question.context" ng-hide="uidata.questionEdit">
+                            <span ng-bind-html="fromMarkdown(question.context)"></span>
+                            <span ng-bind-html="fromMarkdown(question.explanation)"></span>
+                            </span><md-divider ng-if="question.explanation||question.context" ng-hide="uidata.questionEdit"></md-divider>
+                            <md-list> 
+                            <div dnd-list="question.choices" dnd-allowed-types="['choice']"  ng-repeat="choice in question.choices" layout="column">
+                                <md-card flex="nogrow">
+                                    <md-list-item ng-model="checked">
+                                        <div layout="column" flex="grow">
+                                            <span flex="grow" layout="row">
+                                                    <span layout="row" flex="grow" layout-align="start center" ng-switch on="choice.priority">
+                                                        <md-checkbox layout="row" layout-align="center center" ng-model="choice_$index" ng-show="liveMode" style="margin-bottom: 0;" aria-label="View Item"></md-checkbox>
+                                                        <md-checkbox layout="row" layout-align="center center" ng-model="checked" ng-hide="liveMode" style="margin-bottom: 0;" aria-label="View Item"></md-checkbox>
+                                                        <md-icon layout-align="start center" ng-bind="'arrow_upward'" ng-switch-when="high" style="color: red;"></md-icon>
+                                                        <md-icon layout-align="start center" ng-bind="'more_horiz'" ng-switch-when="medium" style="color: orange;"></md-icon>
+                                                        <md-icon layout-align="start center" ng-bind="'arrow_downward'" ng-switch-when="low" style="color: green;"></md-icon>
+                                                        <md-icon layout-align="start center" ng-bind="'close'" ng-switch-default style="color: blue;"></md-icon>
+                                                        <span layout-align="start center" flex="grow">{{choice.title}}
+                                                                <md-button layout-align="start center" md-no-ink="true" aria-label="Info" class="md-icon-button test-tooltip">
+                                                                        <md-tooltip ng-if="choice.answer_tooltip">{{choice.answer_tooltip}}</md-tooltip>
+                                                                        <md-icon layout-align="start center" ng-bind="'help_outline'" ng-if="choice.answer_tooltip" style="font-size: 16px; height: 12px;"></md-icon>
+                                                                    </md-button>
+                                                        </span>
+                                                    </span>
+                                                    <span layout="row" layout-align="end center" ng-hide="liveMode">
+                                                            <md-switch aria-label="Toggle ngShow" ng-model="checked"
+                                                            aria-label="Edit Choice"></md-switch>
+                                                            <md-button class="md-icon-button" ng-click="deleteChoice($index)" aria-label="Delete Choice"><md-icon ng-bind="'delete'"></md-icon></md-button>
+                                                            <md-button dnd-draggable="choice"
+                                                            dnd-type="'choice'"
+                                                            dnd-moved="question.choices.splice($index, 1)"
+                                                            dnd-effect-allowed="move"
+                                                            dnd-dragstart="dragChoiceStart()"
+                                                            dnd-dragend="dragChoiceEnd()"
+                                                            class="md-icon-button"
+                                                            aria-label="Move Choice">
+                                                            <md-icon ng-bind="'drag_indicator'"></md-icon>
+                                                            </md-button>
+                                                    </span>
+                                            </span>
+                                            <p class="md-caption" ng-hide="liveMode">Tooltip: {{choice.answer_tooltip}}</p>
+                                            <span class="padded" layout-padding md-whiteframe="2"  ng-hide="liveMode" ng-show="choice_$index">
+                                            <h3 ng-if="choice.heading">{{choice.heading}}</h3>
+                                            <h3 ng-if="!choice.heading">{{choice.title}} (No Docs Heading)</h3>
+                                            <div ng-bind-html="fromMarkdown(choice.output)"></div></span>
+                                            </span>
+                                            <p ng-show="choice_$index"></p>
+                                        </div>
+                                    </md-list-item>
+                                    <form layout-padding layout="row" name="editForm" ng-hide="liveMode"> 
+                                        <div class="flex flex-col" flex="100" ng-show="checked">
+                                            <md-input-container class="md-block">
+                                                <label>Choice:
+                                                </label>
+                                                <input placeholder="The choice presented to the user" ng-model="choice.title">
+                                            </md-input-container>
+                                            <md-input-container class="md-block">
+                                                <label>Docs Heading:
+                                                </label>
+                                                <input placeholder="Title when shown inside the doc article" ng-model="choice.heading">
+                                            </md-input-container>
+                                            <md-input-container class="md-block">
+                                                <label>Tooltip:
+                                                </label>
+                                                <input placeholder="A popup tooltip with more information" ng-model="choice.answer_tooltip">
+                                            </md-input-container>
+                                            <md-input-container class="md-block">
+                                                <label>Output:
+                                                </label>
+                                                <textarea placeholder="Output displayed in docs and when assessment is complete" ng-model="choice.output" rows="2"></textarea>
+                                            </md-input-container>
+                                            <md-input-container class="md-block">
+                                                <label>Priority:
+                                                </label>
+                                                <md-select ng-model="choice.priority">
+                                                    <md-option value="high">
+                                                        High
+                                                    </md-option>
+                                                    <md-option value="medium">
+                                                        Medium
+                                                    </md-option>
+                                                    <md-option value="low">
+                                                        Low
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                    </form>
+                                </md-card>
+                            </div>
+                        </md-list></section></md-content>
+                        </div>
+                    </div>
+                <md-button class="md-raised md-primary" md-ripple-size="partial" ng-click="nextQuestion()" ng-show="liveMode" aria-label="Next Question">Next Question</md-button>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- End Copy to Markdown-->
+    </body>
+</html>

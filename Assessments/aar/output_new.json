@@ -1,0 +1,1351 @@
+{
+ "asssessment_id": "1",
+ "output_id": "aar_output",
+ "display_summary": true,
+ "output_elements": [
+  {
+   "type": "NOT failure_resistance_A",
+   "content": "markdown",
+   "logic": "Governance Assessment Results",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "NOT failure_resistance_B",
+   "content": "markdown",
+   "logic": "1. VMs: [https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-windows-manage-availability/](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-windows-manage-availability/)\n2. Azure App Service: [https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-choose-me/#scaling-and-management](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-choose-me/)",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "NOT failure_resistance_C",
+   "content": "html",
+   "logic": "If your application is not configured to scale out automatically as load increases, it's possible that your application's services will fail if they become saturated with user requests.",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "NOT failure_resistance_D",
+   "content": "html",
+   "logic": "[https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview/](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview/)",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "NOT failure_resistance_E",
+   "content": "html",
+   "logic": "[https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-windows-manage-availability/](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-windows-manage-availability/)",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "NOT failure_resistance_E",
+   "content": "html",
+   "logic": "https://docs.microsoft.com/en-us/azure/site-recovery/",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "NOT failure_resistance_F",
+   "content": "markdown",
+   "logic": "[https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions](https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions)",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "NOT failure_resistance_H",
+   "content": "markdown",
+   "logic": "[https://docs.microsoft.com/en-us/azure/architecture/patterns/health-endpoint-monitoring](https://docs.microsoft.com/en-us/azure/architecture/patterns/health-endpoint-monitoring)",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "NOT data_management_E",
+   "content": "markdown",
+   "logic": "[https://docs.microsoft.com/en-us/azure/storage/storage-redundancy/#read-access-geo-redundant-storage](https://docs.microsoft.com/en-us/azure/storage/storage-redundancy/)",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Deploy the application in multiple Azure paired regions. Use auto-failover and active geo-replication for SQL Database. Use Azure Managed Database Services for turnkey global distribution. Deploy multiple instances of the web app.",
+   "content": "NOT resiliency_application_design0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Consider adopting a microservices architecture.",
+   "content": "NOT resiliency_application_design1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Service Bus Queues between the front end and back end.",
+   "content": "NOT resiliency_application_design2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use the Throttling pattern.",
+   "content": "NOT resiliency_application_design3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Deploy multiple instances of the web app. Deploy the application in multiple Azure paired regions.",
+   "content": "NOT resiliency_deployment_and_maintenance0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Continuous Integration and Delivery with Visual Studio Team Services (VSTS).",
+   "content": "NOT resiliency_deployment_and_maintenance1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use staging slots in Azure App Service.",
+   "content": "NOT resiliency_deployment_and_maintenance2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use an App Service plan that offers multiple instances. Use virtual machine scale set. Deploy multiple instances of the web app.",
+   "content": "NOT resiliency_deployment_and_maintenance3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Storage replication.",
+   "content": "NOT resiliency_data_management0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize auto-failover and active geo-replication for SQL Database. Use Azure Managed Database Services for turnkey global distribution.",
+   "content": "NOT resiliency_data_management1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Practice appropriate consistency and isolation level while making database connection.",
+   "content": "NOT resiliency_data_management2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ Azure to Azure Site Recovery.",
+   "content": "NOT resiliency_data_management3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Set SQL Connection timeout to 30s. Use guidance on troubleshoot, diagnose, and prevent SQL connection errors and transient errors for SQL Database.",
+   "content": "NOT resiliency_errors_and_failures0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use the Retry pattern.",
+   "content": "NOT resiliency_errors_and_failures1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use the Circuit Breaker pattern.",
+   "content": "NOT resiliency_errors_and_failures2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize Application Gateway health monitoring. Use Azure Traffic Manager health probing.",
+   "content": "NOT resiliency_errors_and_failures3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use the CQRS pattern in Azure.",
+   "content": "NOT resiliency_errors_and_failures4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Log Analytics for a detailed reporting on errors and failures. Employ Service Map and Application Map for coherent error/failure reporting.",
+   "content": "NOT resiliency_monitoring_and_disaster_recovery0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Application Gateway health monitoring. Utilize Azure Traffic Manager health probing.",
+   "content": "NOT resiliency_monitoring_and_disaster_recovery1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure to Azure Site Recovery.",
+   "content": "NOT resiliency_monitoring_and_disaster_recovery2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Monitor to monitor services/infrastructure. Build a customized Azure dashboard. Review monitoring Azure applications and resources guidance.",
+   "content": "NOT resiliency_monitoring_and_disaster_recovery3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Consider adopting a microservices architecture.",
+   "content": "NOT scalability_application_design0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ the Load Levelling pattern using Azure queues/questions.",
+   "content": "NOT scalability_application_design1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Identify a correlation between app instance scaling and database scaling units.",
+   "content": "NOT scalability_application_design2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Avoid using Application Request Routing (ARR) Affinity in the App Service Environment (ASE).",
+   "content": "NOT scalability_application_design3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Autoscaling guidance. Implement autoscale for services.",
+   "content": "NOT scalability_application_design4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review background jobs guidance. Use Azure Logic Apps to create and schedule regularly running tasks.",
+   "content": "NOT scalability_application_design5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Implement partitioning guidance to meet scalability requirements.",
+   "content": "NOT scalability_data_management0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Data Consistency Primer guidance. Ensure appropriate consistency and isolation level while making database connections.",
+   "content": "NOT scalability_data_management1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use batch queries over multiple and frequent queries.",
+   "content": "NOT scalability_data_management2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review caching guidance. Use the Queue-Based Load Leveling pattern. Use Service Bus Queue/question. Employ Azure Redis Cache to cache frequently used data.",
+   "content": "NOT scalability_data_management3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Consider using Azure Cosmos DB for storing XML/JSON documents.",
+   "content": "NOT scalability_data_management4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review Query Tuning guidance. Utilize automatic tuning in Azure SQL Database. Use Azure Managed Database Services for automatic tuning.",
+   "content": "NOT scalability_data_management5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Manage future growth with choices provided by Azure SQL Database. Use Azure Managed Database Services for built-in security, automatic monitoring, threat detection, automatic tuning, and turnkey global distribution.",
+   "content": "NOT scalability_data_management6",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review content delivery network guidance. Utilize cache control headers when applicable.",
+   "content": "NOT scalability_data_management7",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use the Asynchronous Programming pattern available in your programming language.",
+   "content": "NOT scalability_implementation0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Ensure appropriate consistency and isolation level while making database connection.",
+   "content": "NOT scalability_implementation1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use GZip compression in web.config. Utilize bundling and minification.",
+   "content": "NOT scalability_implementation2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use SQL Database connection pooling.",
+   "content": "NOT scalability_implementation3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Run VSTS load testing for regular stress testing to identify and fix hotspots.",
+   "content": "NOT scalability_implementation4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review resiliency requirements guidance.",
+   "content": "NOT resiliency_requirements0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Perform failure mode analysis to identify possible failures, impacts, and recovery strategies.",
+   "content": "NOT resiliency_application_design0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize an App Service plan that offers multiple instances. Use virtual machine scale sets. Deploy multiple instances of the web app.",
+   "content": "NOT resiliency_application_design1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Implement autoscale for services.",
+   "content": "NOT resiliency_application_design2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Adopt Load Balancer to distribute the load on the application. Use Azure Traffic Manager.",
+   "content": "NOT resiliency_application_design3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Deploy the application in multiple Azure paired regions. Deploy multiple instances of the web app.",
+   "content": "NOT resiliency_application_design4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use business continuity and disaster recovery (BCDR): Azure paired regions.",
+   "content": "NOT resiliency_application_design5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use the Health Endpoint Monitoring pattern.",
+   "content": "NOT resiliency_application_design6",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review monitoring and diagnostics guidance. Utilize Analytics in Application Insights to predict reliability issues and monitor third-party SLAs.",
+   "content": "NOT resiliency_application_design7",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Implement the Health Endpoint Monitoring pattern.",
+   "content": "NOT resiliency_application_design8",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use the Retry pattern and Circuit Breaker pattern. Use resiliency strategies and asynchronous programming with async and await.",
+   "content": "NOT resiliency_application_design9",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Storage replication and SQL Database active geo-replication to ensure that the application's data requirements are satisfied. Employ Azure Managed Database Services for turnkey global distribution.",
+   "content": "NOT resiliency_data_management0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Keep user permissions separate between production and backup data.",
+   "content": "NOT resiliency_data_management1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use auto-failover and active geo-replication for SQL Database. Employ Azure Managed Database Services for built-in resiliency.",
+   "content": "NOT resiliency_data_management2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use automatic SQL Database backups.",
+   "content": "NOT resiliency_data_management3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use WAF in front of a web app. Review Azure DDoS Protection guidance. Utilize Azure Key Vault to manage secrets, such as _connectionstring._",
+   "content": "NOT resiliency_security0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use RBAC with Azure AD for Azure subscription. Utilize Azure Security Center for threat detection and protection.",
+   "content": "NOT resiliency_security1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Site Recovery failback process for servers.",
+   "content": "NOT resiliency_testing0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Test the application by simulating or triggering real failures, such as deleting certificates, artificially consuming system resources, or deleting a storage source.",
+   "content": "NOT resiliency_testing1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use load testing with VSTS to identify application behavior under load.",
+   "content": "NOT resiliency_testing2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS release management for end-to-end traceability. Utilize VSTS history and auditing for a consolidated view of changes to code and infrastructure.",
+   "content": "NOT resiliency_deployment0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use the blue/green or canary release deployment technique.",
+   "content": "NOT resiliency_deployment1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS release management for end-to-end traceability. Utilize VSTS history and auditing for a consolidated view of changes to code and infrastructure.",
+   "content": "NOT resiliency_deployment2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use App Service deployment slots to fall back on last-known good menu. Run VSTS conditional rollback.",
+   "content": "NOT resiliency_deployment3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review monitoring and diagnostics guidance. Review monitoring Azure applications and resources guidance.",
+   "content": "NOT resiliency_operations0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ usage analysis with Application Insights.",
+   "content": "NOT resiliency_operations1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review retry service-specific guidance.",
+   "content": "NOT resiliency_operations2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use action groups to ensure people receive alerts.",
+   "content": "NOT resiliency_operations3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Train multiple people on Azure Monitor. Send alerts and notifications to multiple recipients.",
+   "content": "NOT resiliency_operations4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review Azure subscription limits.",
+   "content": "NOT resiliency_operations5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS load testing for regular stress testing to identify and fix capacity hotspots.",
+   "content": "NOT resiliency_operations6",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review SQL Database choices and performance guidance. Use Azure Managed Database Services for built-in automatic tuning.",
+   "content": "NOT resiliency_operations7",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Understand Azure support plans. Refer to Azure support FAQs. Familiarize your team with Azure support.",
+   "content": "NOT resiliency_operations8",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Application Insights to log and monitor application events and exceptions.",
+   "content": "NOT resiliency_telemetry0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use the asynchronous programming with async and await pattern.",
+   "content": "NOT resiliency_telemetry1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Service Map and Application Map for logs across multiple components.",
+   "content": "NOT resiliency_telemetry2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Adopt VSTS Agile as a single source of truth for all stakeholders to avoid mismatched expectations and to give an accurate picture of the current status.",
+   "content": "NOT dev_ops_culture0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize VSTS continuous testing. Use VSTS Test Case Management for documenting and fixing bugs after test execution. Practice VSTS Unit, Integration, and UAT testing for code coverage.",
+   "content": "NOT dev_ops_culture1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS dashboards and VSTS Power BI integration for data-driven reporting and improvement.",
+   "content": "NOT dev_ops_culture2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Track ideas to implementation using VSTS work-item tracking. Implement DevOps using VSTS.",
+   "content": "NOT dev_ops_culture3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS Wiki to distribute information, share knowledge, and collaborate.",
+   "content": "NOT dev_ops_culture4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS load testing with cloud scale and mimic real- life, peak-usage scenario.",
+   "content": "NOT dev_ops_development0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ Azure Resource Manager and VSTS to implement infrastructure-as- code model.",
+   "content": "NOT dev_ops_development1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Monitor, Azure Advisor, Azure Service Health, Activity Log, Azure Application Insights, Log Analytics, ExpressRoute monitor, Service Map, availability tests, and general monitoring Azure applications and resources.",
+   "content": "NOT dev_ops_development2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Track technical debt using SonarQube with Visual Studio Team Services (VSTS).",
+   "content": "NOT dev_ops_development3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use feature toggles and canary releases. Utilize App Service deployment slots to safely deploy applications.",
+   "content": "NOT dev_ops_development4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review development and test guidance. Use VSTS continuous testing. Use VSTS Test Case Management for documenting and fixing bugs after test execution. Practice VSTS Unit, Integration, and UAT testing for code coverage.",
+   "content": "NOT dev_ops_testing0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use App Service deployment slots for testing in production.",
+   "content": "NOT dev_ops_testing1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Practice VSTS load testing with cloud scale.",
+   "content": "NOT dev_ops_testing2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS load testing for regular stress testing to identify and fix resource limitations.",
+   "content": "NOT dev_ops_testing3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Request a penetration test for your application.",
+   "content": "NOT dev_ops_testing4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Review guidance on disaster recovery for Azure applications. Use Azure Site Recovery drills.",
+   "content": "NOT dev_ops_testing5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS Release Management for continuous delivery of software at a faster pace and with lower risk.",
+   "content": "NOT dev_ops_release0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ VSTS continuous integration to build, test, and deploy applications quickly.",
+   "content": "NOT dev_ops_release1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS continuous delivery to deploy tested code automatically.",
+   "content": "NOT dev_ops_release2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS extensions to create documentation from source code. Utilize VSTS history and auditing for a consolidated view of changes to code and infrastructure.",
+   "content": "NOT dev_ops_release3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS access management to grant or restrict access to resources and features you want to control. Use Azure Automation Change Tracking.",
+   "content": "NOT dev_ops_release4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Monitor, Azure Advisor, Azure Service Health, Activity Log, Azure Application Insights, Log Analytics, ExpressRoute monitor, Service Map, availability tests, and general monitoring Azure applications and resources.",
+   "content": "NOT dev_ops_monitoring0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Log Analytics for viewing data for a particular application. Utilize Service Map and Application Map for logs across multiple components.",
+   "content": "NOT dev_ops_monitoring1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Create, view, and manage alerts using Azure Monitor. Use Log Analytics Alerts based on conditions in Log Analytics data.",
+   "content": "NOT dev_ops_monitoring2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure VM expire and certificate monitoring.",
+   "content": "NOT dev_ops_monitoring3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Automation for complete control during deployment, operations, and decommissioning of workloads and resources.",
+   "content": "NOT dev_ops_management0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize Azure Resource Manager templates and scripts for automated resource provisioning.",
+   "content": "NOT dev_ops_management1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use VSTS hosted CI/CD for containers to create and deploy containers.",
+   "content": "NOT dev_ops_management2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Operations Management Suite (OMS) for process automation.",
+   "content": "NOT dev_ops_management3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ third-party extensions such as Remedy OnDemand to notify on-call responders for critical VSTS work items.",
+   "content": "NOT dev_ops_management4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Practice agile planning and portfolio management with VSTS for a full view of the work escalation and decomposition of tasks.",
+   "content": "NOT dev_ops_management5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ VSTS configuration management for visibility to dev and operations teams. Use PowerShell DSC for configuration management.",
+   "content": "NOT dev_ops_management6",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Understand Azure support plans. Refer to Azure Support FAQs.",
+   "content": "NOT dev_ops_management7",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use role-based access control (RBAC) to grant access based on Azure Active Directory identities and groups.",
+   "content": "NOT dev_ops_management8",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize VSTS bug tracking tool for establishing links between code and bugs. Use Bugzilla integration with VSTS.",
+   "content": "NOT dev_ops_management9",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ VSTS history and auditing for a consolidated view of changes to code and infrastructure.",
+   "content": "NOT dev_ops_management10",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure DDoS Protection to prevent volumetric attacks, protocol attacks, and resource (application)-layer attacks.",
+   "content": "NOT security_network_boundary_security0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Firewall for built-in high availability and unrestricted cloud scalability. Utilize Azure IP address to determine which traffic is passed in, and how and where it's translated on to the virtual network.",
+   "content": "NOT security_network_boundary_security1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Virtual Network to allow VMs to securely communicate with each other, the Internet, and on- premises networks.",
+   "content": "NOT security_network_boundary_security2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ Azure Virtual Network Subnet to designate separate address spaces for different elements or \u201ctiers\u201d within the workload, define different access policies, and control traffic flows between the tiers.",
+   "content": "NOT security_network_boundary_security3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Virtual Network User Defined Routes (UDR) to control next hop for traffic between Azure, on-premises, and Internet resources through virtual appliance, virtual network gateway, virtual network, or Internet.",
+   "content": "NOT security_network_boundary_security4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Network Appliances from Azure Marketplace to deploy a variety of preconfigured network virtual appliances. Utilize Application Gateway WAF to detect and protect against common web attacks.",
+   "content": "NOT security_network_boundary_security5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use network security groups (NSGs) to allow or deny traffic to and from single IP address, to and from multiple IP addresses, or even to and from entire subnets.",
+   "content": "NOT security_network_security0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ Azure Virtual Network User Defined Routes (UDR) to customize the routing configuration for deployments.",
+   "content": "NOT security_network_security1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize forced tunneling to ensure that connections to the Internet go through corporate network security devices.",
+   "content": "NOT security_network_security2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Marketplace to provision devices for higher levels of network security than with network-level access controls.",
+   "content": "NOT security_network_security3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure site-to-site VPN or ExpressRoute to set up cross- premises connectivity to on- premises networks.",
+   "content": "NOT security_network_security4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize Azure Traffic Manager to load balance connections to services based on the location of the user and/or other criteria.",
+   "content": "NOT security_network_security5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Disable RDP/SSH access to Azure Virtual Machines and use VPN/ExpressRoute to access these virtual machines for remote management.",
+   "content": "NOT security_network_security6",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Employ Azure Security Center for increased visibility into, and control over, the security of Azure resources, integrated security monitoring, and policy management across Azure subscriptions.",
+   "content": "NOT security_network_security7",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Network Watcher to understand, diagnose, and gain insights to the network in Azure.",
+   "content": "NOT security_network_security8",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize packet capture to set alerts and gain access to real- time performance information at the packet level.",
+   "content": "NOT security_network_security9",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use network security group flow logs to gather data for compliance, auditing, and monitoring of your network security profile.",
+   "content": "NOT security_network_security10",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Network Watcher troubleshooter to diagnose most common VPN gateway and connections issues.",
+   "content": "NOT security_network_security11",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use firewall rules to restrict database access. Utilize Virtual Network service endpoints to secure databases to only your virtual networks.",
+   "content": "NOT security_database_security0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use database authentication. Employ Azure Managed Database Services for built-in security, automatic monitoring, threat detection, automatic tuning, and turnkey global distribution.",
+   "content": "NOT security_database_security1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Protect data using encryption. Use Storage Encryption, Disk Encryption, and SQL Encryption to encrypt data in Azure.",
+   "content": "NOT security_database_security2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure site-to-site VPN or ExpressRoute or application- level SSL/TLS for protection.",
+   "content": "NOT security_database_security3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Enable database auditing. Use Azure Managed Database Services for built-in security, automatic monitoring, threat detection, automatic tuning, and turnkey global distribution.",
+   "content": "NOT security_database_security4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Enable database threat detection.",
+   "content": "NOT security_database_security5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure AD MFA to secure data and application access without added hassles for customers. Enforce MFA.",
+   "content": "NOT security_data_storage_security0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use role-based access control (RBAC).",
+   "content": "NOT security_data_storage_security1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Disk Encryption to protect and safeguard data to meet organizational security and compliance commitments. Encrypt Azure Virtual Machines.",
+   "content": "NOT security_data_storage_security2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Key Vault to safeguard cryptographic keys and other secrets used by cloud apps and services. Use Hardware Security Modules.",
+   "content": "NOT security_data_storage_security3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Information Protection to secure email, documents, and sensitive data shared outside the company. Manage with Secure Workstations.",
+   "content": "NOT security_data_storage_security4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Managed Disks for persistent and secure disk storage for Azure virtual machines. Enforce file-level data encryption.",
+   "content": "NOT security_data_storage_security5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Centralize identity management.",
+   "content": "NOT security_identity_management_and_access_control_security0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Enable Single Sign-On (SSO).",
+   "content": "NOT security_identity_management_and_access_control_security1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Deploy password management.",
+   "content": "NOT security_identity_management_and_access_control_security2",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Enforce MFA for users.",
+   "content": "NOT security_identity_management_and_access_control_security3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use RBAC.",
+   "content": "NOT security_identity_management_and_access_control_security4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Control resource creation using Resource Manager.",
+   "content": "NOT security_identity_management_and_access_control_security5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Guide developers to leverage identity capabilities for SaaS apps.",
+   "content": "NOT security_identity_management_and_access_control_security6",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Actively monitor for suspicious activities.",
+   "content": "NOT security_identity_management_and_access_control_security7",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Limit and constrain administrative access.",
+   "content": "NOT security_identity_management_and_access_control_security8",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Security Compliance Manager to import the current configuration by using either group policies based on Active Directory or configuration of a \u201cgolden master\u201d reference machine by using the LocalGPO tool. You can then import the local group policy into Security Compliance Manager.",
+   "content": "NOT security_operational_security0",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Install and manage antimalware.",
+   "content": "NOT security_operational_security1",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize Azure Monitor to get the granular, up-to-date monitoring data all in one place. Use monitoring services.",
+   "content": "NOT security_operational_security3",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Utilize Azure Monitor to get the granular, up-to-date monitoring data all in one place. Review monitor, manage, and protect cloud infrastructure guidance.",
+   "content": "NOT security_operational_security4",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Operations Management Suite (OMS) Security and Audit Solution to collect and processes data about resources.",
+   "content": "NOT security_operational_security5",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Security Center for security management and advanced threat protection across hybrid cloud workloads. Review trace requests, analyze usage trends, and diagnose issues guidance.",
+   "content": "NOT security_operational_security6",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Azure Security Center for security management and advanced threat protection across hybrid cloud workloads. Review Prevent, detect, and respond to threats guidance.",
+   "content": "NOT security_operational_security7",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  },
+  {
+   "type": "Use Secure DevOps Kit for Azure to build and deploy applications on Azure with security integrated at every step.",
+   "content": "NOT security_operational_security8",
+   "logic": "markdown",
+   "control_config": {
+    "height": "10%"
+   }
+  }
+ ]
+}

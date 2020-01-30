@@ -1,0 +1,666 @@
+{ 
+    "id": "1", 
+    "title": "CAF Governance Assessment",
+    "category": [{
+        "id": "org_readiness",
+        "name": "Organization Readiness",
+        "questions":[{
+                "id": "1", 
+                "title": "Rate the importance of each of the following statements.", 
+                "explanation": "", 
+                "context": "",
+                "type": "likert_matrix",
+                "scale": [ 
+                    { 
+                        "id": "A", 
+                        "title": "Don't know",
+                        "score": 0
+                    }, 
+                    { 
+                        "id": "B", 
+                        "title": "Not Important",
+                        "score": 1
+                    }, 
+                    { 
+                        "id": "C", 
+                        "title": "Somewhat important",
+                        "score": 2
+                    }, 
+                    { 
+                        "id": "D", 
+                        "title": "Very Important",
+                        "score": 3
+                    },
+                    { 
+                        "id": "E", 
+                        "title": "Critical",
+                        "score": 4
+                    } 
+                ], 
+                "rows" :[
+                    {
+                        "id": "1",
+                        "title": "Having executive leadership actively support large change initiatives and help remove barriers."
+                    },
+                    {
+                        "id": "2",
+                        "title": "Establishing a cross-functional organization structure that supports collaborative strategic roadmap development."
+                    }
+                ],                
+                "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "Evaluate your organization against each of the following statements. ", 
+            "explanation": "", 
+            "context": "",
+            "type": "likert_matrix",
+            "scale": [ 
+                { 
+                    "id": "A", 
+                    "title": "Does not exist",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Exists, but not formalized",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Formalized, but requires development",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Formalized and performing",
+                    "score": 3
+                }
+            ], 
+            "rows" :[
+                {
+                    "id": "1",
+                    "title": "We have an established structure with representation from Business, Finance, and IT to advocate, support and influence across the company."
+                },
+                {
+                    "id": "2",
+                    "title": "We have a dedicated Cloud Strategy team that consists of influencers from Finance, impacted Line of Business units, and Technical Architects."
+                },
+                {
+                    "id": "3",
+                    "title": "We have a dedicated Cloud Governance team that consists of subject matter experts from Security, IT Ops and Business Decision Makers to assess business risks and tolerance levels."
+                },
+                {
+                    "id": "4",
+                    "title": "We have a dedicated Cloud Migration team that consists of subject matter experts that have strong awareness of current technical estate."
+                },
+                {
+                    "id": "5",
+                    "title": "We have top down support and push to adopt the cloud."
+                },
+                {
+                    "id": "6",
+                    "title": "We have adequate training for our developers to ensure they are building safe apps (e.g., cross site scripting, cross origin resource sharing, script injection, using HTTPS)."
+                }
+            ],
+            "display_logic": ""
+    }]
+    },{
+        "id": "cost_management",
+        "name": "Cost Management",
+        "questions":[{
+                "id": "1", 
+                "title": "Rate the importance of each of the following statements.", 
+                "explanation": "", 
+                "context": "",
+                "type": "likert_matrix",
+                "scale": [ 
+                    { 
+                        "id": "A", 
+                        "title": "Don't know",
+                        "score": 0
+                    }, 
+                    { 
+                        "id": "B", 
+                        "title": "Not Important",
+                        "score": 1
+                    }, 
+                    { 
+                        "id": "C", 
+                        "title": "Somewhat important",
+                        "score": 2
+                    }, 
+                    { 
+                        "id": "D", 
+                        "title": "Very Important",
+                        "score": 3
+                    },
+                    { 
+                        "id": "E", 
+                        "title": "Critical",
+                        "score": 4
+                    } 
+                ], 
+                "rows" :[
+                    {
+                        "id": "1",
+                        "title": "Creating comprehensive plans to<BR>(a) identify business outcomes enabled by the cloud and <BR>(b) identify expected usage/cost patterns from resources supporting those business outcomes."
+                    },
+                    {
+                        "id": "2",
+                        "title": "Organizing resources to maximize insights into cost attribution (and business impact) to have accountability for efficient spending."
+                    },
+                    {
+                        "id": "3",
+                        "title": "Leveraging tagging feature to categorize resources for managing and billing to reduce unnecessary costs in subscriptions."
+                    }
+                ],
+                
+                "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "Select the mix that most closely aligns with your current IT budget allocation ", 
+            "explanation": "", 
+            "context": null,
+            "type": "image_selector",
+            "choices": [ 
+                { 
+                    "id": "2A", 
+                    "alt": "80% On-Prem, 15% Modern",
+                    "url": "https://cafbaseline.com/images/chart1.PNG",
+                    "score": "We need to figure this out"
+                }, 
+                { 
+                    "id": "2B", 
+                    "alt": "60% On-Prem, 30% Modern, 10% Experimentation",
+                    "title": "https://cafbaseline.com/images/chart2.PNG",
+                    "score": "We need to figure this out"
+                }, 
+                { 
+                    "id": "2C", 
+                    "alt": "25% On-Prem, 35% Modern, 40% Experimentation",
+                    "title": "https://cafbaseline.com/images/chart3.PNG",
+                    "score": "We need to figure this out"
+                }
+            ], 
+            "display_logic": [] 
+    },{
+        "id": "3", 
+        "title": "Evaluate your processes against each of the following statements.", 
+        "explanation": "", 
+        "context": "",
+        "type": "likert_matrix",
+        "scale": [ 
+            { 
+                "id": "A", 
+                "title": "Ad-hoc, no process",
+                "score": 0
+            }, 
+            { 
+                "id": "B", 
+                "title": "Exists, but not consistent",
+                "score": 1
+            }, 
+            { 
+                "id": "C", 
+                "title": "Generally consistent",
+                "score": 2
+            }, 
+            { 
+                "id": "D", 
+                "title": "Formalized and performing",
+                "score": 3
+            }
+        ], 
+        "rows" :[
+            {
+                "id": "1",
+                "title": "We understand the accounting change from Capital expense (CapEx) to Operating Expense (OpEx) and have a funding process for expense intensive projects."
+            },
+            {
+                "id": "2",
+                "title": "We have a well-developed cost accounting model, and we can effectively manage plan vs. actual spend. We have a clear understanding of our current spend trajectory. We understand how to manage spend, if things spike."
+            },
+            {
+                "id": "3",
+                "title": "We have a cloud accounting model, for Show Back, Charge Back, Awareness Back, or Central IT cost structures. We have processes for allocating cost accordingly."
+            },
+            {
+                "id": "4",
+                "title": "We have a documented and agreed to policy for cost allocation, shared costs across projects and costs specific to a project."
+            },
+            {
+                "id": "5",
+                "title": "When architecting solutions, we have a clear understanding of the cost tradeoffs of each option and they factor into our decision."
+            }
+        ],        
+        "display_logic": ""
+}]
+    },{
+        "id": "resource_consistency",
+        "name": "Resource Consistency",
+        "questions":[{
+                "id": "1", 
+                "title": "Rate the importance of each of the following statements.", 
+                "explanation": "", 
+                "context": "",
+                "type": "likert_matrix",
+                "scale": [ 
+                    { 
+                        "id": "A", 
+                        "title": "Don't know",
+                        "score": 0
+                    }, 
+                    { 
+                        "id": "B", 
+                        "title": "Not Important",
+                        "score": 1
+                    }, 
+                    { 
+                        "id": "C", 
+                        "title": "Somewhat important",
+                        "score": 2
+                    }, 
+                    { 
+                        "id": "D", 
+                        "title": "Very Important",
+                        "score": 3
+                    },
+                    { 
+                        "id": "E", 
+                        "title": "Critical",
+                        "score": 4
+                    } 
+                ], 
+                "rows" :[
+                    {
+                        "id": "1",
+                        "title": "Knowing and understanding available resource providers and resources to help define resources and deploy to Azure."
+                    },
+                    {
+                        "id": "2",
+                        "title": "Deploying, managing and monitoring all resources by business unit, solution, workload, or application."
+                    },
+                    {
+                        "id": "3",
+                        "title": "Ensuring stability, performance, uptime across applications, workloads, and solutions that support the business."
+                    },
+                    {
+                        "id": "4",
+                        "title": "Speed to remediation of performance or uptime for mission critical applications, workloads, or solutions."
+                    }
+                ],
+                
+                "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "Evaluate your processes against each of the following statements. ", 
+            "explanation": "", 
+            "context": "",
+            "type": "likert_matrix",
+            "scale": [ 
+                { 
+                    "id": "A", 
+                    "title": "Ad-hoc, no process",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Exists, but not consistent",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Generally consistent",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Formalized and performing",
+                    "score": 3
+                }
+            ], 
+            "rows" :[
+                {
+                    "id": "1",
+                    "title": "Our subscription and tagging strategies align with cloud accounting models, global deployment needs, and Resource Consistency policies."
+                },
+                {
+                    "id": "2",
+                    "title": "All resources related to a single application or single type are managed collectively."
+                }
+            ],
+            
+            "display_logic": ""
+    }]
+    },{
+        "id": "security_baseline",
+        "name": "Security Baseline",
+        "questions":[{
+                "id": "1", 
+                "title": "Rate the importance of each of the following statements.", 
+                "explanation": "", 
+                "context": "",
+                "type": "likert_matrix",
+                "score_group": "business priority",
+                "scale": [ 
+                    { 
+                        "id": "A", 
+                        "title": "Don't know",
+                        "score": 0
+                    }, 
+                    { 
+                        "id": "B", 
+                        "title": "Not Important",
+                        "score": 1
+                    }, 
+                    { 
+                        "id": "C", 
+                        "title": "Somewhat important",
+                        "score": 2
+                    }, 
+                    { 
+                        "id": "D", 
+                        "title": "Very Important",
+                        "score": 3
+                    },
+                    { 
+                        "id": "E", 
+                        "title": "Critical",
+                        "score": 4
+                    } 
+                ], 
+                "rows" :[
+                    {
+                        "id": "1",
+                        "title": "Preventing exploits by continuously monitoring and applying security recommendations across machines, networks, and Azure services."
+                    },
+                    {
+                        "id": "2",
+                        "title": "Preventing loss or leaks of data, including Personally Identifiable information (PII) or other forms of high priority data."
+                    },
+                    {
+                        "id": "3",
+                        "title": "Stopping unauthorized traffic or other forms of intrusion that could compromise the network or other IT assets."
+                    }
+                ],
+                
+                "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "Rate the importance of each of the following statements.", 
+            "explanation": "", 
+            "context": "",
+            "type": "likert_matrix",
+            "scale": [ 
+                { 
+                    "id": "A", 
+                    "title": "Ad-hoc, no process",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Exists, but not consistent",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Generally consistent",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Formalized and performing",
+                    "score": 3
+                } 
+            ], 
+            "rows" :[
+                {
+                    "id": "1",
+                    "title": "We have processes in place to ensure production resources have the right safeguards (resource consistency, security and audits)."
+                },
+                {
+                    "id": "2",
+                    "title": "We have implemented a data classification model, along with an access policy model, to ensure that only the right individuals have access to High Business Impact (HBI) data and even then, only with the required authentication."
+                },
+                {
+                    "id": "3",
+                    "title": "Data classification ensures there are adequate security measures in place to protect sensitive information."
+                },
+                {
+                    "id": "4",
+                    "title": "Data is always encrypted at rest."
+                },
+                {
+                    "id": "5",
+                    "title": "Data is always encrypted in motion."
+                },
+                {
+                    "id": "6",
+                    "title": "We use tools to look for patterns in the data that might indicate malicious activity."
+                },
+                {
+                    "id": "7",
+                    "title": "Network intrusion detection is setup to ensure only required ports and routes are open."
+                },
+                {
+                    "id": "8",
+                    "title": "Security for the machines, networks and Azure services is continuously monitored, and we use actionable security recommendations to remediate issues before they can be exploited."
+                }
+            ],
+            
+            "display_logic": ""
+    }]
+    },{
+        "id": "identity_baseline",
+        "name": "Identity Baseline",
+        "questions":[{
+                "id": "1", 
+                "title": "Rate the importance of each of the following statements.", 
+                "explanation": "", 
+                "context": "",
+                "type": "likert_matrix",
+                "scale": [ 
+                    { 
+                        "id": "A", 
+                        "title": "Don't know",
+                        "score": 0
+                    }, 
+                    { 
+                        "id": "B", 
+                        "title": "Not Important",
+                        "score": 1
+                    }, 
+                    { 
+                        "id": "C", 
+                        "title": "Somewhat important",
+                        "score": 2
+                    }, 
+                    { 
+                        "id": "D", 
+                        "title": "Very Important",
+                        "score": 3
+                    },
+                    { 
+                        "id": "E", 
+                        "title": "Critical",
+                        "score": 4
+                    } 
+                ], 
+                "rows" :[
+                    {
+                        "id": "1",
+                        "title": "Having a holistic view to manage users across the enterprise with a single identity and sign-on."
+                    },
+                    {
+                        "id": "2",
+                        "title": "Conducting regular review of access rights and recurring access recertification configuration for all users in administrator roles."
+                    },
+                    {
+                        "id": "3",
+                        "title": "Enabling just-in-time access, and role change alerting capabilities to provide a comprehensive set of governance controls to help secure company's resources."
+                    }
+                ],
+                
+                "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "Rate the importance of each of the following statements.", 
+            "explanation": "", 
+            "context": "",
+            "type": "likert_matrix",
+            "scale": [ 
+                { 
+                    "id": "A", 
+                    "title": "Ad-hoc, no process",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Exists, but not consistent",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Generally consistent",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Formalized and performing",
+                    "score": 3
+                }
+            ], 
+            "rows" :[
+                {
+                    "id": "1",
+                    "title": "Our identity tools are constantly scanning the environment for malicious actors."
+                },
+                {
+                    "id": "2",
+                    "title": "We effectively use RBAC to manage access."
+                },
+                {
+                    "id": "3",
+                    "title": "We periodically audit our identity policies."
+                },
+                {
+                    "id": "4",
+                    "title": "We have a clear process to understand Role definitions and Role assignments when enabling RBAC to manage access to resources in Azure."
+                },
+                {
+                    "id": "5",
+                    "title": "Our Identity Baseline process is setup to ensure least privilege access."
+                },
+                {
+                    "id": "6",
+                    "title": "We use a single centralized identity provider for all apps."
+                }
+            ],
+            "display_logic": ""
+    }]
+    },{
+        "id": "deployment_acceleration",
+        "name": "Deployment Acceleration",
+        "questions":[{
+                "id": "1", 
+                "title": "Rate the importance of each of the following statements.", 
+                "explanation": "", 
+                "context": "",
+                "type": "likert_matrix",
+                "scale": [ 
+                    { 
+                        "id": "A", 
+                        "title": "Don't know",
+                        "score": 0
+                    }, 
+                    { 
+                        "id": "B", 
+                        "title": "Not Important",
+                        "score": 1
+                    }, 
+                    { 
+                        "id": "C", 
+                        "title": "Somewhat important",
+                        "score": 2
+                    }, 
+                    { 
+                        "id": "D", 
+                        "title": "Very Important",
+                        "score": 3
+                    },
+                    { 
+                        "id": "E", 
+                        "title": "Critical",
+                        "score": 4
+                    } 
+                ], 
+                "rows" :[
+                    {
+                        "id": "1",
+                        "title": "Having processes in place to restore applications with no business impact and data loss."
+                    },
+                    {
+                        "id": "2",
+                        "title": "Speed of recovery from a disaster or business continuity event."
+                    }
+                ],
+                
+                "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "Rate the importance of each of the following statements.", 
+            "explanation": "", 
+            "context": "",
+            "type": "likert_matrix",
+            "scale": [ 
+                { 
+                    "id": "A", 
+                    "title": "Ad-hoc, no process",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Exists, but not consistent",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Generally consistent",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Formalized and performing",
+                    "score": 3
+                }
+            ], 
+            "rows" :[
+                {
+                    "id": "1",
+                    "title": "We have processes in place to identify configuration drift."
+                },
+                {
+                    "id": "2",
+                    "title": "We have a formal process for patch application and vulnerability detection."
+                },
+                {
+                    "id": "3",
+                    "title": "We have formal processes in place to restore applications. We have worked with the business to document business risk & acceptable recovery times."
+                },
+                {
+                    "id": "4",
+                    "title": "We have a formal process for managing the hardening of OS images."
+                },
+                {
+                    "id": "5",
+                    "title": "We leverage automation tools to ensure resource deployments are scripted and orchestrated."
+                }
+            ],
+            
+            "display_logic": ""
+    }]
+    }
+
+
+] 
+} 

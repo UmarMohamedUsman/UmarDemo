@@ -1,0 +1,997 @@
+{ 
+    "id": "1", 
+    "title": "Cloud Journey Tracker",
+    "category": [{
+        "id": "intro",
+        "name": "Introduction",
+        "questions":[{
+                "id": "1", 
+                "title": "How would you describe your cloud journey?", 
+                "explanation": "", 
+                "context": "",
+                "type": "radio",
+                "choices": [ 
+                    { 
+                        "id": "A", 
+                        "title": "Just getting started",
+                        "score": 0
+                    }, 
+                    { 
+                        "id": "B", 
+                        "title": "Deployed VMs/PaaS services, but not workload",
+                        "score": 1
+                    }, 
+                    { 
+                        "id": "C", 
+                        "title": "Successfully deployed a workload",
+                        "score": 2
+                    }, 
+                    { 
+                        "id": "D", 
+                        "title": "Deployed multiple workloads successfully",
+                        "score": 3
+                    }
+                ],
+                //NOTE: concatenate row with choice to get answer ID for each selection.
+                "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "Is there anything specific you are looking for today? Check all that applies", 
+            "explanation": "", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Estimate cost of operating in the cloud",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Architecting  current environment in the cloud",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Getting Infrastructure ready to deploy workload to the cloud",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Deploy workload to the cloud",
+                    "score": 3
+                },
+                { 
+                    "id": "E", 
+                    "title": "Manage operations",
+                    "score": 4
+                },
+                { 
+                    "id": "F", 
+                    "title": "Improve performance",
+                    "score": 5
+                },
+                {
+                    "id": "G",
+                    "title": "Discovering new ways to improve and be efficient",
+                    "score": 6
+                }
+            ], 
+            "display_logic": ""
+        }]
+    },{
+        "id": "business_strategy",
+        "name": "Business Strategy",
+        "questions":[{
+            "id": "1", 
+            "title": "What best describes your motivation for your cloud transformation. Check all that applies:", 
+            "explanation": "", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Reductions in capital expenses.",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Transforming products or services.",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Preparation for new technical capabilities.",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Scaling to meet geographic demands.",
+                    "score": 3
+                },
+                { 
+                    "id": "E", 
+                    "title": "Improving customer experiences and engagements.",
+                    "score": 4
+                },
+                { 
+                    "id": "F", 
+                    "title": "Building new technical capabilities.",
+                    "score": 5
+                },
+                {
+                    "id": "G",
+                    "title": "Mergers, acquisitions, or divestiture.",
+                    "score": 6
+                },
+                { 
+                    "id": "H", 
+                    "title": "Critical business events like, data center exit.",
+                    "score": 1
+                }, 
+                { 
+                    "id": "I", 
+                    "title": "Increasing business agility.",
+                    "score": 2
+                }, 
+                { 
+                    "id": "J", 
+                    "title": "Reduction in vendor or technical complexity.",
+                    "score": 3
+                },
+                { 
+                    "id": "K", 
+                    "title": "End of support for mission-critical technologies.",
+                    "score": 4
+                },
+                { 
+                    "id": "L", 
+                    "title": "Scaling to meet market demands.",
+                    "score": 5
+                },
+                {
+                    "id": "M",
+                    "title": "Optimization of internal operations.",
+                    "score": 6
+                }
+            ], 
+            "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "What is your financial model for cloud transformation?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Cost Center Model",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Chargeback",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Showback or awareness - back",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Profit Center Model",
+                    "score": 3
+                },
+                {
+                    "id": "E",
+                    "title": "Don’t know",
+                    "score": 4
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "3", 
+            "title": "What are the business outcomes are you expecting to achieve?", 
+            "explanation": "https://docs.microsoft.com/en-us/azure/architecture/cloud-adoption/business-strategy/business-outcomes/", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Customer Engagement Outcome",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Performance Outcomes",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Fiscal Outcomes",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Agility Outcomes",
+                    "score": 3
+                },
+                {
+                    "id": "E",
+                    "title": "Reach Outcomes",
+                    "score": 4
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        }]
+    },{
+        "id": "plan_ready_tech",
+        "name": "Plan/Ready (Tech)",
+        "questions":[{
+            "id": "1", 
+            "title": "Check all that explains what is in the scope for transformation", 
+            "explanation": "", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Legacy App with no support",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Legacy App with vendor support",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "n tier app with web and data",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Packaged application -  3rd party application",
+                    "score": 3
+                },
+                { 
+                    "id": "E", 
+                    "title": "Clustered compute",
+                    "score": 4
+                },
+                { 
+                    "id": "F", 
+                    "title": "Net new app",
+                    "score": 5
+                }
+            ], 
+            "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "In your current environment, your security is managed by:", 
+            "explanation": "", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Checking out admin user name & p/ws",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "System managed changes",
+                    "score": 1
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "3", 
+            "title": "What specific compliance Requirements are you enforcing", 
+            "explanation": "", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "HIPPA",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "GDPR",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "US GOV",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "4", 
+            "title": "Have you considered the following aspects for moving to the cloud?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Need to use a specific version of a specific product?",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Only works on specific hardware configuration?",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "License restrictions?",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "5", 
+            "title": "Do you use source control?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Don't know",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Yes",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "6", 
+            "title": "Do you script your deployments?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Don't know",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Yes",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "7", 
+            "title": "Select the tool(s) you use to monitor your app", 
+            "explanation": "", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "SolarWinds",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Paessler",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "ManageEngine",
+                    "score": 2
+                },
+                { 
+                    "id": "D", 
+                    "title": "Zabiix",
+                    "score": 0
+                }, 
+                { 
+                    "id": "E", 
+                    "title": "Nagios SCOM",
+                    "score": 1
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "8", 
+            "title": "Select what you currently use to patch and update VMs", 
+            "explanation": "", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "LanDesk",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "SolarWinds",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Systems Center Configuration Management",
+                    "score": 2
+                },
+                { 
+                    "id": "D", 
+                    "title": "ManageEngine",
+                    "score": 1
+                }, 
+                { 
+                    "id": "E", 
+                    "title": "GFI Languard",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "9", 
+            "title": "Do you have dedicated environments for dev & test?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Don't know",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Yes",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "10", 
+            "title": "Select any inventory or assessments you have of your current digital estate:", 
+            "explanation": "Configuration management database, Output of assessment tools", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Migration Assessments",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Application Inventory",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Existing CMDB",
+                    "score": 2
+                },
+                { 
+                    "id": "D", 
+                    "title": "Data store inventory",
+                    "score": 1
+                }, 
+                { 
+                    "id": "E", 
+                    "title": "Don’t have/don’t know",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "11", 
+            "title": "Select applicable steps you have taken to set up foundational structure like subscription, Identity and Access, naming standards and resource organization in Azure", 
+            "explanation": "", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "One or more Azure Subscription in place",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Cloud Governance, Security and complaince process available",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Cloud Monotoring and Reporting available",
+                    "score": 2
+                },
+                { 
+                    "id": "D", 
+                    "title": "Connectivity to on-premesis - established ",
+                    "score": 1
+                }, 
+                { 
+                    "id": "E", 
+                    "title": "Existing resources in Azure",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "12", 
+            "title": "Does your organization have Hybrid cloud needs (OnPrem + Cloud)?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Unlear at this point",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Yes",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "No",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "13", 
+            "title": "Does your organization have multi-cloud needs (AWS and/or GCP/Other + Azure)?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Unlear at this point",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Yes",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "No",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "14", 
+            "title": "Will your infrastructure, application and data migration exceed your network bandwidth?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Don't know",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Yes",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "No",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "15", 
+            "title": "Do all your application components reside within the same network address space?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Don't know",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Yes",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "No",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "16", 
+            "title": "Will application require connectivity to on-prem data center?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Don't know",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Yes",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "No",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "17", 
+            "title": "Does your application make use of an existing DevOps pipeline?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Don't know",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Yes",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "No",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "18", 
+            "title": "Is your application currently running on dedicated virtual machines or sharing hosting with other applications?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Unclear at this point",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Yes",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "No",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "19", 
+            "title": "Would modernization of the application platform during migration prove to be a wise investment of time, energy, and budget?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Unlear at this point",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Yes",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "No",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "20", 
+            "title": "How are you looking to improvise on or make efficient/modernize?", 
+            "explanation": "", 
+            "context": "",
+            "type": "checkbox",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Leverage AI/ML in applications",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "Replication and geo redundancy",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Decompose application into smaller components (micro services)",
+                    "score": 2
+                }, 
+                { 
+                    "id": "D", 
+                    "title": "Run applications in containerized environment",
+                    "score": 1
+                }, 
+                { 
+                    "id": "E", 
+                    "title": "Unclear",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        }]
+    },{
+        "id": "plan_ready_org",
+        "name": "Plan/Ready (Org Readiness)",
+        "questions":[{
+            "id": "1", 
+            "title": "Do the appropriate people and teams have foundational level knowledge of cloud services and how those services are provided with Microsoft Azure?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Yes",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Don't know",
+                    "score": 2
+                }
+            ], 
+            "display_logic": ""
+        },{
+            "id": "2", 
+            "title": "Do you have an established structure with representation from Business, Finance, and IT to advocate, support and influence across the company?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Yes",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Don't know",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "3", 
+            "title": "Do you have a dedicated Cloud Strategy team that consists of influencers from Finance, impacted Line of Business units, and Technical Architects?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Yes",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Don't know",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "4", 
+            "title": "Do you have a dedicated Cloud Governance team that consists of subject matter experts from Security, IT Ops and Business Decision Makers to assess business risks and tolerance levels?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Yes",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Don't know",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "5", 
+            "title": "Do you  have a dedicated Cloud Migration team that consists of subject matter experts that have strong awareness of current technical estate?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Yes",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Don't know",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "6", 
+            "title": "Do you have top down support and push to adopt the cloud?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Yes",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Don't know",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "7", 
+            "title": "Do you have adequate training for our developers to ensure they are building safe apps (e.g., cross site scripting, cross origin resource sharing, script injection, using HTTPS)?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Yes",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Don't know",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        },{
+            "id": "8", 
+            "title": "Do they understand cloud computing concepts as well as general cloud computing models and services such as Public, Private and Hybrid cloud and IaaS, PaaS and SaaS?", 
+            "explanation": "", 
+            "context": "",
+            "type": "radio",
+            "choices": [ 
+                { 
+                    "id": "A", 
+                    "title": "Yes",
+                    "score": 0
+                }, 
+                { 
+                    "id": "B", 
+                    "title": "No",
+                    "score": 1
+                }, 
+                { 
+                    "id": "C", 
+                    "title": "Don't know",
+                    "score": 2
+                }
+            ],
+            //NOTE: concatenate row with choice to get answer ID for each selection.
+            "display_logic": ""
+        }]
+    }] 
+} 
