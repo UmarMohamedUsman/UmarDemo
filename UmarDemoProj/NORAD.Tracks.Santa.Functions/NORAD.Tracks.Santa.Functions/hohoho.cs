@@ -17,7 +17,7 @@ namespace NORAD.Tracks.Santa.Functions
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            return (ActionResult)new OkObjectResult(DateTime.Parse("24-DEC-2018 07:00:00").ToString());
+            return (ActionResult)new OkObjectResult(DateTime.Parse("25-DEC-2018 07:00:00").ToString());
         }
     }
 }
