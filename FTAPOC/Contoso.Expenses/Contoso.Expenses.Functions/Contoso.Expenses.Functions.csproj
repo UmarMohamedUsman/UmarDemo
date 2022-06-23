@@ -5,7 +5,7 @@
   <ItemGroup>    
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SendGrid" Version="2.0.0" />    
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.6" />    
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />    
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />    
     <PackageReference Include="Sendgrid" Version="9.9.0" />
   </ItemGroup>
   <ItemGroup>
